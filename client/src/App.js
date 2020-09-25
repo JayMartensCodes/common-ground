@@ -2,11 +2,7 @@ import React from 'react';
 import {
   GoogleMap,
   useLoadScript,
-  Marker,
-  InfoWindow,
 } from "@react-google-maps/api";
-import LocateHome from './components/LocateHome'
-import Search from './components/Search'
 import mapStyles from "./mapStyles"
 import NavBar from './components/Navbar'
 
