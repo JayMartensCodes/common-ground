@@ -7,8 +7,8 @@ import {
 } from "@react-google-maps/api";
 import LocateHome from './components/LocateHome'
 import Search from './components/Search'
-import mapStyles from "./mapStyles";
-import './App.css';
+import mapStyles from "./mapStyles"
+import NavBar from './components/Navbar'
 
 
 const libraries = ["places"];
@@ -47,14 +47,8 @@ function App() {
   if (!isLoaded) return "Loading...";
 
   return (
-    <div>
-      <h1>
-        Common Ground!
-      </h1>
-
-      <LocateHome panTo={panTo} />
-      <Search panTo={panTo} />
-
+    <>
+      <NavBar panTo={panTo} />
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -65,7 +59,7 @@ function App() {
         onLoad={onMapLoad}
       >
       </GoogleMap>
-    </div>
+    </>
   );
 }
 

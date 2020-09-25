@@ -27,6 +27,7 @@ function Search({ panTo }) {
       radius: 100 * 1000,
     },
   });
+  
 
   // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
@@ -54,7 +55,7 @@ function Search({ panTo }) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search your location"
+          placeholder="Search for Common Ground "
         />
         <ComboboxPopover>
           <ComboboxList>
