@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import LocateHome from './components/LocateHome'
-import Search from './components/Search'
-import mapStyles from "./mapStyles"
-import NavBar from './components/Navbar'
-
+import LocateHome from "./components/LocateHome";
+import Search from "./components/Search";
+import mapStyles from "./mapStyles";
+import NavBar from "./components/Navbar";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -25,7 +24,6 @@ const center = {
   lat: 43.6532,
   lng: -79.3832,
 };
-
 
 function App() {
   const { isLoaded, loadError } = useLoadScript({
@@ -57,8 +55,7 @@ function App() {
         options={options}
         // onClick={onMapClick}
         onLoad={onMapLoad}
-      >
-      </GoogleMap>
+      ></GoogleMap>
     </>
   );
 }
