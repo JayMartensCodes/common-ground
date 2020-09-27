@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import {
   GoogleMap,
   useLoadScript,
   Marker,
-  InfoWindow,
+  InfoBox
 } from "@react-google-maps/api";
-import LocateHome from "./components/LocateHome";
-import Search from "./components/Search";
-import mapStyles from "./mapStyles";
-import NavBar from "./components/Navbar";
+import mapStyles from "./mapStyles"
+import NavBar from './components/Navbar'
 
-const libraries = ["places"];
+
+const libraries = ["places", 'directions'];
 const mapContainerStyle = {
   height: "100vh",
   width: "100vw",
@@ -24,6 +23,8 @@ const center = {
   lat: 43.6532,
   lng: -79.3832,
 };
+
+
 
 function App() {
   const { isLoaded, loadError } = useLoadScript({
@@ -41,6 +42,29 @@ function App() {
     mapRef.current.setZoom(14);
   }, []);
 
+  const [marker, setMarker] = useState({})
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getCoordinates, () => null, { enableHighAccuracy: true })
+    } else {
+      alert("Geolocation is not supported by this browser")
+    }
+  }
+
+  const getCoordinates = (position) => {
+    console.log(position);
+    setMarker({
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    })
+  }
+
+  useEffect(() => {
+    getLocation();
+  }, [])
+
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -55,7 +79,11 @@ function App() {
         options={options}
         // onClick={onMapClick}
         onLoad={onMapLoad}
-      ></GoogleMap>
+      >
+        <Marker
+          position={marker}
+        />
+      </GoogleMap>
     </>
   );
 }
