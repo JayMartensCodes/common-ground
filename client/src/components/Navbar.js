@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Search from './Search';
@@ -6,10 +6,11 @@ import LocateHome from './LocateHome';
 import Login from './Login';
 
 function NavBar({ panTo }) {
+  const [showModal, setShowModal] = useState(false);
   function login() {
+    setShowModal(true);
     console.log('hello');
   };
-  const showModal = true;
 
   return (
     <>
