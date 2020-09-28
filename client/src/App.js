@@ -9,7 +9,8 @@ import LocateHome from './components/LocateHome'
 import Search from './components/Search'
 import mapStyles from "./mapStyles"
 import NavBar from './components/Navbar'
-import Login from './components/Login'
+import Modal from './components/Modal'
+import useModal from './hooks/useModal';
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -28,6 +29,8 @@ const center = {
 
 
 function App() {
+  const {isShowing, toggle} = useModal();
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -49,7 +52,13 @@ function App() {
   return (
     <>
       <NavBar panTo={panTo} />
-      <Login />
+      <div className="App">
+        <button className="button-default" onClick={toggle}>Show Modal</button>
+        <Modal
+          isShowing={isShowing}
+          hide={toggle}
+        />
+     </div>
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}

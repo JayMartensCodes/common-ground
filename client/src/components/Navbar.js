@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Search from './Search';
 import LocateHome from './LocateHome';
-import Login from './Login';
+// import Modal from './Modal';
 
 function NavBar({ panTo }) {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +13,7 @@ function NavBar({ panTo }) {
 
   return (
     <>
-      <Login showModal={showModal} />
+      {/* <Login showModal={showModal} /> */}
 
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href="#home">Common-Ground</Navbar.Brand>
