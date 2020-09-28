@@ -9,10 +9,10 @@ import {
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
+  getDetails,
 } from "use-places-autocomplete";
-import './Search.css'
+import "./Search.css";
 import "@reach/combobox/styles.css";
-
 
 function Search({ panTo }) {
   const {
@@ -27,7 +27,6 @@ function Search({ panTo }) {
       radius: 100 * 1000,
     },
   });
-  
 
   // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
 
@@ -42,6 +41,8 @@ function Search({ panTo }) {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
+      // const placesData = await getDetails(address);
+      // console.log(placesData);
       panTo({ lat, lng });
     } catch (error) {
       console.log("Error: ", error);
