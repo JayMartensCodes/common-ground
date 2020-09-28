@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Combobox,
   ComboboxInput,
@@ -18,7 +18,7 @@ function Search({ panTo }) {
   const {
     ready,
     value,
-    suggestions: { status, data },
+    suggestions,
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
@@ -41,7 +41,8 @@ function Search({ panTo }) {
     try {
       const results = await getGeocode({ address });
       const { lat, lng } = await getLatLng(results[0]);
-      // const placesData = await getDetails(address);
+      console.log(suggestions);
+      // const placesData = await getDetails(suggestions[0]);
       // console.log(placesData);
       panTo({ lat, lng });
     } catch (error) {
@@ -60,8 +61,8 @@ function Search({ panTo }) {
         />
         <ComboboxPopover>
           <ComboboxList>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
+            {suggestions.status === "OK" &&
+              suggestions.data.map(({ id, description }) => (
                 <ComboboxOption key={id} value={description} />
               ))}
           </ComboboxList>

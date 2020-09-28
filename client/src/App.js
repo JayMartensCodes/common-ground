@@ -7,6 +7,7 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
 import NavBar from "./components/Navbar";
+import nearbySearch from "./helper/nearbySearch";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -24,6 +25,8 @@ const center = {
 };
 
 function App() {
+  const [marker, setMarker] = useState({});
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -38,8 +41,6 @@ function App() {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
-
-  const [marker, setMarker] = useState({});
 
   //Get current location and setMarker to Home
   useEffect(() => {
@@ -61,6 +62,10 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    nearbySearch(center, 2000, "restaurant");
+  }, []);
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -71,7 +76,7 @@ function App() {
         id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={12}
-        center={center}
+        center={marker}
         options={options}
         // onClick={onMapClick}
         onLoad={onMapLoad}
