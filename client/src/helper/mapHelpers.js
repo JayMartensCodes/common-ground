@@ -1,4 +1,4 @@
-function getMidPoint(location1, location2) {
+export function getMidPoint(location1, location2) {
   let lat1 = location1.lat;
   let lng1 = location1.lng;
 
@@ -38,14 +38,3 @@ function getMidPoint(location1, location2) {
   return { lat: lat3.toDeg(), lng: lng3.toDeg() };
 }
 
-//example
-const torontoDowntown = {
-  lat: 43.666667,
-  lng: -79.416667,
-};
-const torontoZoo = {
-  lat: 43.8176989953,
-  lng: -79.1858911519,
-};
-const midPoint = getMidPoint(torontoDowntown, torontoZoo);
-console.log(midPoint);
