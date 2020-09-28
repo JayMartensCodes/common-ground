@@ -55,7 +55,7 @@ function Search({ panTo }) {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Search for Common Ground "
+          placeholder="Search for Common Ground..."
         />
         <ComboboxPopover>
           <ComboboxList>
