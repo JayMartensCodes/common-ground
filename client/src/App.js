@@ -9,9 +9,7 @@ import LocateHome from './components/LocateHome'
 import Search from './components/Search'
 import mapStyles from "./mapStyles"
 import NavBar from './components/Navbar'
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './global';
-import { theme } from './theme';
+import Login from './components/Login'
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -51,6 +49,7 @@ function App() {
   return (
     <>
       <NavBar panTo={panTo} />
+      <Login />
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
