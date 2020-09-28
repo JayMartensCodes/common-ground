@@ -1,4 +1,10 @@
-function getMidPoint(lat1, lng1, lat2, lng2) {
+function getMidPoint(location1, location2) {
+  let lat1 = location1.lat;
+  let lng1 = location1.lng;
+
+  let lat2 = location2.lat;
+  let lng2 = location2.lng;
+
   //-- Define radius function
   if (typeof Number.prototype.toRad === "undefined") {
     Number.prototype.toRad = function () {
@@ -33,11 +39,13 @@ function getMidPoint(lat1, lng1, lat2, lng2) {
 }
 
 //example
-
-const midPoint = getMidPoint(
-  43.666667,
-  -79.416667,
-  43.8176989953,
-  -79.1858911519
-);
+const torontoDowntown = {
+  lat: 43.666667,
+  lng: -79.416667,
+};
+const torontoZoo = {
+  lat: 43.8176989953,
+  lng: -79.1858911519,
+};
+const midPoint = getMidPoint(torontoDowntown, torontoZoo);
 console.log(midPoint);
