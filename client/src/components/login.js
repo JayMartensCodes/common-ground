@@ -91,8 +91,9 @@ class Login extends React.Component {
               onLoginSuccess: this.onLoginSuccess.bind(this),
               onLoginFail: this.onLoginFail.bind(this),
               label: "Continue with Google"
-            }
+            },
           }}
+          s
         />
       </div>
     )

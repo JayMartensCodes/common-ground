@@ -9,7 +9,6 @@ function NavBar({ panTo }) {
   const [showModal, setShowModal] = useState(false);
   function login() {
     setShowModal(true);
-    console.log('hello');
   };
 
   return (
