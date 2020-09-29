@@ -1,12 +1,4 @@
 .filter {
-  padding: 0.5rem;
-  justify-content: center;
-  width: 400px;
-  margin-right: 3rem;
-}
-
-.filter input {
-  padding: 0.5rem;
-  font-size: 1rem;
-  width: 100%;
+  color: white;
+  padding-top: 0.5rem;
 }
