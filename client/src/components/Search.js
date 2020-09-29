@@ -9,8 +9,9 @@ import {
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
-  getDetails,
 } from "use-places-autocomplete";
+import nearbySearch from "../helper/nearbySearch";
+import { getMidPoint } from "../helper/mapHelpers";
 import "./Search.css";
 import "@reach/combobox/styles.css";
 
@@ -28,7 +29,28 @@ function Search({ panTo }) {
     },
   });
 
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
+  const [currentLocation, setCurrentLocation] = useState({});
+  const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          setCurrentLocation({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
+        },
+        () => null,
+        {
+          enableHighAccuracy: true,
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by this browser");
+    }
+  }, []);
 
   const handleInput = (e) => {
     setValue(e.target.value);
@@ -40,11 +62,12 @@ function Search({ panTo }) {
 
     try {
       const results = await getGeocode({ address });
-      const { lat, lng } = await getLatLng(results[0]);
-      console.log(suggestions);
-      // const placesData = await getDetails(suggestions[0]);
-      // console.log(placesData);
-      panTo({ lat, lng });
+      const destination = await getLatLng(results[0]);
+      const middle = getMidPoint(currentLocation, destination);
+      panTo(middle);
+      const midPointSearch = await nearbySearch(middle, 2000, "bar");
+      setSearchResults(midPointSearch);
+      setValue("");
     } catch (error) {
       console.log("Error: ", error);
     }

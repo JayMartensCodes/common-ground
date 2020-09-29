@@ -6,7 +6,8 @@ const nearbySearch = async (geoLocation, radius, type) => {
   const url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
   try {
     const response = await axios.get(url);
-    console.log(response.data.results);
+    const results = response.data.results;
+    return results;
   } catch (error) {
     console.log({ error: error });
   }

@@ -7,7 +7,8 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
 import NavBar from "./components/Navbar";
-import nearbySearch from "./helper/nearbySearch";
+import Search from "./components/Search";
+// import nearbySearch from "./helper/nearbySearch";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -62,10 +63,6 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    nearbySearch(center, 2000, "restaurant");
-  }, []);
-
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -76,7 +73,7 @@ function App() {
         id="map"
         mapContainerStyle={mapContainerStyle}
         zoom={12}
-        center={marker}
+        center={center}
         options={options}
         // onClick={onMapClick}
         onLoad={onMapLoad}
