@@ -5,6 +5,7 @@ import Search from "./Search";
 import LocateHome from "./LocateHome";
 import Filter from "./Filter";
 import LoginModal from "./LoginModal";
+import SignupModal from "./SignupModal";
 
 function NavBar({ panTo, currentLocation }) {
   return (
@@ -14,13 +15,14 @@ function NavBar({ panTo, currentLocation }) {
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <LoginModal />
+          <SignupModal />
         </Nav>
         <Nav>
           <Search currentLocation={currentLocation} panTo={panTo} />
           <LocateHome panTo={panTo} />
         </Nav>
       </Navbar.Collapse>
-    </Navbar>
+    </Navbar >
   );
 }
 
