@@ -26,7 +26,7 @@ const center = {
 };
 
 function App() {
-  const [marker, setMarker] = useState({});
+  const [currentLocation, setCurrentLocation] = useState({});
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -40,7 +40,7 @@ function App() {
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(16);
   }, []);
 
   //Get current location and setMarker to Home
@@ -48,7 +48,7 @@ function App() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
-          setMarker({
+          setCurrentLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      <NavBar panTo={panTo} />
+      <NavBar panTo={panTo} currentLocation={currentLocation} />
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -78,7 +78,7 @@ function App() {
         // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <Marker position={marker} />
+        <Marker position={currentLocation} />
       </GoogleMap>
     </>
   );

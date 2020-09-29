@@ -15,7 +15,7 @@ import { getMidPoint } from "../helper/mapHelpers";
 import "./Search.css";
 import "@reach/combobox/styles.css";
 
-function Search({ panTo }) {
+function Search({ panTo, currentLocation }) {
   const {
     ready,
     value,
@@ -29,28 +29,8 @@ function Search({ panTo }) {
     },
   });
 
-  const [currentLocation, setCurrentLocation] = useState({});
   const [searchResults, setSearchResults] = useState([]);
   console.log(searchResults);
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          setCurrentLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        () => null,
-        {
-          enableHighAccuracy: true,
-        }
-      );
-    } else {
-      alert("Geolocation is not supported by this browser");
-    }
-  }, []);
 
   const handleInput = (e) => {
     setValue(e.target.value);
