@@ -10,7 +10,6 @@ import Search from './components/Search'
 import mapStyles from "./mapStyles"
 import NavBar from './components/Navbar'
 import Modal from './components/Modal'
-import useModal from './hooks/useModal';
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -29,13 +28,6 @@ const center = {
 
 
 function App() {
-  const {isShowing, toggle} = useModal();
-
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
-
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
@@ -46,19 +38,12 @@ function App() {
     mapRef.current.setZoom(14);
   }, []);
 
-  if (loadError) return "Error";
-  if (!isLoaded) return "Loading...";
-
   return (
     <>
-      <NavBar panTo={panTo} />
-      <div className="App">
-        <button className="button-default" onClick={toggle}>Show Modal</button>
-        <Modal
-          isShowing={isShowing}
-          hide={toggle}
-        />
-     </div>
+     <Modal />
+
+      <NavBar panTo={panTo}/>
+
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -74,3 +59,4 @@ function App() {
 }
 
 export default App;
+
