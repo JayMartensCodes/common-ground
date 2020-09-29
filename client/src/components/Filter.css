@@ -1,14 +1,12 @@
-.search {
+.filter {
   padding: 0.5rem;
   justify-content: center;
   width: 400px;
   margin-right: 3rem;
-  z-index: 10;
 }
 
-.search input {
+.filter input {
   padding: 0.5rem;
   font-size: 1rem;
   width: 100%;
-  z-index: 10;
 }

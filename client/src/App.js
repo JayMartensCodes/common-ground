@@ -7,6 +7,8 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "./mapStyles";
 import NavBar from "./components/Navbar";
+import Search from "./components/Search";
+// import nearbySearch from "./helper/nearbySearch";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -24,6 +26,8 @@ const center = {
 };
 
 function App() {
+  const [currentLocation, setCurrentLocation] = useState({});
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -36,17 +40,15 @@ function App() {
 
   const panTo = React.useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(16);
   }, []);
-
-  const [marker, setMarker] = useState({});
 
   //Get current location and setMarker to Home
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
-          setMarker({
+          setCurrentLocation({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           });
@@ -66,7 +68,7 @@ function App() {
 
   return (
     <>
-      <NavBar panTo={panTo} />
+      <NavBar panTo={panTo} currentLocation={currentLocation} />
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
@@ -76,7 +78,7 @@ function App() {
         // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <Marker position={marker} />
+        <Marker position={currentLocation} />
       </GoogleMap>
     </>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Combobox,
   ComboboxInput,
@@ -9,16 +9,17 @@ import {
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
-  getDetails,
 } from "use-places-autocomplete";
+import nearbySearch from "../helper/nearbySearch";
+import { getMidPoint } from "../helper/mapHelpers";
 import "./Search.css";
 import "@reach/combobox/styles.css";
 
-function Search({ panTo }) {
+function Search({ panTo, currentLocation }) {
   const {
     ready,
     value,
-    suggestions: { status, data },
+    suggestions,
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
@@ -28,7 +29,8 @@ function Search({ panTo }) {
     },
   });
 
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
+  const [searchResults, setSearchResults] = useState([]);
+  console.log(searchResults);
 
   const handleInput = (e) => {
     setValue(e.target.value);
@@ -40,10 +42,12 @@ function Search({ panTo }) {
 
     try {
       const results = await getGeocode({ address });
-      const { lat, lng } = await getLatLng(results[0]);
-      // const placesData = await getDetails(address);
-      // console.log(placesData);
-      panTo({ lat, lng });
+      const destination = await getLatLng(results[0]);
+      const middle = getMidPoint(currentLocation, destination);
+      panTo(middle);
+      const midPointSearch = await nearbySearch(middle, 2000, "bar");
+      setSearchResults(midPointSearch);
+      setValue("");
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -60,8 +64,8 @@ function Search({ panTo }) {
         />
         <ComboboxPopover>
           <ComboboxList>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
+            {suggestions.status === "OK" &&
+              suggestions.data.map(({ id, description }) => (
                 <ComboboxOption key={id} value={description} />
               ))}
           </ComboboxList>
