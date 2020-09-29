@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import SignupModal from "./SignupModal"
 
 function LoginModal() {
   const [show, setShow] = useState(false);
@@ -27,7 +26,7 @@ function LoginModal() {
               <Form.Control type="email" placeholder="Enter email" />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
-    </Form.Text>
+              </Form.Text>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -43,7 +42,6 @@ function LoginModal() {
           <Button variant="outline-secondary" onClick={handleClose}>
             Close
           </Button>
-          <SignupModal />
           <Button variant="dark" onClick={handleClose}>
             Login
           </Button>
