@@ -1,48 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoBox,
-} from "@react-google-maps/api";
-import mapStyles from "./mapStyles";
-import NavBar from "./components/Navbar";
-import Search from "./components/Search";
-// import nearbySearch from "./helper/nearbySearch";
 
-const libraries = ["places", "directions"];
-const mapContainerStyle = {
-  height: "100vh",
-  width: "100vw",
-};
-const options = {
-  styles: mapStyles,
-  disableDefaultUI: true,
-  zoomControl: true,
-};
-const center = {
-  lat: 43.6532,
-  lng: -79.3832,
-};
+
+import Map from "./components/Map";
+// import nearbySearch from "./helper/nearbySearch";
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState({});
-
-  const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    libraries,
-  });
-
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
-    mapRef.current = map;
-  }, []);
-
-  const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(16);
-  }, []);
-
   //Get current location and setMarker to Home
   useEffect(() => {
     if (navigator.geolocation) {
@@ -63,23 +26,10 @@ function App() {
     }
   }, []);
 
-  if (loadError) return "Error";
-  if (!isLoaded) return "Loading...";
-
   return (
     <>
-      <NavBar panTo={panTo} currentLocation={currentLocation} />
-      <GoogleMap
-        id="map"
-        mapContainerStyle={mapContainerStyle}
-        zoom={12}
-        center={center}
-        options={options}
-        // onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        <Marker position={currentLocation} />
-      </GoogleMap>
+      <Map currentLocation={currentLocation}/>
+      
     </>
   );
 }

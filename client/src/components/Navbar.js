@@ -16,7 +16,7 @@ function NavBar({ panTo, currentLocation }) {
           <LoginModal />
         </Nav>
         <Nav>
-          <Search panTo={panTo} currentLocation={currentLocation} />
+          <Search currentLocation={currentLocation} panTo={panTo} />
           <Filter />
           <LocateHome panTo={panTo} />
         </Nav>
