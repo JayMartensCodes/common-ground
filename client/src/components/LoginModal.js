@@ -11,7 +11,7 @@ function LoginModal() {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" size="lg" onClick={handleShow} >
         Login
       </Button>
 
