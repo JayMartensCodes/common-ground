@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import SignupModal from "./SignupModal"
 
-function LoginModal() {
+function SignupModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,13 +11,13 @@ function LoginModal() {
 
   return (
     <div>
-      <Button variant="primary" size="lg" onClick={handleShow} >
-        Login
+      <Button variant="outline-dark" onClick={handleShow}>
+        Sign Up
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+          <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -43,15 +42,15 @@ function LoginModal() {
           <Button variant="outline-secondary" onClick={handleClose}>
             Close
           </Button>
-          <SignupModal />
+          <Button variant="outline-dark">Sign Up</Button>
           <Button variant="dark" onClick={handleClose}>
             Login
           </Button>
 
         </Modal.Footer>
       </Modal>
-    </div >
+    </div>
   );
 }
 
-export default LoginModal;
+export default SignupModal;
