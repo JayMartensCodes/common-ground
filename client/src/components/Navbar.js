@@ -7,6 +7,7 @@ import LocateHome from "./LocateHome";
 import Filter from "./Filter";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
+import DropDown from "./Wannabedropdown";
 
 function NavBar({ panTo, currentLocation }) {
   return (
@@ -21,6 +22,9 @@ function NavBar({ panTo, currentLocation }) {
         <Nav>
           <Search currentLocation={currentLocation} panTo={panTo} />
           <LocateHome panTo={panTo} />
+        </Nav>
+        <Nav>
+          <DropDown />
         </Nav>
       </Navbar.Collapse>
     </Navbar >
