@@ -1,14 +1,26 @@
+.navbar-brand {
+  color: black;
+  margin-left: 1rem;
+  margin-right: 0;
+  font-weight: 600;
+}
+
 .search {
   padding: 0.5rem;
   width: 400px;
   z-index: 10;
+  border-bottom: 1px solid #f2f2f2;
 }
 
 .search input {
-  padding: 0.5rem;
   font-size: 1rem;
   width: 100%;
   z-index: 10;
+  border: none;
+}
+
+.search input:focus {
+  outline: none;
 }
 
 [data-reach-combobox] {
@@ -16,25 +28,32 @@
 }
 
 .navbar-nav .btn {
+  border:0;
   border-radius: 50px;
   background-color: transparent;
-  color: white;
-  border-color: white;
+  color: #007bff;
+  font-weight: 600;
   margin-right: 0.5rem;
   white-space: nowrap;
 }
 
 .navbar {
   background-color: white;
-  width: 90%;
-  position: absolute !important;
-  z-index: 1;
-  top: 2rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  box-shadow: 0 25px 50px 0 rgba(0,0,0,0.25);
   border-radius: 50px;
+  box-shadow: 0 25px 50px 0 rgba(0,0,0,0.25);
+  left: 0;
+  margin: auto;
+  position: absolute !important;
+  right: 0;
+  top: 2rem;
+  width: 90%;
+  z-index: 1;
+}
+
+.mr-auto, .mx-auto {
+  margin-right: auto!important;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .filter {
@@ -42,4 +61,17 @@
   color: white;
   margin: auto;
   padding-top: 0.5rem;
+}
+
+.locate {
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  z-index: 10;
+}
+
+.locate img {
+  width: 50px;
+  cursor: pointer;
 }

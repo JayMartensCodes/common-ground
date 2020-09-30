@@ -11,7 +11,7 @@ function SignupModal() {
 
   return (
     <div>
-      <Button variant="danger" onClick={handleShow}>
+      <Button onClick={handleShow}>
         Sign Up
       </Button>
 

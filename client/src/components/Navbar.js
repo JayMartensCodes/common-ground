@@ -17,16 +17,12 @@ function NavBar({
   setMidpoint
 }) {
   return (
-    <Navbar collapseOnSelect variant="dark">
+    <Navbar collapseOnSelect>
       <Navbar.Brand href="#home">Common-Ground</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="mr-auto">
-          <LoginModal />
-          <SignupModal />
-        </Nav>
+        <LocateHome panTo={panTo} />
         <Nav>
-          <Filter setFilterOption={setFilterOption} />
           <Search
             currentLocation={currentLocation}
             panTo={panTo}
@@ -34,9 +30,11 @@ function NavBar({
             setFilterOption={setFilterOption}
             setMidpoint={setMidpoint}
           />
-          <LocateHome panTo={panTo} />
+          <Filter setFilterOption={setFilterOption} />
         </Nav>
-        <Nav>
+        <Nav className="mr-auto">
+          <LoginModal />
+          <SignupModal />
           <DropDown />
         </Nav>
       </Navbar.Collapse>
