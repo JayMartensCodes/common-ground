@@ -1,0 +1,9 @@
+#dropdownmenu {
+  transform: translateX(-50%);
+}
+
+img {
+  width: 50px;
+  cursor: pointer;
+}
+
