@@ -15,10 +15,16 @@
   display: flex;
 }
 
-
 .navbar-nav .btn {
   color: white;
   background-color: transparent;
   border-color: white;
   white-space: nowrap;
+  margin-right: 0.5rem;
 }
+
+.navbar {
+  position: absolute;
+  z-index: 1;
+}
+

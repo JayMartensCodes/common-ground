@@ -12,7 +12,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { getMidPoint } from "../helper/mapHelpers";
 
-import "./Search.css";
+import "./Nav.css";
 import "@reach/combobox/styles.css";
 
 
