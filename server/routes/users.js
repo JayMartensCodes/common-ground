@@ -18,9 +18,9 @@ module.exports = ({ getUsers, insertUser, getUser }) => {
   });
 
   router.post('/', (req, res) => {
-    const { first_name, last_name, email, password, home_address } = JSON.parse(req.body.user)
+    const { name, email, password } = JSON.parse(req.body.user)
 
-    insertUser(first_name, last_name, email, password, home_address)
+    insertUser(name, email, password)
       .then((user) => res.json(user))
       .catch((err) => res.json({ error: err.message }));
   });
