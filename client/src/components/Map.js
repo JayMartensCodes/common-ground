@@ -3,7 +3,7 @@ import {
   GoogleMap,
   useLoadScript,
   Marker,
-  InfoBox,
+  InfoWindow,
 } from "@react-google-maps/api";
 import NavBar from "../components/Navbar";
 import nearbySearch from "../helper/nearbySearch";
@@ -29,9 +29,10 @@ function Map({ currentLocation }) {
   const [destination, setDestination] = useState();
   const [filterOption, setFilterOption] = useState("bar");
   const [midPoint, setMidpoint] = useState();
-  
+  const [selected, setSelected] = useState(null);
+
   console.log("search results:", searchResults);
-  
+
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -39,20 +40,18 @@ function Map({ currentLocation }) {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(15);
+    mapRef.current.setZoom(14);
   }, []);
   //Get search results based on midpoint
   useEffect(() => {
     async function getSearchResults() {
-      const results = await nearbySearch(midPoint, 500, filterOption);
+      const results = await nearbySearch(midPoint, 1500, filterOption);
       setSearchResults(results);
     }
     if (midPoint) {
       getSearchResults();
     }
   }, [midPoint]);
-
-
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -74,12 +73,52 @@ function Map({ currentLocation }) {
         // onClick={onMapClick}
         onLoad={onMapLoad}
       >
-        <Marker position={currentLocation} />
-        {destination && <Marker position={destination} />}
-        {/* map array of businesses */}
+        <Marker
+          key="home"
+          position={currentLocation}
+          animation={window.google.maps.Animation.DROP}
+          icon={{
+            url:
+              "https://www.flaticon.com/svg/static/icons/svg/3448/3448561.svg",
+            scaledSize: new window.google.maps.Size(50, 50),
+          }}
+        />
+        {destination && (
+          <Marker
+            key="destination"
+            position={destination}
+            animation={window.google.maps.Animation.DROP}
+            icon={{
+              url:
+                "https://www.flaticon.com/svg/static/icons/svg/3410/3410277.svg",
+              scaledSize: new window.google.maps.Size(35, 35),
+            }}
+          />
+        )}
         {searchResults.map((marker, index) => (
-          <Marker key={index} position={marker.geometry.location} />
+          <Marker
+            key={index}
+            position={marker.geometry.location}
+            animation={window.google.maps.Animation.DROP}
+            icon={{
+              url: marker.icon,
+              scaledSize: new window.google.maps.Size(35, 35),
+            }}
+            onClick={() => setSelected(marker)}
+          />
         ))}
+        {selected ? (
+          <InfoWindow
+            position={selected.geometry.location}
+            onCloseClick={() => setSelected(null)}
+          >
+            <div>
+              <h2>{selected.name}</h2>
+              <img src={selected.icon} />
+              <img src={selected.photo} />
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
       {/* side bar pass markers array */}
     </div>
