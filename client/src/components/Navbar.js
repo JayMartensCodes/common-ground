@@ -17,7 +17,7 @@ function NavBar({
   setMidpoint
 }) {
   return (
-    <Navbar collapseOnSelect bg="dark" variant="dark">
+    <Navbar collapseOnSelect variant="dark">
       <Navbar.Brand href="#home">Common-Ground</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
