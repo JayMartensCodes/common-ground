@@ -10,9 +10,9 @@ import SignupModal from "./SignupModal";
 function NavBar({
   panTo,
   currentLocation,
-  setSearchResults,
   setDestination,
   setFilterOption,
+  setMidpoint
 }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -28,9 +28,9 @@ function NavBar({
           <Search
             currentLocation={currentLocation}
             panTo={panTo}
-            setSearchResults={setSearchResults}
             setDestination={setDestination}
             setFilterOption={setFilterOption}
+            setMidpoint={setMidpoint}
           />
           <LocateHome panTo={panTo} />
         </Nav>

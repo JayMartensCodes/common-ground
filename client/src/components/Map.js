@@ -7,7 +7,6 @@ import {
 } from "@react-google-maps/api";
 import NavBar from "../components/Navbar";
 import nearbySearch from "../helper/nearbySearch";
-import { getMidPoint } from "../helper/mapHelpers";
 import mapStyles from "../mapStyles";
 
 const libraries = ["places", "directions"];
@@ -20,10 +19,6 @@ const options = {
   disableDefaultUI: true,
   zoomControl: true,
 };
-const center = {
-  lat: 43.6532,
-  lng: -79.3832,
-};
 
 function Map({ currentLocation }) {
   const { isLoaded, loadError } = useLoadScript({
@@ -31,15 +26,12 @@ function Map({ currentLocation }) {
     libraries,
   });
   const [searchResults, setSearchResults] = useState([]);
-  const [destination, setDestination] = useState({});
+  const [destination, setDestination] = useState();
   const [filterOption, setFilterOption] = useState("bar");
-
-  //test
-  console.log({ currentLocation });
-  console.log({ searchResults });
-  console.log({ destination });
-  console.log({ filterOption });
-
+  const [midPoint, setMidpoint] = useState();
+  
+  console.log("search results:", searchResults);
+  
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
     mapRef.current = map;
@@ -49,20 +41,16 @@ function Map({ currentLocation }) {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(15);
   }, []);
-
+  //Get search results based on midpoint
   useEffect(() => {
     async function getSearchResults() {
-      const middle = getMidPoint(currentLocation, destination);
-      console.log({ middle });
-      const midPointSearch =
-        middle === undefined
-          ? await nearbySearch(center, 1000, filterOption)
-          : await nearbySearch(middle, 1000, filterOption);
-      setSearchResults(midPointSearch);
+      const results = await nearbySearch(midPoint, 500, filterOption);
+      setSearchResults(results);
     }
-
-    getSearchResults();
-  }, [setDestination]);
+    if (midPoint) {
+      getSearchResults();
+    }
+  }, [midPoint]);
 
 
   if (loadError) return "Error";
@@ -73,9 +61,9 @@ function Map({ currentLocation }) {
       <NavBar
         currentLocation={currentLocation}
         panTo={panTo}
-        setSearchResults={setSearchResults}
         setDestination={setDestination}
         setFilterOption={setFilterOption}
+        setMidpoint={setMidpoint}
       />
       <GoogleMap
         id="map"
@@ -87,6 +75,7 @@ function Map({ currentLocation }) {
         onLoad={onMapLoad}
       >
         <Marker position={currentLocation} />
+        {destination && <Marker position={destination} />}
         {/* map array of businesses */}
         {searchResults.map((marker, index) => (
           <Marker key={index} position={marker.geometry.location} />

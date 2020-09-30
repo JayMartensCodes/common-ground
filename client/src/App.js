@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import Map from "./components/Map";
 // import nearbySearch from "./helper/nearbySearch";
+const center = {
+  lat: 43.6532,
+  lng: -79.3832,
+};
 
 function App() {
-  const [currentLocation, setCurrentLocation] = useState({});
+  const [currentLocation, setCurrentLocation] = useState(center);
   //Get current location and setMarker to Home
   useEffect(() => {
     if (navigator.geolocation) {
