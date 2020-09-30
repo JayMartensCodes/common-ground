@@ -1,0 +1,24 @@
+#dropdownmenu {
+  transform: translateX(-50%);
+}
+
+img {
+  width: 50px;
+  cursor: pointer;
+}
+
+#dropdown-basic {
+  box-sizing: border-box;
+  border-radius: 50px;
+}
+
+#dropdown-basic img {
+  border-radius:50%;
+}
+
+.dropdown-toggle:after {
+    border-top: 0.5em solid !important;
+    border-right: 0.5rem solid transparent !important;
+    border-left: 0.5rem solid transparent !important;
+    margin-left: 1rem !important;
+}

@@ -1,0 +1,25 @@
+import React from 'react';
+import './Wannabedropdown.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import logo from '../images/user.png';
+
+
+function DropDown() {
+  return (
+    <Dropdown>
+      <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+        <img src={logo} alt="potato" />
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu id="dropdownmenu">
+        <Dropdown.Item href="#/action-1">Messages</Dropdown.Item>
+        <Dropdown.Item href="#/action-2">Find Friend</Dropdown.Item>
+        <Dropdown.Item href="#/action-3">Share Location</Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item eventKey="4">Log Out</Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown >
+  );
+}
+
+export default DropDown;

@@ -7,6 +7,7 @@ import LocateHome from "./LocateHome";
 import Filter from "./Filter";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
+import DropDown from "./Wannabedropdown";
 
 function NavBar({
   panTo,
@@ -34,6 +35,9 @@ function NavBar({
             setMidpoint={setMidpoint}
           />
           <LocateHome panTo={panTo} />
+        </Nav>
+        <Nav>
+          <DropDown />
         </Nav>
       </Navbar.Collapse>
     </Navbar>
