@@ -7,7 +7,13 @@ import Filter from "./Filter";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 
-function NavBar({ panTo, currentLocation }) {
+function NavBar({
+  panTo,
+  currentLocation,
+  setSearchResults,
+  setDestination,
+  setFilterOption,
+}) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="#home">Common-Ground</Navbar.Brand>
@@ -18,11 +24,18 @@ function NavBar({ panTo, currentLocation }) {
           <SignupModal />
         </Nav>
         <Nav>
-          <Search currentLocation={currentLocation} panTo={panTo} />
+        <Filter setFilterOption={setFilterOption} />
+          <Search
+            currentLocation={currentLocation}
+            panTo={panTo}
+            setSearchResults={setSearchResults}
+            setDestination={setDestination}
+            setFilterOption={setFilterOption}
+          />
           <LocateHome panTo={panTo} />
         </Nav>
       </Navbar.Collapse>
-    </Navbar >
+    </Navbar>
   );
 }
 

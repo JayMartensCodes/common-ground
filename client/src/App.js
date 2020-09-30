@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-
 import Map from "./components/Map";
 // import nearbySearch from "./helper/nearbySearch";
 
@@ -28,8 +27,7 @@ function App() {
 
   return (
     <>
-      <Map currentLocation={currentLocation}/>
-      
+      <Map currentLocation={currentLocation} />
     </>
   );
 }

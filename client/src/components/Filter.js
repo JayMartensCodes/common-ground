@@ -9,14 +9,17 @@ import {
 import "./Filter.css";
 import "@reach/listbox/styles.css";
 
-function Filter() {
+function Filter({ setFilterOption }) {
   const [value, setValue] = useState("Choose a filter");
 
   // let labelId = `taco-label--${useId()}`;
-
+  const handleChange = (value) => {
+    setFilterOption(value);
+    setValue(value);
+  };
   return (
     <div className="filter">
-      <ListboxInput value={value} onChange={(value) => setValue(value)}>
+      <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton arrow="▼" />
         <ListboxPopover>
           <ListboxList>

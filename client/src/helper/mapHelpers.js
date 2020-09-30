@@ -1,4 +1,10 @@
 export function getMidPoint(location1, location2) {
+  if (
+    Object.keys(location1).length === 0 ||
+    Object.keys(location2).length === 0
+  ) {
+    return;
+  }
   let lat1 = location1.lat;
   let lng1 = location1.lng;
 
@@ -37,4 +43,3 @@ export function getMidPoint(location1, location2) {
   //-- Return result
   return { lat: lat3.toDeg(), lng: lng3.toDeg() };
 }
-

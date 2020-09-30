@@ -10,13 +10,12 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import nearbySearch from "../helper/nearbySearch";
-import { getMidPoint } from "../helper/mapHelpers";
+
 import "./Search.css";
 import "@reach/combobox/styles.css";
 import Filter from './Filter';
 
-function Search({ panTo, currentLocation }) {
+function Search({ panTo, setDestination }) {
   const {
     ready,
     value,
@@ -30,8 +29,7 @@ function Search({ panTo, currentLocation }) {
     },
   });
 
-  const [searchResults, setSearchResults] = useState([]);
-  console.log(searchResults);
+  // console.log(searchResults);
 
   const handleInput = (e) => {
     setValue(e.target.value);
@@ -44,10 +42,8 @@ function Search({ panTo, currentLocation }) {
     try {
       const results = await getGeocode({ address });
       const destination = await getLatLng(results[0]);
-      const middle = getMidPoint(currentLocation, destination);
-      panTo(middle);
-      const midPointSearch = await nearbySearch(middle, 2000, "bar");
-      setSearchResults(midPointSearch);
+      setDestination(destination)
+      panTo(destination)
       setValue("");
     } catch (error) {
       console.log("Error: ", error);
@@ -63,7 +59,7 @@ function Search({ panTo, currentLocation }) {
           disabled={!ready}
           placeholder="Search for Common Ground..."
         />
-            <Filter />
+        
         <ComboboxPopover>
           <ComboboxList>
             {suggestions.status === "OK" &&
