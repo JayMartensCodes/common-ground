@@ -20,7 +20,6 @@ function NavBar({ panTo, currentLocation }) {
         </Nav>
         <Nav>
           <Search currentLocation={currentLocation} panTo={panTo} />
-          <Filter />
           <LocateHome panTo={panTo} />
         </Nav>
       </Navbar.Collapse>

@@ -1,38 +1,34 @@
 import React, { useState } from "react";
 import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
+  ListboxInput,
+  ListboxButton,
+  ListboxPopover,
+  ListboxList,
+  ListboxOption,
+} from "@reach/listbox";
 import "./Filter.css";
-import "@reach/combobox/styles.css";
+import "@reach/listbox/styles.css";
 
 function Filter() {
-  const [filter, setFilter] = useState("");
+  const [value, setValue] = useState("Choose a filter");
 
-  const handleInput = (e) => {
-    setFilter(e.target.value);
-  };
+  // let labelId = `taco-label--${useId()}`;
+
   return (
     <div className="filter">
-      <Combobox aria-labelledby="filter">
-        <ComboboxInput
-          value={filter}
-          onChange={handleInput}
-          placeholder="Filter results"
-        />
-        <ComboboxPopover>
-          <ComboboxList>
-            <ComboboxOption value="Bar" />
-            <ComboboxOption value="Restaurant" />
-            <ComboboxOption value="Coffee" />
-            <ComboboxOption value="Park" />
-            <ComboboxOption value="Hotel" />
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
+      <ListboxInput value={value} onChange={(value) => setValue(value)}>
+        <ListboxButton arrow="▼" />
+        <ListboxPopover>
+          <ListboxList>
+            <ListboxOption value="default">Choose a filter</ListboxOption>
+            <ListboxOption value="coffee">Coffee</ListboxOption>
+            <ListboxOption value="bar">Bar</ListboxOption>
+            <ListboxOption value="restaurant">Restaurant</ListboxOption>
+            <ListboxOption value="park">Park</ListboxOption>
+            <ListboxOption value="hotel">Hotel</ListboxOption>
+          </ListboxList>
+        </ListboxPopover>
+      </ListboxInput>
     </div>
   );
 }

@@ -14,6 +14,7 @@ import nearbySearch from "../helper/nearbySearch";
 import { getMidPoint } from "../helper/mapHelpers";
 import "./Search.css";
 import "@reach/combobox/styles.css";
+import Filter from './Filter';
 
 function Search({ panTo, currentLocation }) {
   const {
@@ -62,6 +63,7 @@ function Search({ panTo, currentLocation }) {
           disabled={!ready}
           placeholder="Search for Common Ground..."
         />
+            <Filter />
         <ComboboxPopover>
           <ComboboxList>
             {suggestions.status === "OK" &&

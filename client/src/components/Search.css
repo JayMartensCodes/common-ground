@@ -1,8 +1,8 @@
 .search {
   padding: 0.5rem;
-  justify-content: center;
   width: 400px;
   margin-right: 3rem;
+  margin-top: 2rem;
   z-index: 10;
 }
 
