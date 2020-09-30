@@ -11,7 +11,7 @@ function LoginModal() {
 
   return (
     <div>
-      <Button className="mr-sm-3" variant="outline-primary" size="lg" onClick={handleShow} >
+      <Button onClick={handleShow} >
         Login
       </Button>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './LocateHome.css';
+import './Nav.css';
 import logo from '../images/rare-items-rube-potato.png';
 
 

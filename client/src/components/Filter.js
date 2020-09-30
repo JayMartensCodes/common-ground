@@ -6,7 +6,7 @@ import {
   ListboxList,
   ListboxOption,
 } from "@reach/listbox";
-import "./Filter.css";
+import "./Nav.css";
 import "@reach/listbox/styles.css";
 
 function Filter({ setFilterOption }) {
