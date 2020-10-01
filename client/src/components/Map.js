@@ -8,7 +8,8 @@ import {
   DirectionsService,
 } from "@react-google-maps/api";
 import NavBar from "../components/Navbar";
-import nearbySearch from "../helper/nearbySearch";
+import axios from "axios";
+// import nearbySearch from "../helper/nearbySearch";
 import mapStyles from "../mapStyles";
 
 const libraries = ["places", "directions"];
@@ -44,13 +45,33 @@ function Map({ currentLocation }) {
   }, []);
   //Get search results based on midpoint
   useEffect(() => {
-    async function getSearchResults() {
-      const results = await nearbySearch(midPoint, 500, filterOption);
-      setSearchResults(results);
+    const source = axios.CancelToken.source();
+
+    const nearbySearch = async (geoLocation, radius, type) => {
+      const lat = geoLocation.lat;
+      const lng = geoLocation.lng;
+      const url = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lat},${lng}&radius=${radius}&type=${type}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`;
+
+      try {
+        const response = await axios.get(url, {
+          cancelToken: source.token,
+        });
+        const results = response.data.results;
+        setSearchResults(results);
+        console.log(results);
+      } catch (error) {
+        if (axios.isCancel(error)) {
+        } else {
+          throw error;
+        }
+      }
+    };
+    if (midPoint && filterOption) {
+      nearbySearch(midPoint, 800, filterOption);
     }
-    if (midPoint) {
-      getSearchResults();
-    }
+    return () => {
+      source.cancel();
+    };
   }, [midPoint, filterOption]);
 
   if (loadError) return "Error";
@@ -84,7 +105,7 @@ function Map({ currentLocation }) {
             scaledSize: new window.google.maps.Size(50, 50),
           }}
         />
-        {destination && (
+        {destination && midPoint && (
           <>
             <Marker
               key="destination"
@@ -113,7 +134,7 @@ function Map({ currentLocation }) {
               animation={window.google.maps.Animation.DROP}
               icon={{
                 url:
-                  "https://www.flaticon.com/svg/static/icons/svg/179/179715.svg",
+                  "https://www.flaticon.com/svg/static/icons/svg/3003/3003589.svg",
                 scaledSize: new window.google.maps.Size(35, 35),
               }}
             />
@@ -139,6 +160,7 @@ function Map({ currentLocation }) {
             <div>
               <h2>{selected.name}</h2>
               <img src={selected.icon} alt="icon" />
+              {/* <div>{selected.photos[0].html_attributions}</div> */}
             </div>
           </InfoWindow>
         ) : null}

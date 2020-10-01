@@ -7,13 +7,14 @@ export function getMidPoint(location1, location2) {
 
   //-- Define radius function
   if (typeof Number.prototype.toRad === "undefined") {
+    // eslint-disable-next-line no-extend-native
     Number.prototype.toRad = function () {
       return (this * Math.PI) / 180;
     };
   }
-
   //-- Define degrees function
   if (typeof Number.prototype.toDeg === "undefined") {
+    // eslint-disable-next-line no-extend-native
     Number.prototype.toDeg = function () {
       return this * (180 / Math.PI);
     };
