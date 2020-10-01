@@ -18,8 +18,8 @@ function Filter({ setFilterOption }) {
     setValue(value);
   };
   return (
-    <div className="dropdown">
-      <ListboxInput value={value} onChange={handleChange} class="dropdown-menu">
+    <div className="filter">
+      <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton arrow="▼" />
         <ListboxPopover>
           <ListboxList>
