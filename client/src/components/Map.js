@@ -4,11 +4,10 @@ import {
   useLoadScript,
   Circle,
   Marker,
-  InfoWindow,
-  DirectionsService,
 } from "@react-google-maps/api";
 import NavBar from "../components/Navbar";
 import SelectedPlace from "./SelectedPlace";
+import Directions from "./Directions";
 import axios from "axios";
 import mapStyles from "../mapStyles";
 
@@ -41,8 +40,9 @@ function Map({ currentLocation }) {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(16);
   }, []);
+
   //Get search results based on midpoint
   useEffect(() => {
     const source = axios.CancelToken.source();
@@ -58,7 +58,6 @@ function Map({ currentLocation }) {
         });
         const results = response.data.results;
         setSearchResults(results);
-        console.log(results);
       } catch (error) {
         if (axios.isCancel(error)) {
         } else {
@@ -67,7 +66,7 @@ function Map({ currentLocation }) {
       }
     };
     if (midPoint && filterOption) {
-      nearbySearch(midPoint, 800, filterOption);
+      nearbySearch(midPoint, 850, filterOption);
     }
     return () => {
       source.cancel();
@@ -89,10 +88,9 @@ function Map({ currentLocation }) {
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={14}
+        zoom={15}
         center={currentLocation}
         options={options}
-        // onClick={onMapClick}
         onLoad={onMapLoad}
       >
         <Marker
@@ -102,7 +100,7 @@ function Map({ currentLocation }) {
           icon={{
             url:
               "https://www.flaticon.com/svg/static/icons/svg/3448/3448561.svg",
-            scaledSize: new window.google.maps.Size(60, 60),
+            scaledSize: new window.google.maps.Size(80, 80),
           }}
         />
         {destination && midPoint && (
@@ -114,7 +112,7 @@ function Map({ currentLocation }) {
               icon={{
                 url:
                   "https://www.flaticon.com/svg/static/icons/svg/3410/3410277.svg",
-                scaledSize: new window.google.maps.Size(60, 60),
+                scaledSize: new window.google.maps.Size(70, 70),
               }}
             />
             <Circle
@@ -126,7 +124,7 @@ function Map({ currentLocation }) {
                 fillOpacity: 0.35,
               }}
               center={midPoint}
-              radius={500}
+              radius={650}
             />
             <Marker
               key="midpoint"
@@ -148,7 +146,7 @@ function Map({ currentLocation }) {
               animation={window.google.maps.Animation.DROP}
               icon={{
                 url: marker.icon,
-                scaledSize: new window.google.maps.Size(25, 25),
+                scaledSize: new window.google.maps.Size(35, 35),
               }}
               onClick={() => setSelected(marker)}
             />
@@ -157,6 +155,7 @@ function Map({ currentLocation }) {
         {selected ? (
           <SelectedPlace setSelected={setSelected} selected={selected} />
         ) : null}
+        <Directions currentLocation={currentLocation} selected={selected} />
       </GoogleMap>
       {/* side bar pass markers array */}
     </div>
