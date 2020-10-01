@@ -20,7 +20,7 @@ function Filter({ setFilterOption }) {
   return (
     <div className="filter">
       <ListboxInput value={value} onChange={handleChange}>
-        <ListboxButton arrow="▼">
+        <ListboxButton>
           Choose a filter
         </ListboxButton>
         <ListboxPopover>
