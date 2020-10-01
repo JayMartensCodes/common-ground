@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { InfoWindow } from "@react-google-maps/api";
-import axios from "axios";
 
 function SelectedPlace({ selected, setSelected }) {
   const [photos, setPhotos] = useState("");
-  console.log(photos);
+
   useEffect(() => {
     if (selected.photos) {
       const url = selected.photos[0].html_attributions[0];
