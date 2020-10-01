@@ -13,7 +13,9 @@ function NavBar({
   currentLocation,
   setDestination,
   setFilterOption,
-  setMidpoint
+  setMidpoint,
+  setUser,
+  user
 }) {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,8 +23,8 @@ function NavBar({
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <LoginModal />
-          <SignupModal />
+          <LoginModal setUser={setUser} />
+          <SignupModal setUser={setUser} />
         </Nav>
         <Nav>
         <Filter setFilterOption={setFilterOption} />
