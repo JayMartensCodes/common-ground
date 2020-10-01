@@ -7,6 +7,7 @@ import Filter from "./Filter";
 import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
+import Logout from "./Logout";
 import DropDown from "./Wannabedropdown";
 import './Nav.css';
 
@@ -36,8 +37,15 @@ function NavBar({
           <Filter />
         </Nav>
         <Nav className="mr-auto">
-          <LoginModal setUser={setUser} />
-          <SignupModal setUser={setUser} />
+          {!user && 
+            <>
+              <LoginModal setUser={setUser} />
+              <SignupModal setUser={setUser} />
+            </>
+          }
+          {user &&
+            <Logout setUser={setUser} />
+          }
           <DropDown />
         </Nav>
       </Navbar.Collapse>
