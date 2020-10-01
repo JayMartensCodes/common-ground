@@ -7,7 +7,6 @@ import Filter from "./Filter";
 import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-import Logout from "./Logout";
 import DropDown from "./Wannabedropdown";
 import './Nav.css';
 
@@ -44,9 +43,11 @@ function NavBar({
             </>
           }
           {user &&
-            <Logout setUser={setUser} />
-          }
-          <DropDown />
+            <>
+              <span>Hello {user.name}</span>
+              <DropDown setUser={setUser} />
+            </>
+          }          
         </Nav>
       </Navbar.Collapse>
     </Navbar>
