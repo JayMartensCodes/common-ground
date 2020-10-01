@@ -35,7 +35,8 @@
 }
 
 .search input:focus {
-  box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1), inset 0 15px 50px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1),
+    inset 0 15px 50px 0 rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
@@ -69,6 +70,9 @@
   width: 90%;
   z-index: 1;
 }
+.navbar:hover {
+  box-shadow: 5px 35px 50px 0 rgba(0, 0, 0, 0.25);
+}
 
 [data-reach-combobox-popover] {
   background: hsla(0, 100%, 100%, 0.99);
@@ -93,14 +97,15 @@
   border-radius: 1rem;
   font-size: small;
 }
-.mr-auto, .mx-auto {
-  margin-right: auto!important;
+.mr-auto,
+.mx-auto {
+  margin-right: auto !important;
   justify-content: flex-end;
   vertical-align: middle;
   width: 100%;
 }
 
-.mr-auto div{
+.mr-auto div {
   margin: auto 0;
 }
 
@@ -111,4 +116,3 @@
   padding-top: 0.5rem;
   z-index: 2;
 }
-
