@@ -108,9 +108,9 @@
 }
 
 .filter {
-  width: 200px;
-  color: white;
+  border: none !important;
+  color: black;
   margin: auto;
-  padding-top: 0.5rem;
+  width: 200px;
   z-index: 2;
 }

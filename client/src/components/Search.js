@@ -45,7 +45,7 @@ function Search({ panTo, setDestination, setMidpoint, currentLocation }) {
       setMidpoint(middle);
       setDestination(destination);
       panTo(middle);
-      setValue("");
+      // setValue("");
     } catch (error) {
       console.log("Error: ", error);
     }
