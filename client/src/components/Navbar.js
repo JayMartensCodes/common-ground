@@ -16,6 +16,8 @@ function NavBar({
   setDestination,
   setFilterOption,
   setMidpoint,
+  setUser,
+  user
 }) {
   return (
     <Navbar collapseOnSelect>
@@ -34,8 +36,8 @@ function NavBar({
           <Filter />
         </Nav>
         <Nav className="mr-auto">
-          <LoginModal />
-          <SignupModal />
+          <LoginModal setUser={setUser} />
+          <SignupModal setUser={setUser} />
           <DropDown />
         </Nav>
       </Navbar.Collapse>
