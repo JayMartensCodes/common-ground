@@ -8,7 +8,6 @@ import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import DropDown from "./Wannabedropdown";
-import './Navbar.css';
 
 function NavBar({
   panTo,
