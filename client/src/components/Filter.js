@@ -22,7 +22,7 @@ function Filter({ setFilterOption }) {
       <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton arrow="▼" />
         <ListboxPopover>
-          <ListboxList>
+          <ListboxList id="dropdownmenu">
             <ListboxOption value="default">Choose a filter</ListboxOption>
             <ListboxOption value="coffee">Coffee</ListboxOption>
             <ListboxOption value="bar">Bar</ListboxOption>

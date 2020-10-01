@@ -19,10 +19,8 @@
 }
 
 .search {
-  /* padding: 0.5rem; */
   width: 400px;
   z-index: 10;
-  /* border-bottom: 1px solid #f2f2f2; */
 }
 
 .search input {
@@ -110,9 +108,9 @@
 }
 
 .filter {
-  width: 200px;
-  color: white;
+  border: none !important;
+  color: black;
   margin: auto;
-  padding-top: 0.5rem;
+  width: 200px;
   z-index: 2;
 }
