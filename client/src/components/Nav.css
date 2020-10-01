@@ -39,6 +39,7 @@
 }
 
 [data-reach-combobox] {
+  border-right: 0.1rem solid grey;
   display: flex;
 }
 
