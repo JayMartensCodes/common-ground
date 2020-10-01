@@ -8,8 +8,8 @@ import {
   DirectionsService,
 } from "@react-google-maps/api";
 import NavBar from "../components/Navbar";
+import SelectedPlace from "./SelectedPlace";
 import axios from "axios";
-// import nearbySearch from "../helper/nearbySearch";
 import mapStyles from "../mapStyles";
 
 const libraries = ["places", "directions"];
@@ -102,7 +102,7 @@ function Map({ currentLocation }) {
           icon={{
             url:
               "https://www.flaticon.com/svg/static/icons/svg/3448/3448561.svg",
-            scaledSize: new window.google.maps.Size(50, 50),
+            scaledSize: new window.google.maps.Size(60, 60),
           }}
         />
         {destination && midPoint && (
@@ -114,7 +114,7 @@ function Map({ currentLocation }) {
               icon={{
                 url:
                   "https://www.flaticon.com/svg/static/icons/svg/3410/3410277.svg",
-                scaledSize: new window.google.maps.Size(35, 35),
+                scaledSize: new window.google.maps.Size(60, 60),
               }}
             />
             <Circle
@@ -135,34 +135,27 @@ function Map({ currentLocation }) {
               icon={{
                 url:
                   "https://www.flaticon.com/svg/static/icons/svg/3003/3003589.svg",
-                scaledSize: new window.google.maps.Size(35, 35),
+                scaledSize: new window.google.maps.Size(30, 30),
               }}
             />
           </>
         )}
-        {searchResults.map((marker, index) => (
-          <Marker
-            key={index}
-            position={marker.geometry.location}
-            animation={window.google.maps.Animation.DROP}
-            icon={{
-              url: marker.icon,
-              scaledSize: new window.google.maps.Size(35, 35),
-            }}
-            onClick={() => setSelected(marker)}
-          />
-        ))}
+        {searchResults.map((marker, index) =>
+          marker.business_status === "OPERATIONAL" ? (
+            <Marker
+              key={index}
+              position={marker.geometry.location}
+              animation={window.google.maps.Animation.DROP}
+              icon={{
+                url: marker.icon,
+                scaledSize: new window.google.maps.Size(25, 25),
+              }}
+              onClick={() => setSelected(marker)}
+            />
+          ) : null
+        )}
         {selected ? (
-          <InfoWindow
-            position={selected.geometry.location}
-            onCloseClick={() => setSelected(null)}
-          >
-            <div>
-              <h2>{selected.name}</h2>
-              <img src={selected.icon} alt="icon" />
-              {/* <div>{selected.photos[0].html_attributions}</div> */}
-            </div>
-          </InfoWindow>
+          <SelectedPlace setSelected={setSelected} selected={selected} />
         ) : null}
       </GoogleMap>
       {/* side bar pass markers array */}
