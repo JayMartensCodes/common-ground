@@ -5,6 +5,19 @@
   font-weight: 600;
 }
 
+.locate {
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  z-index: 10;
+}
+
+.locate img {
+  width: 50px;
+  cursor: pointer;
+}
+
 .search {
   padding: 0.5rem;
   width: 400px;
@@ -68,15 +81,3 @@
   padding-top: 0.5rem;
 }
 
-.locate {
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  z-index: 10;
-}
-
-.locate img {
-  width: 50px;
-  cursor: pointer;
-}
