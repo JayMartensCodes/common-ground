@@ -50,9 +50,8 @@ function SignupModal() {
           <Button variant="outline-secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="outline-dark">Sign Up</Button>
           <Button variant="dark" onClick={handleClose}>
-            Login
+            Sign Up
           </Button>
 
         </Modal.Footer>

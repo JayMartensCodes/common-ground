@@ -119,3 +119,14 @@
 #button--listbox-input--2 {
   border: none;
 }
+
+[data-reach-listbox-popover]:focus-within {
+    outline: transparent !important;
+    box-shadow: none !important;
+}
+
+[data-reach-listbox-popover]{
+  margin-top: 10px;
+  margin-left: 10px;
+  border: none !important;
+}
