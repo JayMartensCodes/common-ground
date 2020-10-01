@@ -1,6 +1,4 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-
 import Map from "./components/Map";
 // import nearbySearch from "./helper/nearbySearch";
 const center = {
