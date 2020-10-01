@@ -14,14 +14,14 @@ function Filter({ setFilterOption }) {
 
   // let labelId = `taco-label--${useId()}`;
   const handleChange = (value) => {
-    //setFilterOption(value);  //UNCOMMENT THIS 
+    setFilterOption(value);  //UNCOMMENT THIS 
     setValue(value);
   };
   return (
     <div className="filter">
       <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton>
-          Choose a filter
+          <span id="my-label">Choose a place</span>
         </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
@@ -34,7 +34,7 @@ function Filter({ setFilterOption }) {
           </ListboxList>
         </ListboxPopover>
       </ListboxInput>
-    </div>
+    </div >
   );
 }
 
