@@ -10,6 +10,7 @@ import SelectedPlace from "./SelectedPlace";
 import Directions from "./Directions";
 import axios from "axios";
 import mapStyles from "../mapStyles";
+// import { defaultLoadScriptProps } from "@react-google-maps/api/dist/LoadScript";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -22,7 +23,7 @@ const options = {
   zoomControl: true,
 };
 
-function Map({ currentLocation }) {
+function Map({ currentLocation, setUser, user }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -84,6 +85,8 @@ function Map({ currentLocation }) {
         setDestination={setDestination}
         setFilterOption={setFilterOption}
         setMidpoint={setMidpoint}
+        user={user}
+        setUser={setUser}
       />
       <GoogleMap
         id="map"

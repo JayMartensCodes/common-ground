@@ -2,12 +2,39 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import axios from 'axios';
 
-function LoginModal() {
+function LoginModal({ setUser }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const reset = () => {
+    setEmail("")
+    setPassword("")
+  }
+
+  const login = () => {
+    const user = { email, password }
+    axios.post('/users/signIn', user)
+    .then((res) => {
+      if (!res.data.error) {
+        const loggedInUser = {
+          email: res.data.email,
+          name: res.data.name
+        }
+        setUser(loggedInUser)
+        localStorage.setItem('user', JSON.stringify(loggedInUser))
+        handleClose()
+        reset()
+      }
+    })
+    .catch((error) => console.log(error))
+  }
 
   return (
     <div>
@@ -23,7 +50,7 @@ function LoginModal() {
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control type="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="Enter email" />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -31,7 +58,7 @@ function LoginModal() {
 
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" value={password} onChange={(event) => setPassword(event.target.value)} placeholder="Password" />
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Remember Me" />
@@ -42,7 +69,7 @@ function LoginModal() {
           <Button variant="outline-secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="dark" onClick={handleClose}>
+          <Button variant="dark" onClick={login}>
             Login
           </Button>
 

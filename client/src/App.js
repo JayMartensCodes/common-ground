@@ -8,6 +8,15 @@ const center = {
 
 function App() {
   const [currentLocation, setCurrentLocation] = useState(center);
+  const [user, setUser] = useState(null)
+  //Check local storage for a user
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
   //Get current location and setMarker to Home
   useEffect(() => {
     if (navigator.geolocation) {
@@ -30,7 +39,7 @@ function App() {
 
   return (
     <>
-      <Map currentLocation={currentLocation} />
+      <Map currentLocation={currentLocation} setUser={setUser} user={user} />
     </>
   );
 }
