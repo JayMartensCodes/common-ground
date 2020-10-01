@@ -24,7 +24,7 @@ function SelectedPlace({ selected, setSelected }) {
     >
       <div>
         <h2>
-          <a href={`${photos}`} target="_blank">
+          <a href={`${photos}`} target="_blank" rel="noopener noreferrer">
             {selected.name}
           </a>
         </h2>

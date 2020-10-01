@@ -15,7 +15,6 @@ import { getMidPoint } from "../helper/mapHelpers";
 import "./Nav.css";
 import "@reach/combobox/styles.css";
 
-
 function Search({ panTo, setDestination, setMidpoint, currentLocation }) {
   const {
     ready,
@@ -63,8 +62,8 @@ function Search({ panTo, setDestination, setMidpoint, currentLocation }) {
         <ComboboxPopover>
           <ComboboxList>
             {suggestions.status === "OK" &&
-              suggestions.data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
+              suggestions.data.map(({ description }, index) => (
+                <ComboboxOption key={index} value={description} />
               ))}
           </ComboboxList>
         </ComboboxPopover>
