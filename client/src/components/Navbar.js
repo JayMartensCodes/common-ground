@@ -8,7 +8,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import DropDown from "./Wannabedropdown";
-import './Navbar.css';
+import './Nav.css';
 
 function NavBar({
   panTo,
@@ -31,6 +31,7 @@ function NavBar({
             setFilterOption={setFilterOption}
             setMidpoint={setMidpoint}
           />
+          <Filter />
         </Nav>
         <Nav className="mr-auto">
           <LoginModal />
