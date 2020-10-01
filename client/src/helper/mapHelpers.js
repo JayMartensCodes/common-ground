@@ -12,7 +12,6 @@ export function getMidPoint(location1, location2) {
       return (this * Math.PI) / 180;
     };
   }
-
   //-- Define degrees function
   if (typeof Number.prototype.toDeg === "undefined") {
     // eslint-disable-next-line no-extend-native

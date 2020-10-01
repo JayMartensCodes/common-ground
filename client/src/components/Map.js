@@ -47,6 +47,7 @@ function Map({ currentLocation }) {
     async function getSearchResults() {
       const results = await nearbySearch(midPoint, 500, filterOption);
       setSearchResults(results);
+      console.log(results);
     }
     if (midPoint) {
       getSearchResults();
