@@ -20,15 +20,17 @@ function Filter({ setFilterOption }) {
   return (
     <div className="filter">
       <ListboxInput value={value} onChange={handleChange}>
-        <ListboxButton arrow="▼" />
+        <ListboxButton arrow="▼">
+          Choose a filter
+        </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
-            <ListboxOption value="default">Choose a filter</ListboxOption>
             <ListboxOption value="coffee">Coffee</ListboxOption>
             <ListboxOption value="bar">Bar</ListboxOption>
             <ListboxOption value="restaurant">Restaurant</ListboxOption>
             <ListboxOption value="park">Park</ListboxOption>
             <ListboxOption value="hotel">Hotel</ListboxOption>
+            <ListboxOption value="darkmode">the dark alley</ListboxOption>
           </ListboxList>
         </ListboxPopover>
       </ListboxInput>
