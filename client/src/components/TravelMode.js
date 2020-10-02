@@ -9,28 +9,26 @@ import {
 import "./Nav.css";
 import "@reach/listbox/styles.css";
 
-function Filter({ setFilterOption }) {
-  const [value, setValue] = useState("Choose a filter");
+function TravelMode({ setTravelMode }) {
+  const [value, setValue] = useState("Travel Mode");
 
   const handleChange = (value) => {
     console.log(value);
-    setFilterOption(value)
+    setTravelMode(value);
     setValue(value);
   };
   return (
-    <div className="filter">
+    <div className="travel-mode">
       <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton>
           <span id="my-label">{value.toUpperCase()}</span>
         </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
-            <ListboxOption value="coffee">Coffee</ListboxOption>
-            <ListboxOption value="bar">Bar</ListboxOption>
-            <ListboxOption value="restaurant">Restaurant</ListboxOption>
-            <ListboxOption value="park">Park</ListboxOption>
-            <ListboxOption value="hotel">Hotel</ListboxOption>
-            <ListboxOption value="darkmode">the dark alley</ListboxOption>
+            <ListboxOption value="WALKING">Walking</ListboxOption>
+            <ListboxOption value="BICYCLING">Bicycling</ListboxOption>
+            <ListboxOption value="DRIVING">Driving</ListboxOption>
+            <ListboxOption value="TRANSIT">Transit</ListboxOption>
           </ListboxList>
         </ListboxPopover>
       </ListboxInput>
@@ -38,4 +36,4 @@ function Filter({ setFilterOption }) {
   );
 }
 
-export default Filter;
+export default TravelMode;

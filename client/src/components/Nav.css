@@ -119,7 +119,11 @@
   border-radius: 50px;
   color: black;
   margin: auto auto auto 20px;
+<<<<<<< HEAD
   width: 160px;
+=======
+  width: 150px;
+>>>>>>> e78dd025405c4d0bf0b01bff5e4a592627861f4d
   z-index: 2;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
 }
@@ -132,6 +136,18 @@
   z-index: 2;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
 }
+.travel-mode {
+  border: none !important;
+  border-radius: 50px;
+  color: black;
+  margin: auto auto auto 20px;
+  width: 150px;
+  z-index: 2;
+  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
+}
+.travel-mode:hover {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
 .filter:hover {
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
 }
@@ -143,6 +159,9 @@
   border: none;
 }
 #button--listbox-input--3 {
+  border: none;
+}
+#button--listbox-input--4 {
   border: none;
 }
 
