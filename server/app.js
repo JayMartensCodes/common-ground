@@ -1,14 +1,16 @@
 const createError = require('http-errors');
 const express = require('express');
 const bodyParser = require('body-parser')
+const http = require("http");
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const socketIo = require('socket.io');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 const db = require('./db');
 const dbHelpers = require('./helpers/dbHelpers')(db);
 // view engine setup
@@ -39,6 +41,10 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
 });
 
 module.exports = app;

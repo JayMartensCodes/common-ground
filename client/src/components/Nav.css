@@ -39,7 +39,6 @@
 }
 
 [data-reach-combobox] {
-  border-right: 0.1rem solid grey;
   display: flex;
 }
 
@@ -108,23 +107,21 @@
   margin: auto 0;
 }
 
-.filter {
+.filter {  
   border: none !important;
   color: black;
-  margin: auto;
+  margin: auto auto auto 20px;
   width: 200px;
   z-index: 2;
 }
 
 #button--listbox-input--2 {
   border: none;
-  box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1),
-  inset 0 15px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 [data-reach-listbox-popover]:focus-within {
-    outline: transparent !important;
-    box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1) !important;
+  outline: transparent !important;
 }
 
 [data-reach-listbox-popover]{

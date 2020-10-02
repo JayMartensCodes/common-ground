@@ -30,13 +30,13 @@ function NavBar({
             currentLocation={currentLocation}
             panTo={panTo}
             setDestination={setDestination}
-            
+
             setMidpoint={setMidpoint}
           />
           <Filter setFilterOption={setFilterOption} />
         </Nav>
         <Nav className="mr-auto">
-          {!user && 
+          {!user &&
             <>
               <LoginModal setUser={setUser} />
               <SignupModal setUser={setUser} />
@@ -44,10 +44,10 @@ function NavBar({
           }
           {user &&
             <>
-              <span>Hello {user.name}</span>
+              <Navbar.Brand href="#home">Hello {user.name}</Navbar.Brand>
               <DropDown setUser={setUser} />
             </>
-          }          
+          }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
