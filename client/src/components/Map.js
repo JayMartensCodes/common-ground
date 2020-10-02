@@ -76,7 +76,7 @@ function Map({ currentLocation, setUser, user }) {
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
-
+  
   return (
     <div>
       <NavBar

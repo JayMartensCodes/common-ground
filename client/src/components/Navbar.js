@@ -30,10 +30,10 @@ function NavBar({
             currentLocation={currentLocation}
             panTo={panTo}
             setDestination={setDestination}
-            setFilterOption={setFilterOption}
+            
             setMidpoint={setMidpoint}
           />
-          <Filter />
+          <Filter setFilterOption={setFilterOption} />
         </Nav>
         <Nav className="mr-auto">
           {!user && 

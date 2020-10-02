@@ -16,7 +16,17 @@ function SelectedPlace({ selected, setSelected }) {
       return;
     }
   }, [selected]);
-
+  const openHours = (place) => {
+    if (!place.opening_hours) {
+      return <h2>No Hours Available</h2>;
+    }
+    if (place.opening_hours.open_now) {
+      return <h2>OPEN</h2>;
+    } else {
+      return <h2>CLOSED</h2>;
+    }
+  };
+  console.log(selected);
   return (
     <InfoWindow
       position={selected.geometry.location}
@@ -30,8 +40,8 @@ function SelectedPlace({ selected, setSelected }) {
         </h2>
 
         <img src={selected.icon} alt="icon" />
-        {selected.opening_hours.open_now ? <h2>OPEN</h2> : <h2>CLOSED</h2>}
-        <h3>Establishment Type: {(selected.types[0], selected.types[1])}</h3>
+        {openHours(selected)}
+        <h3>Type: {(selected.types[0], selected.types[1])}</h3>
         <h3>{selected.vicinity}</h3>
         <h4>
           Rating {selected.rating} ({selected.user_ratings_total})
