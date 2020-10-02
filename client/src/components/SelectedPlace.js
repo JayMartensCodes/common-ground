@@ -31,6 +31,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
   };
   return (
     <>
+      {/* // put this into another component */}
       <InfoWindow
         position={selected.geometry.location}
         onCloseClick={() => setSelected(null)}
@@ -51,6 +52,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           </h4>
           <p>{travelMode} Time: {travelTime}</p>
           <p>Distance: {distance}</p>
+          {/* put a button potentially to share location  */}
         </div>
       </InfoWindow>
       <DistanceMatrixService

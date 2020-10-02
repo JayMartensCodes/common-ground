@@ -1,5 +1,4 @@
 import React from "react";
-
 import Search from "./Search";
 import RadiusSelector from "./RadiusSelector";
 import LocateHome from "./LocateHome";
