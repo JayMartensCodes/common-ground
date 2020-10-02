@@ -15,7 +15,7 @@ import { getMidPoint } from "../helper/mapHelpers";
 import "./Nav.css";
 import "@reach/combobox/styles.css";
 
-function Search({ panTo, setDestination, setMidpoint, currentLocation }) {
+function Search({ setDestination, setMidpoint, currentLocation }) {
   const {
     ready,
     value,
@@ -43,7 +43,6 @@ function Search({ panTo, setDestination, setMidpoint, currentLocation }) {
       const middle = getMidPoint(currentLocation, destination);
       setMidpoint(middle);
       setDestination(destination);
-      panTo(middle);
     } catch (error) {
       console.log("Error: ", error);
     }

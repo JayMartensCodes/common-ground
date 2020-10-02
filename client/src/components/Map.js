@@ -10,7 +10,6 @@ import SelectedPlace from "./SelectedPlace";
 import Directions from "./Directions";
 import axios from "axios";
 import mapStyles from "../mapStyles";
-// import { defaultLoadScriptProps } from "@react-google-maps/api/dist/LoadScript";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -31,6 +30,7 @@ function Map({ currentLocation, setUser, user }) {
   const [searchResults, setSearchResults] = useState([]);
   const [destination, setDestination] = useState();
   const [filterOption, setFilterOption] = useState("bar");
+  const [radius, setRadius] = useState(500);
   const [midPoint, setMidpoint] = useState();
   const [selected, setSelected] = useState(null);
 
@@ -41,7 +41,7 @@ function Map({ currentLocation, setUser, user }) {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(16);
+    mapRef.current.setZoom(15);
   }, []);
 
   //Get search results based on midpoint
@@ -67,31 +67,33 @@ function Map({ currentLocation, setUser, user }) {
       }
     };
     if (midPoint && filterOption) {
-      nearbySearch(midPoint, 850, filterOption);
+      nearbySearch(midPoint, radius, filterOption);
+      panTo(midPoint);
     }
     return () => {
       source.cancel();
     };
-  }, [midPoint, filterOption]);
+  }, [midPoint, filterOption, radius, panTo]);
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
-  
+
   return (
     <div>
       <NavBar
         currentLocation={currentLocation}
-        panTo={panTo}
         setDestination={setDestination}
         setFilterOption={setFilterOption}
         setMidpoint={setMidpoint}
+        panTo={panTo}
         user={user}
         setUser={setUser}
+        setRadius={setRadius}
       />
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={15}
+        zoom={13}
         center={currentLocation}
         options={options}
         onLoad={onMapLoad}
@@ -127,7 +129,7 @@ function Map({ currentLocation, setUser, user }) {
                 fillOpacity: 0.35,
               }}
               center={midPoint}
-              radius={650}
+              radius={radius}
             />
             <Marker
               key="midpoint"
@@ -156,7 +158,11 @@ function Map({ currentLocation, setUser, user }) {
           ) : null
         )}
         {selected ? (
-          <SelectedPlace setSelected={setSelected} selected={selected} />
+          <SelectedPlace
+            setSelected={setSelected}
+            selected={selected}
+            currentLocation={currentLocation}
+          />
         ) : null}
         <Directions currentLocation={currentLocation} selected={selected} />
       </GoogleMap>
