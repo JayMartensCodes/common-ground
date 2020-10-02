@@ -18,9 +18,7 @@ function DropDown({ setUser }) {
       </Dropdown.Toggle>
 
       <Dropdown.Menu id="dropdownmenu">
-        <Dropdown.Item href="#/action-1">Messages</Dropdown.Item>
         <Dropdown.Item href="#/action-2">Find Friend</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Share Location</Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item eventKey="4" onClick={logout}>Log Out</Dropdown.Item>
       </Dropdown.Menu>
