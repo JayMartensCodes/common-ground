@@ -27,10 +27,10 @@ function LoginModal({ setUser }) {
           email: res.data.email,
           name: res.data.name
         }
-        setUser(loggedInUser)
         localStorage.setItem('user', JSON.stringify(loggedInUser))
         handleClose()
         reset()
+        setUser(loggedInUser)
       }
     })
     .catch((error) => console.log(error))

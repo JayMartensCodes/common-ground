@@ -10,7 +10,7 @@ const center = {
 function App() {
   const [response, setResponse] = useState("");
   const [currentLocation, setCurrentLocation] = useState(center);
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null);
   //Check local storage for a user
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -42,14 +42,16 @@ function App() {
   //establishing socket connection
   useEffect(() => {
     const socket = socketIOClient("http://localhost:3001");
-    socket.on("FromAPI", data => {
+    socket.emit("setSocketId", 1);
+    socket.on("FromAPI", (data) => {
+      console.log(data);
       setResponse(data);
     });
   }, []);
 
   return (
     <>
-      <Map currentLocation={currentLocation} setUser={setUser} user={user} />
+      <Map currentLocation={currentLocation} setUser={setUser} user={user} />{" "}
     </>
   );
 }

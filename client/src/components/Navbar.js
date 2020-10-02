@@ -22,7 +22,7 @@ function NavBar({
 }) {
   return (
     <Navbar collapseOnSelect>
-      <Navbar.Brand href="#home">Common-Ground</Navbar.Brand>
+      <Navbar.Brand>Common-Ground</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <LocateHome panTo={panTo} />
@@ -44,7 +44,7 @@ function NavBar({
           )}
           {user && (
             <>
-              <Navbar.Brand href="#home">Hello {user.name}</Navbar.Brand>
+              <Navbar.Brand>Hello {user.name}</Navbar.Brand>
               <DropDown setUser={setUser} />
             </>
           )}

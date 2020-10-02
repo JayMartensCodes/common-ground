@@ -23,10 +23,10 @@ function SignupModal({setUser}) {
     const user = { name, email, password }
     axios.post('/users', user)
     .then((res) => {
-      setUser(res.data)
       localStorage.setItem('user', JSON.stringify(res.data))
       handleClose()
       reset()
+      setUser(res.data)
     })
     .catch((error) => console.log(error))
   }
