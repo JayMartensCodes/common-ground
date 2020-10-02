@@ -1,14 +1,14 @@
 import React from "react";
 
 import Search from "./Search";
-
+import RadiusSelector from "./RadiusSelector";
 import LocateHome from "./LocateHome";
 import Filter from "./Filter";
 import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import DropDown from "./Wannabedropdown";
-import './Nav.css';
+import "./Nav.css";
 
 function NavBar({
   panTo,
@@ -17,7 +17,8 @@ function NavBar({
   setFilterOption,
   setMidpoint,
   setUser,
-  user
+  user,
+  setRadius,
 }) {
   return (
     <Navbar collapseOnSelect>
@@ -28,26 +29,25 @@ function NavBar({
         <Nav>
           <Search
             currentLocation={currentLocation}
-            panTo={panTo}
             setDestination={setDestination}
-
             setMidpoint={setMidpoint}
           />
           <Filter setFilterOption={setFilterOption} />
+          <RadiusSelector setRadius={setRadius} />
         </Nav>
         <Nav className="mr-auto">
-          {!user &&
+          {!user && (
             <>
               <LoginModal setUser={setUser} />
               <SignupModal setUser={setUser} />
             </>
-          }
-          {user &&
+          )}
+          {user && (
             <>
               <Navbar.Brand href="#home">Hello {user.name}</Navbar.Brand>
               <DropDown setUser={setUser} />
             </>
-          }
+          )}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

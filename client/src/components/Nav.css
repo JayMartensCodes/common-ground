@@ -3,6 +3,7 @@
   margin-left: 1rem;
   margin-right: 0;
   font-weight: 600;
+  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
 }
 
 .locate {
@@ -19,17 +20,23 @@
 }
 
 .search {
+  border-radius: 50px;
   width: 400px;
   z-index: 10;
 }
+.search:hover {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
 
 .search input {
+  border-radius: 50px;
   border: none;
   box-sizing: border-box;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   width: 100%;
   z-index: 10;
+  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
 }
 
 .search input:focus {
@@ -107,15 +114,35 @@
   margin: auto 0;
 }
 
-.filter {  
+.filter {
   border: none !important;
+  border-radius: 50px;
   color: black;
   margin: auto auto auto 20px;
   width: 200px;
   z-index: 2;
+  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
+}
+.radius {
+  border: none !important;
+  border-radius: 50px;
+  color: black;
+  margin: auto auto auto 20px;
+  width: 200px;
+  z-index: 2;
+  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
+}
+.filter:hover {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
+.radius:hover {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
 }
 
 #button--listbox-input--2 {
+  border: none;
+}
+#button--listbox-input--3 {
   border: none;
 }
 
@@ -124,7 +151,7 @@
   outline: transparent !important;
 }
 
-[data-reach-listbox-popover]{
+[data-reach-listbox-popover] {
   margin-top: 9px;
   margin-left: 3px;
   border: none !important;
