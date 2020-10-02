@@ -47,7 +47,15 @@ app.use('/users', usersRouter(dbHelpers));
 // });
 
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log('a user connected', socket.id);
+
+  // Handle chat event
+  socket.on('chat', function (data) {
+    // console.log(data);
+    io.sockets.emit('chat', data);
+  });
 });
+
+
 
 server.listen(3001);
