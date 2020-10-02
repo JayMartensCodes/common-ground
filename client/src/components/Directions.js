@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DirectionsRenderer } from "@react-google-maps/api";
 
-function Directions({ currentLocation, selected }) {
+function Directions({ currentLocation, selected, travelMode }) {
   const [directions, setDirections] = useState();
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function Directions({ currentLocation, selected }) {
         {
           origin: currentLocation,
           destination: selected.geometry.location,
-          travelMode: window.google.maps.TravelMode.WALKING,
+          travelMode: travelMode,
         },
         (result, status) => {
           if (status === window.google.maps.DirectionsStatus.OK) {
@@ -24,8 +24,14 @@ function Directions({ currentLocation, selected }) {
     } else {
       return;
     }
-  }, [selected, currentLocation]);
-  return <DirectionsRenderer directions={directions} />;
+  }, [selected, currentLocation, travelMode]);
+  return (
+    <>
+      {selected && (
+        <DirectionsRenderer directions={directions} preserveViewport={true} />
+      )}
+    </>
+  );
 }
 
 export default Directions;

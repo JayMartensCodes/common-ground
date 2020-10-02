@@ -167,7 +167,11 @@ function Map({ currentLocation, setUser, user }) {
             travelMode={travelMode}
           />
         ) : null}
-        <Directions currentLocation={currentLocation} selected={selected} />
+        <Directions
+          currentLocation={currentLocation}
+          selected={selected}
+          travelMode={travelMode}
+        />
       </GoogleMap>
     </div>
   );
