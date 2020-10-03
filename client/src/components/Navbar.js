@@ -19,6 +19,8 @@ function NavBar({
   setUser,
   user,
   setRadius,
+  friendRequests,
+  setFriendRequests,
 }) {
   return (
     <Navbar collapseOnSelect>
@@ -45,7 +47,7 @@ function NavBar({
           {user && (
             <>
               <Navbar.Brand>Hello {user.name}</Navbar.Brand>
-              <DropDown setUser={setUser} />
+              <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />
             </>
           )}
         </Nav>
