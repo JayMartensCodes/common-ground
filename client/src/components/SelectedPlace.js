@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { InfoWindow, DistanceMatrixService } from "@react-google-maps/api";
 import "./SelectedPlace.css";
 
-function SelectedPlace({ selected, setSelected, currentLocation }) {
+function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
   const [photos, setPhotos] = useState("");
   const [travelTime, setTravelTime] = useState();
   const [distance, setDistance] = useState();
@@ -44,16 +44,19 @@ function SelectedPlace({ selected, setSelected, currentLocation }) {
             </a>
           </h5>
 
-          <img src={selected.icon} alt="icon" />
+          {/* <img src={selected.icon} alt="icon" /> */}
           {openHours(selected)}
-          <h5>Type: {(selected.types[0], selected.types[1])}</h5>
-          <h5>{selected.vicinity}</h5>
-          <h5 class="rating">
+          <p>Type: {(selected.types[0], selected.types[1])}</p>
+          <p>{selected.vicinity}</p>
+          <p class="rating">
             Rating {selected.rating} ({selected.user_ratings_total})
-          </h5>
-          <p>Travel Time: {travelTime}</p>
-          <p>Distance: {distance}</p>
-          put a button potentially to
+          </p>
+          <p>
+            Travel Time: {travelTime}
+             Distance: {distance}
+          </p>
+          {/* <p>Distance: {distance}</p> */}
+          {/* put a button potentially to */}
         </div>
       </InfoWindow>
       <DistanceMatrixService

@@ -1,23 +1,20 @@
 .gm-style .gm-style-iw-c {
   position: absolute;
   box-sizing: border-box;
+  display: block;
   overflow: hidden;
   top: 0;
   left: 0;
-  margin: 15px;
+  font-size: 13px;
   transform: translate(-50%,-100%);
   background-color: white;
   border-radius: 40px !important;
-  padding: 40px !important;
+  padding: 20px !important;
   box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+  line-height: 0;
 }
 
 .rating {
-  font-size: 20px;
+  font-size: 13px;
 }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-  font-weight: 300;
-  line-height: 1.2;
-  font-size: 20px;
-}
