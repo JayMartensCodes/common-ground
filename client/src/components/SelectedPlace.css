@@ -1,0 +1,14 @@
+.gm-style .gm-style-iw-c {
+  position: absolute;
+  box-sizing: border-box;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  margin: 15px;
+  transform: translate(-50%,-100%);
+  background-color: white;
+  border-radius: 40px !important;
+  padding: 40px !important;
+  box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+}
+

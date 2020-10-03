@@ -119,11 +119,7 @@
   border-radius: 50px;
   color: black;
   margin: auto auto auto 20px;
-<<<<<<< HEAD
   width: 160px;
-=======
-  width: 150px;
->>>>>>> e78dd025405c4d0bf0b01bff5e4a592627861f4d
   z-index: 2;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
 }

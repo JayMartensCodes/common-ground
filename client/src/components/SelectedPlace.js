@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { InfoWindow, DistanceMatrixService } from "@react-google-maps/api";
+import "./SelectedPlace.css";
 
-function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
-  const [url, setUrl] = useState("");
+function SelectedPlace({ selected, setSelected, currentLocation }) {
+  const [photos, setPhotos] = useState("");
   const [travelTime, setTravelTime] = useState();
   const [distance, setDistance] = useState();
 
   useEffect(() => {
-    if (selected.url) {
-      const url = selected.url[0].html_attributions[0];
+    if (selected.photos) {
+      const url = selected.photos[0].html_attributions[0];
       const urlParsed = url.split("=");
       const secondSplit = urlParsed[1].split(">");
       const result = secondSplit[0].replace(/['"]+/g, "");
 
-      setUrl(result);
+      setPhotos(result);
     } else {
       return;
     }
@@ -31,14 +32,14 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
   };
   return (
     <>
-      {/* // put this into another component */}
+        // put this into another component
       <InfoWindow
         position={selected.geometry.location}
         onCloseClick={() => setSelected(null)}
       >
         <div>
           <h2>
-            <a href={`${url}`} target="_blank" rel="noopener noreferrer">
+            <a href={`${photos}`} target="_blank" rel="noopener noreferrer">
               {selected.name}
             </a>
           </h2>
@@ -47,21 +48,22 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           {openHours(selected)}
           <h3>Type: {(selected.types[0], selected.types[1])}</h3>
           <h3>{selected.vicinity}</h3>
-          <h4>
+          <h4 class='rating'>
             Rating {selected.rating} ({selected.user_ratings_total})
           </h4>
-          <p>{travelMode} Time: {travelTime}</p>
+          <p>Travel Time: {travelTime}</p>
           <p>Distance: {distance}</p>
-          {/* put a button potentially to share location  */}
+          put a button potentially to
         </div>
       </InfoWindow>
       <DistanceMatrixService
         options={{
           destinations: [selected.geometry.location],
           origins: [currentLocation],
-          travelMode: travelMode,
+          travelMode: "WALKING",
         }}
         callback={(res) => {
+          console.log(res);
           setTravelTime(res.rows[0].elements[0].duration.text);
           setDistance(res.rows[0].elements[0].distance.text);
         }}
