@@ -22,35 +22,35 @@ function SelectedPlace({ selected, setSelected, currentLocation }) {
 
   const openHours = (place) => {
     if (!place.opening_hours) {
-      return <h2>No Hours Available</h2>;
+      return <h5>No Hours Available</h5>;
     }
     if (place.opening_hours.open_now) {
-      return <h2>OPEN</h2>;
+      return <h5>OPEN</h5>;
     } else {
-      return <h2>CLOSED</h2>;
+      return <h5>CLOSED</h5>;
     }
   };
   return (
     <>
-        // put this into another component
+      // put this into another component
       <InfoWindow
         position={selected.geometry.location}
         onCloseClick={() => setSelected(null)}
       >
         <div>
-          <h2>
+          <h5>
             <a href={`${photos}`} target="_blank" rel="noopener noreferrer">
               {selected.name}
             </a>
-          </h2>
+          </h5>
 
           <img src={selected.icon} alt="icon" />
           {openHours(selected)}
-          <h3>Type: {(selected.types[0], selected.types[1])}</h3>
-          <h3>{selected.vicinity}</h3>
-          <h4 class='rating'>
+          <h5>Type: {(selected.types[0], selected.types[1])}</h5>
+          <h5>{selected.vicinity}</h5>
+          <h5 class="rating">
             Rating {selected.rating} ({selected.user_ratings_total})
-          </h4>
+          </h5>
           <p>Travel Time: {travelTime}</p>
           <p>Distance: {distance}</p>
           put a button potentially to
