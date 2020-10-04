@@ -53,7 +53,8 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           </p>
           <p>
             Travel Time: {travelTime}
-             Distance: {distance}
+            Distance: {distance}
+            travelMode: {travelMode}
           </p>
           {/* <p>Distance: {distance}</p> */}
           {/* put a button potentially to */}
@@ -63,7 +64,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
         options={{
           destinations: [selected.geometry.location],
           origins: [currentLocation],
-          travelMode: "WALKING",
+          travelMode: travelMode,
         }}
         callback={(res) => {
           console.log(res);

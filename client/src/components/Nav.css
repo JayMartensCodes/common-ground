@@ -7,16 +7,16 @@
 }
 
 .locate {
-  top: 1rem;
-  right: 1rem;
   background: none;
   border: none;
+  right: 1rem;
+  top: 1rem;
   z-index: 10;
 }
 
 .locate img {
-  width: 50px;
   cursor: pointer;
+  width: 50px;
 }
 
 .search {
@@ -34,9 +34,9 @@
   box-sizing: border-box;
   font-size: 1rem;
   padding: 0.5rem 1rem;
+  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
   width: 100%;
   z-index: 10;
-  text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
 }
 
 .search input:focus {
@@ -118,29 +118,37 @@
   border: none !important;
   border-radius: 50px;
   color: black;
+  font-size: small;
   margin: auto auto auto 20px;
-  width: 160px;
-  z-index: 2;
+  text-align: center;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
+  width: 100px;
+  z-index: 2;
 }
 .radius {
   border: none !important;
   border-radius: 50px;
   color: black;
+  font-size: small;
   margin: auto auto auto 20px;
-  width: 150px;
-  z-index: 2;
+  text-align: center;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
+  width: 100px;
+  z-index: 2;
 }
 .travel-mode {
   border: none !important;
   border-radius: 50px;
   color: black;
+  font-size: small;
   margin: auto auto auto 20px;
-  width: 150px;
-  z-index: 2;
+  text-align: center;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
+  width: 100px;
+  z-index: 2;
 }
+
+
 .travel-mode:hover {
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
 }
@@ -167,10 +175,10 @@
 }
 
 [data-reach-listbox-popover] {
-  margin-top: 9px;
-  margin-left: 3px;
+  background: hsla(0, 100%, 100%, 0.99);
   border: none !important;
   box-shadow: 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-  background: hsla(0, 100%, 100%, 0.99);
+  margin-left: 3px;
+  margin-top: 9px;
   padding: 1rem;
 }
