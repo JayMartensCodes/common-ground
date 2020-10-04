@@ -4,36 +4,43 @@ import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import ShareRoundedIcon from "@material-ui/icons/ShareRounded";
 import TimerIcon from "@material-ui/icons/Timer";
+import DirectionsIcon from "@material-ui/icons/Directions";
+import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
+import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
+import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
+import DirectionsRailwayIcon from "@material-ui/icons/DirectionsRailway";
 import "./SelectedPlace.css";
 
 function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
-  const [photos, setPhotos] = useState("");
   const [travelTime, setTravelTime] = useState();
   const [distance, setDistance] = useState();
 
-  useEffect(() => {
-    if (selected.photos) {
-      const url = selected.photos[0].html_attributions[0];
-      const urlParsed = url.split("=");
-      const secondSplit = urlParsed[1].split(">");
-      const result = secondSplit[0].replace(/['"]+/g, "");
-
-      setPhotos(result);
-    } else {
-      return;
-    }
-  }, [selected]);
-
   const openHours = (place) => {
     if (!place.opening_hours) {
-      return <h5>No Hours Available</h5>;
+      return <h2 style={{ color: "red" }}>No Hours Available</h2>;
     }
     if (place.opening_hours.open_now) {
-      return <h5>OPEN</h5>;
+      return <h2 style={{ color: "#04A4E7" }}>OPEN</h2>;
     } else {
-      return <h5>CLOSED</h5>;
+      return <h2 style={{ color: "red" }}>CLOSED</h2>;
     }
   };
+
+  const getTravelMode = (mode) => {
+    switch (mode) {
+      case "WALKING":
+        return <DirectionsWalkIcon />;
+      case "DRIVING":
+        return <DirectionsCarIcon />;
+      case "BICYCLING":
+        return <DirectionsBikeIcon />;
+      case "TRANSIT":
+        return <DirectionsRailwayIcon />;
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       // put this into another component
@@ -42,13 +49,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
         onCloseClick={() => setSelected(null)}
       >
         <div>
-          {/* <h5>
-            <a href={`${photos}`} target="_blank" rel="noopener noreferrer">
-              {selected.name}
-            </a>
-          </h5> */}
           <Typography component="h1">{selected.name}</Typography>
-          {/* <img src={selected.icon} alt="icon" /> */}
           {openHours(selected)}
           <div className="types">
             <Typography component="legend">
@@ -58,15 +59,17 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           </div>
           <Typography component="p">{selected.vicinity}</Typography>
           <div className="travel-div">
-            <TimerIcon>{travelTime}</TimerIcon>
-            <p
-              src="https://www.flaticon.com/svg/static/icons/svg/931/931661.svg"
-              alt="distance"
-            >
+            <p>
+              <TimerIcon />
+              {travelTime}
+            </p>
+            <p>
+              <DirectionsIcon />
               {distance}
             </p>
-            <p>Travel-Mode: {travelMode}</p>
+            <p>{getTravelMode(travelMode)}Travel-Mode</p>
           </div>
+
           <Typography component="legend">Rating</Typography>
           <div className="stars">
             <Rating
@@ -83,7 +86,6 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
               <ShareRoundedIcon />
             </button>
           </div>
-          {/* put a button potentially to */}
         </div>
       </InfoWindow>
       <DistanceMatrixService
