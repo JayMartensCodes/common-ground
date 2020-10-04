@@ -33,16 +33,16 @@ function TravelMode({ setTravelMode }) {
         </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
-            <ListboxOption value={mode.walkIcon}>
+            <ListboxOption value="WALKING">
               <img src={walkIcon} />
             </ListboxOption>
-            <ListboxOption value={mode.bikeIcon}>
+            <ListboxOption value="BICYCLING">
               <img src={bikeIcon} />
             </ListboxOption>
-            <ListboxOption value={mode.carIcon}>
+            <ListboxOption value="DRIVING">
               <img src={carIcon} />
             </ListboxOption>
-            <ListboxOption value={mode.trainIcon}>
+            <ListboxOption value="TRANSIT">
               <img src={trainIcon} />
             </ListboxOption>
           </ListboxList>
