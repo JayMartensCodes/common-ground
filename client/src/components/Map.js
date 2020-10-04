@@ -5,6 +5,9 @@ import {
   Circle,
   Marker,
 } from "@react-google-maps/api";
+import person from "../images/arms-up.png";
+import friendIcon from "../images/one-hand-up-silhouette.png";
+import searchIcon from "../images/magnifying-glass.png";
 import NavBar from "../components/Navbar";
 import SelectedPlace from "./SelectedPlace";
 import Directions from "./Directions";
@@ -22,7 +25,13 @@ const options = {
   zoomControl: true,
 };
 
-function Map({ currentLocation, setUser, user, friendRequests, setFriendRequests }) {
+function Map({
+  currentLocation,
+  setUser,
+  user,
+  friendRequests,
+  setFriendRequests,
+}) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -105,11 +114,10 @@ function Map({ currentLocation, setUser, user, friendRequests, setFriendRequests
         <Marker
           key="home"
           position={currentLocation}
-          animation={window.google.maps.Animation.DROP}
+          animation={window.google.maps.Animation.BOUNCE}
           icon={{
-            url:
-              "https://www.flaticon.com/svg/static/icons/svg/3448/3448561.svg",
-            scaledSize: new window.google.maps.Size(80, 80),
+            url: person,
+            scaledSize: new window.google.maps.Size(70, 70),
           }}
         />
         {destination && midPoint && (
@@ -117,20 +125,19 @@ function Map({ currentLocation, setUser, user, friendRequests, setFriendRequests
             <Marker
               key="destination"
               position={destination}
-              animation={window.google.maps.Animation.DROP}
+              animation={window.google.maps.Animation.BOUNCE}
               icon={{
-                url:
-                  "https://www.flaticon.com/svg/static/icons/svg/3410/3410277.svg",
+                url: friendIcon,
                 scaledSize: new window.google.maps.Size(70, 70),
               }}
             />
             <Circle
               options={{
-                strokeColor: "#FF0000",
+                strokeColor: "#DD636E",
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
-                fillColor: "#FF0000",
-                fillOpacity: 0.35,
+                fillColor: "#DD636E",
+                fillOpacity: 0.25,
               }}
               center={midPoint}
               radius={radius}
@@ -140,8 +147,7 @@ function Map({ currentLocation, setUser, user, friendRequests, setFriendRequests
               position={midPoint}
               animation={window.google.maps.Animation.DROP}
               icon={{
-                url:
-                  "https://www.flaticon.com/svg/static/icons/svg/3003/3003589.svg",
+                url: searchIcon,
                 scaledSize: new window.google.maps.Size(30, 30),
               }}
             />
@@ -154,8 +160,9 @@ function Map({ currentLocation, setUser, user, friendRequests, setFriendRequests
               position={marker.geometry.location}
               animation={window.google.maps.Animation.DROP}
               icon={{
-                url: marker.icon,
-                scaledSize: new window.google.maps.Size(35, 35),
+                url:
+                  "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
+                scaledSize: new window.google.maps.Size(80, 80),
               }}
               onClick={() => setSelected(marker)}
             />

@@ -1,15 +1,13 @@
 .gm-style .gm-style-iw-c {
   position: absolute;
   box-sizing: border-box;
-  display: block;
+  display: flex;
   overflow: hidden;
-  top: 0;
-  left: 0;
   font-size: 13px;
-  transform: translate(-50%,-100%);
+  transform: translate(-50%, -100%);
   background-color: white;
   border-radius: 40px !important;
-  padding: 20px !important;
+  padding: 15px !important;
   box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
   line-height: 0;
 }
@@ -17,4 +15,60 @@
 .rating {
   font-size: 13px;
 }
+.gm-ui-hover-effect {
+  top: 8px !important;
+  right: 10px !important;
+}
 
+.share-btn {
+  border: none;
+  background-color: white;
+  color: #04a4e7;
+  float: right;
+}
+
+.travel-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  height: 5rem;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  padding-top: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
+}
+
+.types {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+legend.MuiTypography-root.MuiTypography-body1 {
+  font-weight: 600;
+}
+h1.MuiTypography-root.MuiTypography-body1 {
+  font-size: x-large;
+  font-weight: 600;
+}
+span.MuiTypography-root.MuiTypography-body1 {
+  font-size: small;
+  font-weight: 600;
+}
+.stars {
+  color: #04a4e7;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.types img {
+  width: 30px;
+  height: 30px;
+}

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { InfoWindow, DistanceMatrixService } from "@react-google-maps/api";
+import Rating from "@material-ui/lab/Rating";
+import Typography from "@material-ui/core/Typography";
+import ShareRoundedIcon from "@material-ui/icons/ShareRounded";
+import TimerIcon from "@material-ui/icons/Timer";
 import "./SelectedPlace.css";
 
 function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
@@ -38,25 +42,47 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
         onCloseClick={() => setSelected(null)}
       >
         <div>
-          <h5>
+          {/* <h5>
             <a href={`${photos}`} target="_blank" rel="noopener noreferrer">
               {selected.name}
             </a>
-          </h5>
-
+          </h5> */}
+          <Typography component="h1">{selected.name}</Typography>
           {/* <img src={selected.icon} alt="icon" /> */}
           {openHours(selected)}
-          <p>Type: {(selected.types[0], selected.types[1])}</p>
-          <p>{selected.vicinity}</p>
-          <p class="rating">
-            Rating {selected.rating} ({selected.user_ratings_total})
-          </p>
-          <p>
-            Travel Time: {travelTime}
-            Distance: {distance}
-            travelMode: {travelMode}
-          </p>
-          {/* <p>Distance: {distance}</p> */}
+          <div className="types">
+            <Typography component="legend">
+              {selected.types[0].toUpperCase()}
+            </Typography>
+            <img src={selected.icon} alt="icon" />
+          </div>
+          <Typography component="p">{selected.vicinity}</Typography>
+          <div className="travel-div">
+            <TimerIcon>{travelTime}</TimerIcon>
+            <p
+              src="https://www.flaticon.com/svg/static/icons/svg/931/931661.svg"
+              alt="distance"
+            >
+              {distance}
+            </p>
+            <p>Travel-Mode: {travelMode}</p>
+          </div>
+          <Typography component="legend">Rating</Typography>
+          <div className="stars">
+            <Rating
+              name="read-only"
+              value={selected.rating}
+              precision={0.25}
+              size="small"
+              readOnly
+            />
+            <Typography component="span">
+              Users ({selected.user_ratings_total})
+            </Typography>
+            <button className="share-btn">
+              <ShareRoundedIcon />
+            </button>
+          </div>
           {/* put a button potentially to */}
         </div>
       </InfoWindow>

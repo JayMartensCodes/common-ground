@@ -1,7 +1,7 @@
-import React from 'react';
-import './Nav.css';
-import logo from '../images/rare-items-rube-potato.png';
-
+import React from "react";
+import "./Nav.css";
+import { lightBlue } from "@material-ui/core/colors";
+import HomeIcon from "./HomeIcon";
 
 function LocateHome({ panTo }) {
   return (
@@ -19,7 +19,7 @@ function LocateHome({ panTo }) {
         );
       }}
     >
-      <img src={logo} alt="potato" />
+      <HomeIcon style={{ color: lightBlue[500] }} />
     </button>
   );
 }
