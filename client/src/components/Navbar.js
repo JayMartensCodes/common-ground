@@ -19,7 +19,9 @@ function NavBar({
   setUser,
   user,
   setRadius,
-  setTravelMode
+  setTravelMode,
+  friendRequests,
+  setFriendRequests,
 }) {
 
   return (
@@ -48,7 +50,7 @@ function NavBar({
           {user && (
             <>
               <Navbar.Brand>Hello {user.name}</Navbar.Brand>
-              <DropDown setUser={setUser} />
+              <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />
             </>
           )}
         </Nav>

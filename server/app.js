@@ -53,6 +53,7 @@ app.use('/users', usersRouter(dbHelpers));
 io.on('connection', (socket) => {
   console.log('a user connected');
   socket.on('setSocketId', function (data) {
+    console.log(`${data} has connected`)
     socket.join(data)
   })
   socket.on('disconnect', () => {

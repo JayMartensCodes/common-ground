@@ -22,7 +22,7 @@ const options = {
   zoomControl: true,
 };
 
-function Map({ currentLocation, setUser, user }) {
+function Map({ currentLocation, setUser, user, friendRequests, setFriendRequests }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -91,6 +91,8 @@ function Map({ currentLocation, setUser, user }) {
         setUser={setUser}
         setRadius={setRadius}
         setTravelMode={setTravelMode}
+        friendRequests={friendRequests}
+        setFriendRequests={setFriendRequests}
       />
       <GoogleMap
         id="map"

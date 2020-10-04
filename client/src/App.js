@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Map from "./components/Map";
 import socketIOClient from "socket.io-client";
+import axios from "axios";
+const socket = socketIOClient("http://localhost:3001");
 // import nearbySearch from "./helper/nearbySearch";
 const center = {
   lat: 43.6532,
@@ -11,6 +13,8 @@ function App() {
   const [response, setResponse] = useState("");
   const [currentLocation, setCurrentLocation] = useState(center);
   const [user, setUser] = useState(null);
+  const [friendRequests, setFriendRequests] = useState(null)
+  const [friendList, setFriendList] = useState(null)
   //Check local storage for a user
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -39,19 +43,29 @@ function App() {
     }
   }, []);
 
-  //establishing socket connection
-  useEffect(() => {
-    const socket = socketIOClient("http://localhost:3001");
-    socket.emit("setSocketId", 1);
+  //establishing socket connection and fetch friend requests
+  useEffect(() => {    
+    if (user) {
+      socket.emit("setSocketId", user.id);
+      Promise.all([
+        axios.get(`users/friend-requests/${user.id}`),
+        axios.get(`users/friend-list/${user.id}`),
+      ])
+        .then((all) => {
+          setFriendRequests(all[0].data)
+          setFriendList(all[1].data)
+        })
+        .catch((error) => console.log(error))
+    }
     socket.on("FromAPI", (data) => {
       console.log(data);
       setResponse(data);
     });
-  }, []);
+  }, [user]);
 
   return (
     <>
-      <Map currentLocation={currentLocation} setUser={setUser} user={user} />{" "}
+      <Map currentLocation={currentLocation} setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />{" "}
     </>
   );
 }
