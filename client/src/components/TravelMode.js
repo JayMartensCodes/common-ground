@@ -8,9 +8,17 @@ import {
 } from "@reach/listbox";
 import "./Nav.css";
 import "@reach/listbox/styles.css";
+import carIcon from "../images/car.png";
+import bikeIcon from "../images/bycicle.png";
+import trainIcon from "../images/train.png";
+import walkIcon from "../images/walk.png";
+
+const mode = { walkIcon, bikeIcon, carIcon, trainIcon }
+
+console.log(bikeIcon);
 
 function TravelMode({ setTravelMode }) {
-  const [value, setValue] = useState("Travel Mode");
+  const [value, setValue] = useState(mode.walkIcon);
 
   const handleChange = (value) => {
     console.log(value);
@@ -21,14 +29,22 @@ function TravelMode({ setTravelMode }) {
     <div className="travel-mode">
       <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton>
-          <span id="my-label">{value.toUpperCase()}</span>
+          <span id="my-label"> <img src={value} /> </span>
         </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
-            <ListboxOption value="WALKING">Walking</ListboxOption>
-            <ListboxOption value="BICYCLING">Bicycling</ListboxOption>
-            <ListboxOption value="DRIVING">Driving</ListboxOption>
-            <ListboxOption value="TRANSIT">Transit</ListboxOption>
+            <ListboxOption value={mode.walkIcon}>
+              <img src={walkIcon} />
+            </ListboxOption>
+            <ListboxOption value={mode.bikeIcon}>
+              <img src={bikeIcon} />
+            </ListboxOption>
+            <ListboxOption value={mode.carIcon}>
+              <img src={carIcon} />
+            </ListboxOption>
+            <ListboxOption value={mode.trainIcon}>
+              <img src={trainIcon} />
+            </ListboxOption>
           </ListboxList>
         </ListboxPopover>
       </ListboxInput>
