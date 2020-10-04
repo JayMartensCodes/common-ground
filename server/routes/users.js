@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
 
-module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFriendRequests, acceptFriendRequest, declineFriendRequest }) => {
+module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFriendRequests, acceptFriendRequest, declineFriendRequest, makeFriendRequestMutual, getFriendsList }) => {
   /* GET users listing. */
   router.get('/', (req, res) => {
     getUsers()
@@ -18,6 +18,13 @@ module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFrien
       .then((user) => res.json(user))
       .catch((err) => res.json({ error: err.message }));
   });
+
+  router.get('/friend-list/:user_id', (req, res) => {
+    const user_id = req.params.user_id
+    getFriendsList(user_id)
+      .then((friendRequests) => res.json(friendRequests))
+      .catch((err) => res.json({ error: err.message }));
+  })
 
   router.get('/friend-requests/:friend_id', (req, res) => {
     const friend_id = req.params.friend_id
@@ -60,13 +67,18 @@ module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFrien
   router.post('/acceptFriendRequest', (req, res) => {
     const request_id = req.body.id
     acceptFriendRequest(request_id)
+      .then((friendRequest) => {
+        const user_id = friendRequest.friend_id
+        const friend_id = friendRequest.user_id
+        makeFriendRequestMutual(user_id, friend_id)
+      })
       .then((friendRequest) => res.json(friendRequest))
       .catch((err) => res.json({ error: err.message }));
   })
 
   router.post('/declineFriendRequest', (req, res) => {
     const request_id = req.body.id
-    acceptFriendRequest(request_id)
+    declineFriendRequest(request_id)
       .then((friendRequest) => res.json(friendRequest))
       .catch((err) => res.json({ error: err.message }));
   })

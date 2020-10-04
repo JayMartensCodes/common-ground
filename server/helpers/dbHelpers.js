@@ -35,10 +35,35 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const getFriendsList = (user_id) => {
+    const query = {
+      text:
+        "SELECT * FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
+      values: [user_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  }
+
   const acceptFriendRequest = (request_id) => {
     const query = {
-      text: "UPDATE friends SET confirmed = TRUE WHERE id = $1",
+      text: "UPDATE friends SET confirmed = TRUE WHERE id = $1 RETURNING *",
       values: [request_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
+  const makeFriendRequestMutual = (user_id, friend_id) => {
+    const query = {
+      text: "INSERT INTO friends (user_id, friend_id, confirmed) VALUES ($1, $2, TRUE) RETURNING *",
+      values: [user_id, friend_id],
     };
 
     return db
@@ -92,6 +117,8 @@ module.exports = (db) => {
     insertFriendRequest,
     getFriendRequests,
     acceptFriendRequest,
-    declineFriendRequest
+    declineFriendRequest,
+    makeFriendRequestMutual,
+    getFriendsList
   };
 };

@@ -72,8 +72,8 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
           </Dropdown.Item>
           <Dropdown.Item onClick={friendRequestHandleShow}>
             Friend Requests{" "}
-            <span class="badge badge-pill badge-danger friend-number">
-              {friendRequests.length}
+            <span className="badge badge-pill badge-danger friend-number">
+              {friendRequests ? friendRequests.length : 0}
             </span>
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -117,7 +117,7 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
         <Modal.Body>
           {friendRequests.map((friendRequest) => {
             return (
-              <div>
+              <div key={friendRequest.id}>
                 {friendRequest.name}
                 <Button
                   variant="outline-secondary"
