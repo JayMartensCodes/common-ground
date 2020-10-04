@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { InfoWindow, DistanceMatrixService } from "@react-google-maps/api";
+import "./SelectedPlace.css";
 
-function SelectedPlace({ selected, setSelected, currentLocation }) {
+function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
   const [photos, setPhotos] = useState("");
   const [travelTime, setTravelTime] = useState();
   const [distance, setDistance] = useState();
@@ -21,43 +22,49 @@ function SelectedPlace({ selected, setSelected, currentLocation }) {
 
   const openHours = (place) => {
     if (!place.opening_hours) {
-      return <h2>No Hours Available</h2>;
+      return <h5>No Hours Available</h5>;
     }
     if (place.opening_hours.open_now) {
-      return <h2>OPEN</h2>;
+      return <h5>OPEN</h5>;
     } else {
-      return <h2>CLOSED</h2>;
+      return <h5>CLOSED</h5>;
     }
   };
   return (
     <>
+      // put this into another component
       <InfoWindow
         position={selected.geometry.location}
         onCloseClick={() => setSelected(null)}
       >
         <div>
-          <h2>
+          <h5>
             <a href={`${photos}`} target="_blank" rel="noopener noreferrer">
               {selected.name}
             </a>
-          </h2>
+          </h5>
 
-          <img src={selected.icon} alt="icon" />
+          {/* <img src={selected.icon} alt="icon" /> */}
           {openHours(selected)}
-          <h3>Type: {(selected.types[0], selected.types[1])}</h3>
-          <h3>{selected.vicinity}</h3>
-          <h4>
+          <p>Type: {(selected.types[0], selected.types[1])}</p>
+          <p>{selected.vicinity}</p>
+          <p class="rating">
             Rating {selected.rating} ({selected.user_ratings_total})
-          </h4>
-          <p>Travel Time: {travelTime}</p>
-          <p>Distance: {distance}</p>
+          </p>
+          <p>
+            Travel Time: {travelTime}
+            Distance: {distance}
+            travelMode: {travelMode}
+          </p>
+          {/* <p>Distance: {distance}</p> */}
+          {/* put a button potentially to */}
         </div>
       </InfoWindow>
       <DistanceMatrixService
         options={{
           destinations: [selected.geometry.location],
           origins: [currentLocation],
-          travelMode: "WALKING",
+          travelMode: travelMode,
         }}
         callback={(res) => {
           console.log(res);

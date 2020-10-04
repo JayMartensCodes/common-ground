@@ -1,9 +1,9 @@
 import React from "react";
-
 import Search from "./Search";
 import RadiusSelector from "./RadiusSelector";
 import LocateHome from "./LocateHome";
 import Filter from "./Filter";
+import TravelMode from "./TravelMode";
 import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
@@ -19,7 +19,9 @@ function NavBar({
   setUser,
   user,
   setRadius,
+  setTravelMode
 }) {
+
   return (
     <Navbar collapseOnSelect>
       <Navbar.Brand>Common-Ground</Navbar.Brand>
@@ -34,6 +36,7 @@ function NavBar({
           />
           <Filter setFilterOption={setFilterOption} />
           <RadiusSelector setRadius={setRadius} />
+          <TravelMode setTravelMode={setTravelMode} />
         </Nav>
         <Nav className="mr-auto">
           {!user && (

@@ -31,6 +31,7 @@ function Map({ currentLocation, setUser, user }) {
   const [destination, setDestination] = useState();
   const [filterOption, setFilterOption] = useState("bar");
   const [radius, setRadius] = useState(500);
+  const [travelMode, setTravelMode] = useState("WALKING");
   const [midPoint, setMidpoint] = useState();
   const [selected, setSelected] = useState(null);
 
@@ -89,6 +90,7 @@ function Map({ currentLocation, setUser, user }) {
         user={user}
         setUser={setUser}
         setRadius={setRadius}
+        setTravelMode={setTravelMode}
       />
       <GoogleMap
         id="map"
@@ -162,11 +164,15 @@ function Map({ currentLocation, setUser, user }) {
             setSelected={setSelected}
             selected={selected}
             currentLocation={currentLocation}
+            travelMode={travelMode}
           />
         ) : null}
-        <Directions currentLocation={currentLocation} selected={selected} />
+        <Directions
+          currentLocation={currentLocation}
+          selected={selected}
+          travelMode={travelMode}
+        />
       </GoogleMap>
-      {/* side bar pass markers array */}
     </div>
   );
 }
