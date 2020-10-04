@@ -5,8 +5,8 @@ import {
   Circle,
   Marker,
 } from "@react-google-maps/api";
-import person from "../images/arms-up.png";
-import friendIcon from "../images/one-hand-up-silhouette.png";
+import person from "../images/rat.png";
+import friendIcon from "../images/pumpkin.png";
 import searchIcon from "../images/magnifying-glass.png";
 import NavBar from "../components/Navbar";
 import SelectedPlace from "./SelectedPlace";
