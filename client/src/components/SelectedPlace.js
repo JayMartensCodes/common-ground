@@ -50,17 +50,6 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           <Typography component="h1">{selected.name}</Typography>
           {/* <img src={selected.icon} alt="icon" /> */}
           {openHours(selected)}
-<<<<<<< HEAD
-          <p>Type: {(selected.types[0], selected.types[1])}</p>
-          <p>{selected.vicinity}</p>
-          <p class="rating">
-            Rating {selected.rating} ({selected.user_ratings_total})
-          </p>
-          <p>
-            Travel Time: {travelTime}
-          </p>
-          <p> Distance: {distance}</p>
-=======
           <div className="types">
             <Typography component="legend">
               {selected.types[0].toUpperCase()}
@@ -94,7 +83,6 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
               <ShareRoundedIcon />
             </button>
           </div>
->>>>>>> eaa8022b4b41fbaaabc5cdc698952a61a0ee3dc0
           {/* put a button potentially to */}
         </div>
       </InfoWindow>
