@@ -3,13 +3,11 @@
   box-sizing: border-box;
   display: block;
   overflow: hidden;
-  top: 0;
-  left: 0;
   font-size: 13px;
   transform: translate(-50%,-100%);
   background-color: white;
   border-radius: 40px !important;
-  padding: 20px !important;
+  padding: 15px !important;
   box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
   line-height: 0;
 }
@@ -17,4 +15,5 @@
 .rating {
   font-size: 13px;
 }
+
 

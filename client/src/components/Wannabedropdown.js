@@ -115,7 +115,7 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
           <Modal.Title>Pending Friend Requests</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {friendRequests.map((friendRequest) => {
+          {/*{friendRequests.map((friendRequest) => {
             return (
               <div key={friendRequest.id}>
                 {friendRequest.name}
@@ -130,7 +130,7 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
                 </Button>
               </div>
             );
-          })}
+          })} */}
         </Modal.Body>
         <Modal.Footer>
           <Button

@@ -53,10 +53,8 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           </p>
           <p>
             Travel Time: {travelTime}
-            Distance: {distance}
-            travelMode: {travelMode}
           </p>
-          {/* <p>Distance: {distance}</p> */}
+          <p> Distance: {distance}</p>
           {/* put a button potentially to */}
         </div>
       </InfoWindow>
