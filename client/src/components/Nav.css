@@ -21,6 +21,7 @@
 
 .search {
   border-radius: 50px;
+  margin-left: 2px;
   width: 400px;
   z-index: 10;
 }
@@ -33,6 +34,7 @@
   border: none;
   box-sizing: border-box;
   font-size: 1rem;
+  margin-top: 5px;
   padding: 0.5rem 1rem;
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
   width: 100%;
@@ -146,6 +148,10 @@
   text-shadow: 1px 0.5px rgba(0, 0, 0, 0.3);
   width: 100px;
   z-index: 2;
+}
+
+.travel-mode img {
+  width: 45px;
 }
 
 .travel-mode:hover {
