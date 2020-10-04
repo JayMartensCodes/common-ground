@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Wannabedropdown.css";
 import Dropdown from "react-bootstrap/Dropdown";
-import logo from "../images/user.png";
+import logo from "../images/rat.png";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
