@@ -25,7 +25,7 @@
 .share-btn {
   border: none;
   background-color: white;
-  color: red;
+  color: #04a4e7;
   float: right;
 }
 
@@ -63,7 +63,8 @@ span.MuiTypography-root.MuiTypography-body1 {
   font-size: small;
   font-weight: 600;
 }
-.stars{
+.stars {
+  color: #04a4e7;
   display: flex;
   justify-content: space-between;
   align-items: center;

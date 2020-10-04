@@ -28,7 +28,17 @@ function Directions({ currentLocation, selected, travelMode }) {
   return (
     <>
       {selected && (
-        <DirectionsRenderer directions={directions} preserveViewport={true} />
+        <DirectionsRenderer
+          directions={directions}
+          preserveViewport={true}
+          options={{
+            polylineOptions: {
+              strokeOpacity: 0.80,
+              strokeColor: "#04A4E7",
+              strokeWeight: 10
+            },
+          }}
+        />
       )}
     </>
   );

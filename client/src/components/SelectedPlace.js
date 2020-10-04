@@ -72,7 +72,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
             <Rating
               name="read-only"
               value={selected.rating}
-              precision={0.5}
+              precision={0.25}
               size="small"
               readOnly
             />
