@@ -8,7 +8,7 @@
   background-color: white;
   border-radius: 40px !important;
   padding: 15px !important;
-  box-shadow: 0 2px 7px 1px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
   line-height: 0;
 }
 
@@ -23,13 +23,13 @@
 .share-btn {
   border: none;
   background-color: white;
-  color: red;
+  color: #04a4e7;
   float: right;
 }
 
 .travel-div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   border: 1px solid black;
   height: 5rem;
@@ -40,6 +40,9 @@
   padding-top: 3rem;
   border-radius: 1rem;
   box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.3);
+}
+.travel-div p {
+  padding: 5px;
 }
 
 .types {
@@ -61,7 +64,13 @@ span.MuiTypography-root.MuiTypography-body1 {
   font-size: small;
   font-weight: 600;
 }
-.stars{
+p.MuiTypography-root.MuiTypography-body1 {
+  font-size: small;
+  font-weight: 600;
+  /* text-align: center; */
+}
+.stars {
+  color: #04a4e7;
   display: flex;
   justify-content: space-between;
   align-items: center;

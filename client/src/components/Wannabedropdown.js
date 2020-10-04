@@ -121,26 +121,22 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
           <Modal.Title>Pending Friend Requests</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {friendRequests &&
-            friendRequests.map((friendRequest) => {
-              return (
-                <div key={friendRequest.id}>
-                  {friendRequest.name}
-                  <Button
-                    variant="outline-secondary"
-                    onClick={() => declineFriendRequest(friendRequest.id)}
-                  >
-                    Decline
-                  </Button>
-                  <Button
-                    variant="dark"
-                    onClick={() => acceptFriendRequest(friendRequest.id)}
-                  >
-                    Accept
-                  </Button>
-                </div>
-              );
-            })}
+          {friendRequests && friendRequests.map((friendRequest) => {
+            return (
+              <div key={friendRequest.id}>
+                {friendRequest.name}
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => declineFriendRequest(friendRequest.id)}
+                >
+                  Decline
+                </Button>
+                <Button variant="dark" onClick={() => acceptFriendRequest(friendRequest.id)}>
+                  Accept
+                </Button>
+              </div>
+            );
+          })}
         </Modal.Body>
         <Modal.Footer>
           <Button
