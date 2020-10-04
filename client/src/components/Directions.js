@@ -14,6 +14,7 @@ function Directions({ currentLocation, selected, travelMode }) {
           travelMode: travelMode,
         },
         (result, status) => {
+          console.log(result);
           if (status === window.google.maps.DirectionsStatus.OK) {
             setDirections(result);
           } else {
@@ -33,9 +34,9 @@ function Directions({ currentLocation, selected, travelMode }) {
           preserveViewport={true}
           options={{
             polylineOptions: {
-              strokeOpacity: 0.80,
+              strokeOpacity: 0.8,
               strokeColor: "#04A4E7",
-              strokeWeight: 10
+              strokeWeight: 10,
             },
           }}
         />
