@@ -15,8 +15,6 @@ import walkIcon from "../images/walk.png";
 
 const mode = { walkIcon, bikeIcon, carIcon, trainIcon }
 
-console.log(bikeIcon);
-
 function TravelMode({ setTravelMode }) {
   const [value, setValue] = useState(mode.walkIcon);
 
@@ -33,16 +31,16 @@ function TravelMode({ setTravelMode }) {
         </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
-            <ListboxOption value="WALKING">
+            <ListboxOption value={mode.walkIcon} >
               <img src={walkIcon} />
             </ListboxOption>
-            <ListboxOption value="BICYCLING">
-              <img src={bikeIcon} />
+            <ListboxOption value={mode.bikeIcon} >
+              <img src={mode.bikeIcon} />
             </ListboxOption>
-            <ListboxOption value="DRIVING">
+            <ListboxOption value={mode.carIcon}>
               <img src={carIcon} />
             </ListboxOption>
-            <ListboxOption value="TRANSIT">
+            <ListboxOption value={mode.trainIcon}>
               <img src={trainIcon} />
             </ListboxOption>
           </ListboxList>
