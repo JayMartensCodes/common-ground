@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
 
-module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFriendRequests, acceptFriendRequest, declineFriendRequest, makeFriendRequestMutual, getFriendsList }) => {
+module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFriendRequests, acceptFriendRequest, declineFriendRequest, makeFriendRequestMutual, getFriendsList }, io) => {
   /* GET users listing. */
   router.get('/', (req, res) => {
     getUsers()
