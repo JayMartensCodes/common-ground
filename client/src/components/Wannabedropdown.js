@@ -40,24 +40,30 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
   };
 
   const declineFriendRequest = (id) => {
-    const request = { id }
-    axios.post('/users/declineFriendRequest', request)
+    const request = { id };
+    axios
+      .post("/users/declineFriendRequest", request)
       .then((res) => {
-        const newFriendRequests = friendRequests.filter(friendRequest => friendRequest.id !== id)
-        setFriendRequests(newFriendRequests)
+        const newFriendRequests = friendRequests.filter(
+          (friendRequest) => friendRequest.id !== id
+        );
+        setFriendRequests(newFriendRequests);
       })
-      .catch((error) => console.log(error))
-  }
+      .catch((error) => console.log(error));
+  };
 
   const acceptFriendRequest = (id) => {
-    const request = { id }
-    axios.post('/users/acceptFriendRequest', request)
+    const request = { id };
+    axios
+      .post("/users/acceptFriendRequest", request)
       .then((res) => {
-        const newFriendRequests = friendRequests.filter(friendRequest => friendRequest.id !== id)
-        setFriendRequests(newFriendRequests)
+        const newFriendRequests = friendRequests.filter(
+          (friendRequest) => friendRequest.id !== id
+        );
+        setFriendRequests(newFriendRequests);
       })
-      .catch((error) => console.log(error))
-  }
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -115,22 +121,26 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
           <Modal.Title>Pending Friend Requests</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/*{friendRequests.map((friendRequest) => {
-            return (
-              <div key={friendRequest.id}>
-                {friendRequest.name}
-                <Button
-                  variant="outline-secondary"
-                  onClick={() => declineFriendRequest(friendRequest.id)}
-                >
-                  Decline
-                </Button>
-                <Button variant="dark" onClick={() => acceptFriendRequest(friendRequest.id)}>
-                  Accept
-                </Button>
-              </div>
-            );
-          })} */}
+          {friendRequests &&
+            friendRequests.map((friendRequest) => {
+              return (
+                <div key={friendRequest.id}>
+                  {friendRequest.name}
+                  <Button
+                    variant="outline-secondary"
+                    onClick={() => declineFriendRequest(friendRequest.id)}
+                  >
+                    Decline
+                  </Button>
+                  <Button
+                    variant="dark"
+                    onClick={() => acceptFriendRequest(friendRequest.id)}
+                  >
+                    Accept
+                  </Button>
+                </div>
+              );
+            })}
         </Modal.Body>
         <Modal.Footer>
           <Button
