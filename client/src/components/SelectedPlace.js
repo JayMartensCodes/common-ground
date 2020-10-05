@@ -46,12 +46,13 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
       <InfoWindow
         position={selected.geometry.location}
         onCloseClick={() => setSelected(null)}
+        options={{ disableAutoPan: true }}
       >
         <div>
           <Typography component="h1">{selected.name}</Typography>
           {openHours(selected)}
           <div className="types">
-            <Typography component="legend">
+            <Typography component="h3">
               {selected.types[0].toUpperCase()}
             </Typography>
             <img src={selected.icon} alt="icon" />
@@ -68,23 +69,29 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
             </p>
             <p>{getTravelMode(travelMode)}Travel-Mode</p>
           </div>
+          {selected.rating ? (
+            <div className="stars">
+              <Typography component="legend">Rating</Typography>
+              <Rating
+                name="read-only"
+                value={selected.rating}
+                precision={0.25}
+                size="small"
+                readOnly
+              />
+              <Typography component="span">
+                Users ({selected.user_ratings_total})
+              </Typography>
 
-          <Typography component="legend">Rating</Typography>
-          <div className="stars">
-            <Rating
-              name="read-only"
-              value={selected.rating}
-              precision={0.25}
-              size="small"
-              readOnly
-            />
-            <Typography component="span">
-              Users ({selected.user_ratings_total})
-            </Typography>
+              <button className="share-btn">
+                <ShareRoundedIcon />
+              </button>
+            </div>
+          ) : (
             <button className="share-btn">
               <ShareRoundedIcon />
             </button>
-          </div>
+          )}
         </div>
       </InfoWindow>
       <DistanceMatrixService
