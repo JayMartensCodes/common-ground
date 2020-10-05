@@ -12,6 +12,7 @@ function LoginModal({ setUser }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   const reset = () => {
     setEmail("")
@@ -34,7 +35,10 @@ function LoginModal({ setUser }) {
           setUser(loggedInUser)
         }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        setError("Username or Password incorrect!");
+        console.log(error);
+      });
   }
 
   return (
