@@ -4,6 +4,5 @@ CREATE TABLE common_grounds (
   user_id INTEGER REFERENCES users(id),
   friend_id INTEGER REFERENCES users(id),
   confirmed BOOLEAN DEFAULT false,
-  geolocation VARCHAR(255) NOT NULL,
-  UNIQUE (user_id, friend_id, geolocation)
+  geolocation TEXT NOT NULL
 );

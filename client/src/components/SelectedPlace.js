@@ -10,10 +10,25 @@ import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
 import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
 import DirectionsRailwayIcon from "@material-ui/icons/DirectionsRailway";
 import "./SelectedPlace.css";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import axios from "axios";
 
-function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
+function SelectedPlace({
+  selected,
+  setSelected,
+  currentLocation,
+  travelMode,
+  user,
+}) {
   const [travelTime, setTravelTime] = useState();
   const [distance, setDistance] = useState();
+  const [commonGroundShow, setCommonGroundShow] = useState(false);
+  const [email, setEmail] = useState("");
+  const addCommonGroundHide = () => setCommonGroundShow(false);
+  const addCommonGroundShow = () => setCommonGroundShow(true);
+
   const openHours = (place) => {
     if (!place.opening_hours) {
       return <h2 style={{ color: "red" }}>No Hours Available</h2>;
@@ -23,6 +38,27 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
     } else {
       return <h2 style={{ color: "red" }}>CLOSED</h2>;
     }
+  };
+
+  const reset = () => {
+    setEmail("");
+  };
+
+  const sendCommonGroundRequest = () => {
+    const commonGround = {
+      geolocation: selected,
+      user: user.id,
+      friend: email,
+    };
+
+    axios
+      .post("/users/common-ground/", commonGround)
+      .then((res) => {
+        console.log(res);
+        addCommonGroundHide();
+        reset();
+      })
+      .catch((error) => console.log(error));
   };
 
   const getTravelMode = (mode) => {
@@ -82,7 +118,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
                 Users ({selected.user_ratings_total})
               </Typography>
 
-              <button className="share-btn">
+              <button className="share-btn" onClick={addCommonGroundShow}>
                 <ShareRoundedIcon />
               </button>
             </div>
@@ -108,6 +144,33 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           }
         }}
       />
+
+      <Modal show={commonGroundShow} onHide={addCommonGroundHide}>
+        <Modal.Header closeButton>
+          <Modal.Title>Share Common Ground</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Friend's Email Address</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Enter email"
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="outline-secondary" onClick={addCommonGroundHide}>
+            Close
+          </Button>
+          <Button variant="dark" onClick={sendCommonGroundRequest}>
+            Send Common Ground Request
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }

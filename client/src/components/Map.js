@@ -36,6 +36,8 @@ function Map({
   friendList,
   commonGrounds,
   setCommonGrounds,
+  selected,
+  setSelected,
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -48,7 +50,6 @@ function Map({
   const [travelMode, setTravelMode] = useState("WALKING");
   const [midPoint, setMidpoint] = useState();
   const [friendSelected, setFriendSelected] = useState();
-  const [selected, setSelected] = useState(null);
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -110,6 +111,7 @@ function Map({
         setFriendRequests={setFriendRequests}
         commonGrounds={commonGrounds}
         setCommonGrounds={setCommonGrounds}
+        setSelected={setSelected}
       />
       <GoogleMap
         id="map"
@@ -202,6 +204,7 @@ function Map({
               selected={selected}
               currentLocation={currentLocation}
               travelMode={travelMode}
+              user={user}
             />
             <Directions
               currentLocation={currentLocation}

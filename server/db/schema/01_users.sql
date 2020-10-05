@@ -5,7 +5,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   geolocation VARCHAR(255),
-  avatar VARCHAR(255),
+  avatar VARCHAR(255) DEFAULT 'https://www.flaticon.com/svg/static/icons/svg/843/843280.svg',
   active BOOLEAN,
   UNIQUE(email)
 );

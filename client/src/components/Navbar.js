@@ -24,8 +24,8 @@ function NavBar({
   setFriendRequests,
   commonGrounds,
   setCommonGrounds,
+  setSelected,
 }) {
-
   return (
     <Navbar collapseOnSelect>
       <Navbar.Brand>Common-Ground</Navbar.Brand>
@@ -46,28 +46,43 @@ function NavBar({
           {!user && (
             <>
               <LoginModal setUser={setUser} />
-              <SignupModal setUser={setUser} currentLocation={currentLocation} />
+              <SignupModal
+                setUser={setUser}
+                currentLocation={currentLocation}
+              />
             </>
           )}
           {user && (
             <>
-              <Navbar.Brand>Hello {user.name}             
-              <span className="badge badge-pill badge-danger friend-number" style={{marginLeft: 10}}>
-                {friendRequests && commonGrounds &&
-                  friendRequests.length + commonGrounds.length
-                }
-                {friendRequests && !commonGrounds &&
-                  friendRequests.length
-                }
-                {!friendRequests && commonGrounds &&
-                  commonGrounds.length
-                }
-                {!friendRequests && !commonGrounds &&
-                  0
-                }
-              </span>
+              <Navbar.Brand>
+                Hello {user.name}
+                <span
+                  className="badge badge-pill badge-danger friend-number"
+                  style={{ marginLeft: 10 }}
+                >
+                  {friendRequests &&
+                    commonGrounds &&
+                    friendRequests.length + commonGrounds.length !== 0 &&
+                    friendRequests.length + commonGrounds.length}
+                  {friendRequests &&
+                    !commonGrounds &&
+                    friendRequests.length !== 0 &&
+                    friendRequests.length}
+                  {!friendRequests &&
+                    commonGrounds &&
+                    commonGrounds.length !== 0 &&
+                    commonGrounds.length}
+                </span>
               </Navbar.Brand>
-              <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} commonGrounds={commonGrounds} setCommonGrounds={setCommonGrounds} />
+              <DropDown
+                setUser={setUser}
+                user={user}
+                friendRequests={friendRequests}
+                setFriendRequests={setFriendRequests}
+                commonGrounds={commonGrounds}
+                setCommonGrounds={setCommonGrounds}
+                setSelected={setSelected}
+              />
             </>
           )}
         </Nav>

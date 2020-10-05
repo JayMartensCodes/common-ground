@@ -15,6 +15,7 @@ function App() {
   const [friendRequests, setFriendRequests] = useState(null);
   const [friendList, setFriendList] = useState(null);
   const [commonGrounds, setCommonGrounds] = useState(null);
+  const [selected, setSelected] = useState(null);
   //Check local storage for a user
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -65,14 +66,21 @@ function App() {
     socket.on("friend-request", (data) => {
       setFriendRequests(data);
     });
+    socket.on("common-ground-request", (data) => {
+      setCommonGrounds(data);
+    });
+    socket.on("accepted-common-ground", (data) => {
+      setSelected(JSON.parse(data.geolocation));
+    });
   }, [user]);
 
   useEffect(() => {
     if (user) {
-      axios.get(`users/friend-list/${user.id}`).then((res) => { 
-        res.data && res.data.forEach((friend) => {
-          friend.geolocation = JSON.parse(friend.geolocation);
-        });
+      axios.get(`users/friend-list/${user.id}`).then((res) => {
+        res.data &&
+          res.data.forEach((friend) => {
+            friend.geolocation = JSON.parse(friend.geolocation);
+          });
         setFriendList(res.data);
       });
     }
@@ -89,6 +97,8 @@ function App() {
         friendList={friendList}
         commonGrounds={commonGrounds}
         setCommonGrounds={setCommonGrounds}
+        selected={selected}
+        setSelected={setSelected}
       />
     </>
   );

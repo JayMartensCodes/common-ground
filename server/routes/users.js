@@ -17,6 +17,7 @@ module.exports = (
     common_grounds,
     acceptCommonGroundRequest,
     declineCommonGroundRequest,
+    insertCommonGroundRequest,
   },
   io
 ) => {
@@ -135,7 +136,34 @@ module.exports = (
   router.post("/acceptCommonGroundRequest", (req, res) => {
     const request_id = req.body.id;
     acceptCommonGroundRequest(request_id)
-      .then((commonRequest) => res.json(commonRequest))
+      .then((commonRequest) => {
+        io.to(commonRequest.user_id).emit(
+          "accepted-common-ground",
+          commonRequest
+        );
+        res.json(commonRequest);
+      })
+      .catch((err) => res.json({ error: err.message }));
+  });
+
+  router.post("/common-ground", (req, res) => {
+    const { friend, user, geolocation } = req.body;
+    getUser(friend)
+      .then((friend) => {
+        insertCommonGroundRequest(user, friend.id, geolocation).then(
+          (commonGroundRequest) => {
+            common_grounds(commonGroundRequest.friend_id).then(
+              (commonGroundRequests) => {
+                io.to(commonGroundRequest.friend_id).emit(
+                  "common-ground-request",
+                  commonGroundRequests
+                );
+                res.json(commonGroundRequest);
+              }
+            );
+          }
+        );
+      })
       .catch((err) => res.json({ error: err.message }));
   });
 

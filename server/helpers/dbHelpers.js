@@ -112,7 +112,8 @@ module.exports = (db) => {
 
   const acceptCommonGroundRequest = (request_id) => {
     const query = {
-      text: "UPDATE common_grounds SET confirmed = TRUE WHERE id = $1 RETURNING *",
+      text:
+        "UPDATE common_grounds SET confirmed = TRUE WHERE id = $1 RETURNING *",
       values: [request_id],
     };
 
@@ -148,6 +149,19 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const insertCommonGroundRequest = (user_id, friend_id, geolocation) => {
+    const query = {
+      text:
+        "INSERT INTO common_grounds (user_id, friend_id, geolocation) VALUES ($1, $2, $3) RETURNING friend_id, geolocation, user_id",
+      values: [user_id, friend_id, geolocation],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   return {
     getUsers,
     getUser,
@@ -161,5 +175,6 @@ module.exports = (db) => {
     common_grounds,
     declineCommonGroundRequest,
     acceptCommonGroundRequest,
+    insertCommonGroundRequest,
   };
 };

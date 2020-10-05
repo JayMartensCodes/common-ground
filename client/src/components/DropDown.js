@@ -6,8 +6,17 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 
-function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrounds, setCommonGrounds }) {
+function DropDown({
+  setUser,
+  user,
+  friendRequests,
+  setFriendRequests,
+  commonGrounds,
+  setCommonGrounds,
+  setSelected,
+}) {
   const [addFriendShow, setAddFriendShow] = useState(false);
   const [friendRequestShow, setFriendRequestShow] = useState(false);
   const [commonGroundsShow, setCommonGroundsShow] = useState(false);
@@ -36,7 +45,6 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrou
     axios
       .post("/users/friend-request", friendRequest)
       .then((res) => {
-        console.log(res);
         addFriendHandleClose();
         reset();
       })
@@ -80,20 +88,24 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrou
         setCommonGrounds(newCommonGrounds);
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   const acceptCommonGroundsRequest = (id) => {
     const request = { id };
+
     axios
-      .post("/users/declineFriendRequest", request)
+      .post("/users/acceptCommonGroundRequest", request)
       .then((res) => {
+        const location = JSON.parse(res.data.geolocation);
         const newCommonGrounds = commonGrounds.filter(
           (commonGround) => commonGround.id !== id
         );
         setCommonGrounds(newCommonGrounds);
+        setSelected(location);
+        commonGroundsHandleClose();
       })
       .catch((error) => console.log(error));
-  }
+  };
 
   return (
     <>
@@ -107,13 +119,13 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrou
             Add Friends
           </Dropdown.Item>
           <Dropdown.Item onClick={friendRequestHandleShow}>
-            Friend Requests{" "}
+            Friend Requests
             <span className="badge badge-pill badge-danger friend-number">
               {friendRequests ? friendRequests.length : 0}
             </span>
           </Dropdown.Item>
           <Dropdown.Item onClick={commonGroundsHandleShow}>
-            Common Ground Requests{" "}
+            Common Ground Requests
             <span className="badge badge-pill badge-danger friend-number">
               {commonGrounds ? commonGrounds.length : 0}
             </span>
@@ -189,6 +201,15 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrou
                 </div>
               );
             })}
+          {friendRequests && friendRequests.length === 0 && (
+            <Alert variant="info">
+              No Friend Requests{" "}
+              <span role="img" aria-label="sad-emoji">
+                😔
+              </span>
+              !
+            </Alert>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button
@@ -222,14 +243,18 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrou
                   <div>
                     <Button
                       variant="outline-secondary"
-                      onClick={() => declineCommonGroundsRequest(commonGround.id)}
+                      onClick={() =>
+                        declineCommonGroundsRequest(commonGround.id)
+                      }
                     >
                       Decline
                     </Button>
                     <Button
                       variant="dark"
                       style={{ marginLeft: 10 }}
-                      onClick={() => acceptCommonGroundsRequest(commonGround.id)}
+                      onClick={() =>
+                        acceptCommonGroundsRequest(commonGround.id)
+                      }
                     >
                       Accept
                     </Button>
@@ -237,6 +262,9 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrou
                 </div>
               );
             })}
+          {commonGrounds && commonGrounds.length === 0 && (
+            <Alert variant="info">No Common Ground Requests!</Alert>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button
