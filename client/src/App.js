@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [friendRequests, setFriendRequests] = useState(null);
   const [friendList, setFriendList] = useState(null);
+  const [commonGrounds, setCommonGrounds] = useState(null);
   //Check local storage for a user
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -49,6 +50,7 @@ function App() {
       Promise.all([
         axios.get(`users/friend-requests/${user.id}`),
         axios.get(`users/friend-list/${user.id}`),
+        axios.get(`users/common-grounds/${user.id}`),
       ])
         .then((all) => {
           setFriendRequests(all[0].data);
@@ -56,6 +58,7 @@ function App() {
             friend.geolocation = JSON.parse(friend.geolocation);
           });
           setFriendList(all[1].data);
+          setCommonGrounds(all[2].data);
         })
         .catch((error) => console.log(error));
     }
@@ -66,8 +69,8 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      axios.get(`users/friend-list/${user.id}`).then((res) => {
-        res.data.forEach((friend) => {
+      axios.get(`users/friend-list/${user.id}`).then((res) => { 
+        res.data && res.data.forEach((friend) => {
           friend.geolocation = JSON.parse(friend.geolocation);
         });
         setFriendList(res.data);
@@ -84,6 +87,8 @@ function App() {
         friendRequests={friendRequests}
         setFriendRequests={setFriendRequests}
         friendList={friendList}
+        commonGrounds={commonGrounds}
+        setCommonGrounds={setCommonGrounds}
       />
     </>
   );

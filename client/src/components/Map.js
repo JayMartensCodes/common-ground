@@ -34,6 +34,8 @@ function Map({
   friendRequests,
   setFriendRequests,
   friendList,
+  commonGrounds,
+  setCommonGrounds,
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -106,6 +108,8 @@ function Map({
         setTravelMode={setTravelMode}
         friendRequests={friendRequests}
         setFriendRequests={setFriendRequests}
+        commonGrounds={commonGrounds}
+        setCommonGrounds={setCommonGrounds}
       />
       <GoogleMap
         id="map"

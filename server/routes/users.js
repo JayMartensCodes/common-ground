@@ -14,6 +14,9 @@ module.exports = (
     declineFriendRequest,
     makeFriendRequestMutual,
     getFriendsList,
+    common_grounds,
+    acceptCommonGroundRequest,
+    declineCommonGroundRequest,
   },
   io
 ) => {
@@ -42,6 +45,13 @@ module.exports = (
   router.get("/friend-requests/:friend_id", (req, res) => {
     const friend_id = req.params.friend_id;
     getFriendRequests(friend_id)
+      .then((friendRequests) => res.json(friendRequests))
+      .catch((err) => res.json({ error: err.message }));
+  });
+
+  router.get("/common-grounds/:friend_id", (req, res) => {
+    const friend_id = req.params.friend_id;
+    common_grounds(friend_id)
       .then((friendRequests) => res.json(friendRequests))
       .catch((err) => res.json({ error: err.message }));
   });
@@ -112,6 +122,20 @@ module.exports = (
     const request_id = req.body.id;
     declineFriendRequest(request_id)
       .then((friendRequest) => res.json(friendRequest))
+      .catch((err) => res.json({ error: err.message }));
+  });
+
+  router.post("/declineCommonGroundRequest", (req, res) => {
+    const request_id = req.body.id;
+    declineCommonGroundRequest(request_id)
+      .then((commonRequest) => res.json(commonRequest))
+      .catch((err) => res.json({ error: err.message }));
+  });
+
+  router.post("/acceptCommonGroundRequest", (req, res) => {
+    const request_id = req.body.id;
+    acceptCommonGroundRequest(request_id)
+      .then((commonRequest) => res.json(commonRequest))
       .catch((err) => res.json({ error: err.message }));
   });
 
