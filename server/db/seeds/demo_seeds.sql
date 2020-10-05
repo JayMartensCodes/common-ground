@@ -1,9 +1,9 @@
-INSERT INTO users (name, email, password, geolocation) VALUES ('Jay Martens', 'martensjay93@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6494535, "lng": -79.3863506}');
-INSERT INTO users (name, email, password, geolocation) VALUES ('Decland Bobby', 'declanbobby@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6795231, "lng": -79.4100136}');
-INSERT INTO users (name, email, password, geolocation) VALUES ('Jules Potato', 'potatofarmer88@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6592934, "lng": -79.4035223}');
-INSERT INTO users (name, email, password, geolocation) VALUES ('Camilio Gomez', 'bestmusician@hotmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.7237857, "lng": -79.38865}');
-INSERT INTO users (name, email, password, geolocation) VALUES ('Angel Overwatch', 'mercymain@hotmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6541272, "lng": -79.3524023}');
-INSERT INTO users (name, email, password, geolocation) VALUES ('Juan Huan', 'flowfordays@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6508634, "lng": -79.477651}');
+INSERT INTO users (name, email, password, geolocation, avatar, active) VALUES ('Jay Martens', 'martensjay93@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6494535, "lng": -79.3863506}', '../avatar/astronaut.png', TRUE);
+INSERT INTO users (name, email, password, geolocation, avatar, active) VALUES ('Decland Bobby', 'declanbobby@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6795231, "lng": -79.4100136}', '../avatar/cowboy.png', TRUE);
+INSERT INTO users (name, email, password, geolocation, avatar, active) VALUES ('Jules Potato', 'potatofarmer88@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6592934, "lng": -79.4035223}', '../avatar/glasses.png', TRUE);
+INSERT INTO users (name, email, password, geolocation, avatar, active) VALUES ('Camilio Gomez', 'bestmusician@hotmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.7237857, "lng": -79.38865}', '../avatar/pumpkin.png', TRUE);
+INSERT INTO users (name, email, password, geolocation, avatar, active) VALUES ('Angel Overwatch', 'mercymain@hotmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6541272, "lng": -79.3524023}', '../avatar/unicorn.png', FALSE);
+INSERT INTO users (name, email, password, geolocation, avatar, active) VALUES ('Juan Huan', 'flowfordays@gmail.com', '$2b$10$HBjBHNCg80cTsG5MAuc9PuL6xDecjV0eMloX.ibE4nnjJ96NWTcMq', '{"lat": 43.6508634, "lng": -79.477651}', '../avatar/little-red-riding-hood.png', FALSE);
 
 INSERT INTO friends (user_id, friend_id, confirmed) VALUES ('1', '2', TRUE);
 INSERT INTO friends (user_id, friend_id, confirmed) VALUES ('1', '3', TRUE);

@@ -55,6 +55,7 @@ function App() {
           all[1].data.forEach((friend) => {
             friend.geolocation = JSON.parse(friend.geolocation);
           });
+          console.log(all[1].data);
           setFriendList(all[1].data);
         })
         .catch((error) => console.log(error));

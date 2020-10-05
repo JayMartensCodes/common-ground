@@ -38,7 +38,7 @@ module.exports = (db) => {
   const getFriendsList = (user_id) => {
     const query = {
       text:
-        "SELECT geolocation, friend_id, name FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
+        "SELECT geolocation, friend_id, name, users.active, users.avatar FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
       values: [user_id],
     };
 
