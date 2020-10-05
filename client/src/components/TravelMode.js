@@ -13,35 +13,49 @@ import bikeIcon from "../images/bycicle.png";
 import trainIcon from "../images/train.png";
 import walkIcon from "../images/walk.png";
 
-const mode = { walkIcon, bikeIcon, carIcon, trainIcon }
-
 function TravelMode({ setTravelMode }) {
-  const [value, setValue] = useState(mode.walkIcon);
+  const [value, setValue] = useState(walkIcon);
 
   const handleChange = (value) => {
-    console.log(value);
     setTravelMode(value);
-    setValue(value);
+    switch (value) {
+      case "WALKING":
+        setValue(walkIcon);
+        break;
+      case "DRIVING":
+        setValue(carIcon);
+        break;
+      case "BICYCLING":
+        setValue(bikeIcon);
+        break;
+      case "TRANSIT":
+        setValue(trainIcon);
+        break;
+      default:
+        break;
+    }
   };
   return (
     <div className="travel-mode">
       <ListboxInput value={value} onChange={handleChange}>
         <ListboxButton>
-          <span id="my-label"> <img src={value} /> </span>
+          <span id="my-label">
+            <img src={value} alt="nav-value" />
+          </span>
         </ListboxButton>
         <ListboxPopover>
           <ListboxList id="dropdownmenu">
             <ListboxOption value="WALKING">
-              <img src={walkIcon} />
+              <img src={walkIcon} alt="walking" />
             </ListboxOption>
-            <ListboxOption value="BICYCLING" >
-              <img src={mode.bikeIcon} />
+            <ListboxOption value="BICYCLING">
+              <img src={bikeIcon} alt="bicycling" />
             </ListboxOption>
             <ListboxOption value="DRIVING">
-              <img src={carIcon} />
+              <img src={carIcon} alt="driving" />
             </ListboxOption>
             <ListboxOption value="TRANSIT">
-              <img src={trainIcon} />
+              <img src={trainIcon} alt="transit" />
             </ListboxOption>
           </ListboxList>
         </ListboxPopover>

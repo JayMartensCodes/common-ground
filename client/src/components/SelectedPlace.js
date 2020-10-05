@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { InfoWindow, DistanceMatrixService } from "@react-google-maps/api";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
@@ -43,7 +43,6 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
 
   return (
     <>
-      // put this into another component
       <InfoWindow
         position={selected.geometry.location}
         onCloseClick={() => setSelected(null)}
