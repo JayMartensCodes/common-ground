@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Alert from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
 
@@ -12,6 +13,8 @@ function LoginModal({ setUser }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [error, setError] = useState(null);
 
   const reset = () => {
     setEmail("")
@@ -34,15 +37,17 @@ function LoginModal({ setUser }) {
           setUser(loggedInUser)
         }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        setError("Username or Password!")
+      })
   }
 
   return (
     <div>
       <Button onClick={handleShow} >
         Login
-      </Button>
-
+        </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
@@ -73,7 +78,13 @@ function LoginModal({ setUser }) {
           <Button variant="dark" onClick={login}>
             Login
           </Button>
-
+          {error &&
+            (
+              <>
+                <Alert variant="danger">{error}</Alert >
+              </>
+            )
+          }
         </Modal.Footer>
       </Modal>
     </div >

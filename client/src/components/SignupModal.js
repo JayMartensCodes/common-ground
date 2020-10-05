@@ -5,11 +5,12 @@ import Form from "react-bootstrap/Form";
 import axios from 'axios';
 
 
-function SignupModal({setUser}) {
+function SignupModal({ setUser }) {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -22,14 +23,15 @@ function SignupModal({setUser}) {
   const signUp = () => {
     const user = { name, email, password }
     axios.post('/users', user)
-    .then((res) => {
-      localStorage.setItem('user', JSON.stringify(res.data))
-      handleClose()
-      reset()
-      setUser(res.data)
-    })
-    .catch((error) => console.log(error))
+      .then((res) => {
+        localStorage.setItem('user', JSON.stringify(res.data))
+        handleClose()
+        reset()
+        setUser(res.data)
+      })
+      .catch((error) => console.log(error))
   }
+
 
   return (
     <div>

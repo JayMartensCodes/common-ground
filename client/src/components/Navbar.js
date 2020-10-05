@@ -8,6 +8,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
 import DropDown from "./Wannabedropdown";
+import Alert from "react-bootstrap/Modal";
 import "./Nav.css";
 
 function NavBar({
@@ -22,6 +23,8 @@ function NavBar({
   setTravelMode,
   friendRequests,
   setFriendRequests,
+  error,
+  setError
 }) {
 
   return (
@@ -53,6 +56,15 @@ function NavBar({
               <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />
             </>
           )}
+        </Nav>
+        <Nav>
+          {
+            setError && (
+              <>
+                <Alert variant="success"> {this.state.errorMessage}</Alert >
+              </>
+            )
+          }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
