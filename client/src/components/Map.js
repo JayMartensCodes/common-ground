@@ -8,6 +8,7 @@ import {
 import person from "../images/rat.png";
 import friendIcon from "../images/pumpkin.png";
 import searchIcon from "../images/magnifying-glass.png";
+import foodIcon from "../images/tacos.png";
 import NavBar from "../components/Navbar";
 import SelectedPlace from "./SelectedPlace";
 import Directions from "./Directions";
@@ -76,6 +77,13 @@ function Map({
           throw error;
         }
       }
+
+      const icons = {
+        food: {
+          icon: foodIcon
+        }
+      };
+
     };
     if (midPoint && filterOption) {
       nearbySearch(midPoint, radius, filterOption);
@@ -160,12 +168,9 @@ function Map({
               key={index}
               position={marker.geometry.location}
               animation={window.google.maps.Animation.DROP}
-              icon={{
-                url:
-                  "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
-                scaledSize: new window.google.maps.Size(80, 80),
-              }}
+              icon={icons[features[i].type].icon}
               onClick={() => setSelected(marker)}
+            }
             />
           ) : null
         )}
@@ -176,9 +181,8 @@ function Map({
               position={friend.geolocation}
               animation={window.google.maps.Animation.BOUNCE}
               icon={{
-                url:
-                  "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
-                scaledSize: new window.google.maps.Size(60, 60),
+                url: friendIcon,
+                scaledSize: new window.google.maps.Size(50, 50),
               }}
             />
           ))}

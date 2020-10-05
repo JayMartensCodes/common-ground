@@ -19,8 +19,28 @@ function Filter({ setFilterOption }) {
 
   const handleChange = (value) => {
     console.log(value);
-    setFilterOption(value)
+    setFilterOption(value);
     setValue(value);
+    // switch (value) {
+    //   case "coffee":
+    //     setValue(coffeeIcon);
+    //     break;
+    //   case "bar":
+    //     setValue(barIcon);
+    //     break;
+    //   case "restaurant":
+    //     setValue(foodIcon);
+    //     break;
+    //   case "park":
+    //     setValue(parkIcon);
+    //     break;
+    //   case "hotel":
+    //     setValue(hotelIcon);
+    //     break;
+    //   default:
+    //     break;
+    // }
+
   };
   return (
     <div className="filter">
