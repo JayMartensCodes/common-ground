@@ -12,8 +12,8 @@ const center = {
 function App() {
   const [currentLocation, setCurrentLocation] = useState(center);
   const [user, setUser] = useState(null);
-  const [friendRequests, setFriendRequests] = useState(null)
-  const [friendList, setFriendList] = useState(null)
+  const [friendRequests, setFriendRequests] = useState(null);
+  const [friendList, setFriendList] = useState(null);
   //Check local storage for a user
   useEffect(() => {
     const loggedInUser = localStorage.getItem("user");
@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   //establishing socket connection and fetch friend requests
-  useEffect(() => {    
+  useEffect(() => {
     if (user) {
       socket.emit("setSocketId", user.id);
       Promise.all([
@@ -51,19 +51,40 @@ function App() {
         axios.get(`users/friend-list/${user.id}`),
       ])
         .then((all) => {
-          setFriendRequests(all[0].data)
-          setFriendList(all[1].data)
+          setFriendRequests(all[0].data);
+          all[1].data.forEach((friend) => {
+            friend.geolocation = JSON.parse(friend.geolocation);
+          });
+          setFriendList(all[1].data);
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.log(error));
     }
     socket.on("friend-request", (data) => {
-      setFriendRequests(data)
-    })
+      setFriendRequests(data);
+    });
   }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      axios.get(`users/friend-list/${user.id}`).then((res) => {
+        res.data.forEach((friend) => {
+          friend.geolocation = JSON.parse(friend.geolocation);
+        });
+        setFriendList(res.data);
+      });
+    }
+  }, [user, friendRequests]);
 
   return (
     <>
-      <Map currentLocation={currentLocation} setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} friendList={friendList}/>{" "}
+      <Map
+        currentLocation={currentLocation}
+        setUser={setUser}
+        user={user}
+        friendRequests={friendRequests}
+        setFriendRequests={setFriendRequests}
+        friendList={friendList}
+      />
     </>
   );
 }

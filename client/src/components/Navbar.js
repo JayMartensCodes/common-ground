@@ -7,7 +7,7 @@ import TravelMode from "./TravelMode";
 import { Navbar, Nav } from "react-bootstrap";
 import LoginModal from "./LoginModal";
 import SignupModal from "./SignupModal";
-import DropDown from "./Wannabedropdown";
+import DropDown from "./DropDown";
 import "./Nav.css";
 
 function NavBar({

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Wannabedropdown.css";
+import "./DropDown.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import logo from "../images/rat.png";
 import Modal from "react-bootstrap/Modal";
@@ -9,12 +9,12 @@ import Button from "react-bootstrap/Button";
 
 function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
   const [addFriendShow, setAddFriendShow] = useState(false);
+  const [friendRequestShow, setFriendRequestShow] = useState(false);
+  const [email, setEmail] = useState("");
   const addFriendHandleClose = () => setAddFriendShow(false);
   const addFriendHandleShow = () => setAddFriendShow(true);
-  const [friendRequestShow, setFriendRequestShow] = useState(false);
   const friendRequestHandleClose = () => setFriendRequestShow(false);
   const friendRequestHandleShow = () => setFriendRequestShow(true);
-  const [email, setEmail] = useState("");
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -33,7 +33,7 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
     axios
       .post("/users/friend-request", friendRequest)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         addFriendHandleClose();
         reset();
       })
@@ -122,26 +122,38 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
           <Modal.Title>Pending Friend Requests</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {friendRequests && friendRequests.map((friendRequest) => {
-            return (
-              <div key={friendRequest.id} style={{display: "flex", justifyContent: "space-between", marginBottom: 5}}>
-                <div style={{fontWeight: 600, fontSize: 25}}>
-                  {friendRequest.name}
+          {friendRequests &&
+            friendRequests.map((friendRequest) => {
+              return (
+                <div
+                  key={friendRequest.id}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: 5,
+                  }}
+                >
+                  <div style={{ fontWeight: 600, fontSize: 25 }}>
+                    {friendRequest.name}
+                  </div>
+                  <div>
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => declineFriendRequest(friendRequest.id)}
+                    >
+                      Decline
+                    </Button>
+                    <Button
+                      variant="dark"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => acceptFriendRequest(friendRequest.id)}
+                    >
+                      Accept
+                    </Button>
+                  </div>
                 </div>
-                <div>
-                  <Button
-                    variant="outline-secondary"
-                    onClick={() => declineFriendRequest(friendRequest.id)}
-                  >
-                    Decline
-                  </Button>
-                  <Button variant="dark" style={{marginLeft: 10}} onClick={() => acceptFriendRequest(friendRequest.id)}>
-                    Accept
-                  </Button>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </Modal.Body>
         <Modal.Footer>
           <Button

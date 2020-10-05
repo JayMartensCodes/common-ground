@@ -46,7 +46,7 @@ module.exports = (db) => {
       .query(query)
       .then((result) => result.rows)
       .catch((err) => err);
-  }
+  };
 
   const acceptFriendRequest = (request_id) => {
     const query = {
@@ -62,7 +62,8 @@ module.exports = (db) => {
 
   const makeFriendRequestMutual = (user_id, friend_id) => {
     const query = {
-      text: "INSERT INTO friends (user_id, friend_id, confirmed) VALUES ($1, $2, TRUE) RETURNING *",
+      text:
+        "INSERT INTO friends (user_id, friend_id, confirmed) VALUES ($1, $2, TRUE) RETURNING *",
       values: [user_id, friend_id],
     };
 
@@ -82,7 +83,7 @@ module.exports = (db) => {
       .query(query)
       .then((result) => result.rows)
       .catch((err) => err);
-  }
+  };
 
   const insertUser = (name, email, password, currentLocation) => {
     const query = {
@@ -119,6 +120,6 @@ module.exports = (db) => {
     acceptFriendRequest,
     declineFriendRequest,
     makeFriendRequestMutual,
-    getFriendsList
+    getFriendsList,
   };
 };
