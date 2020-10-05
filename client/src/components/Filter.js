@@ -8,6 +8,11 @@ import {
 } from "@reach/listbox";
 import "./Nav.css";
 import "@reach/listbox/styles.css";
+import foodIcon from "../images/tacos.png";
+import coffeeIcon from "../images/latte.png";
+import barIcon from "../images/cheers.png";
+import parkIcon from "../images/park.png";
+import hotelIcon from "../images/hotel.png";
 
 function Filter({ setFilterOption }) {
   const [value, setValue] = useState("Choose a filter");
