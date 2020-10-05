@@ -170,20 +170,18 @@ function Map({
           ) : null
         )}
         {friendList &&
-          friendList.map((friend) =>
-            friend.active ? (
-              <Marker
-                key={friend.id}
-                position={friend.geolocation}
-                animation={window.google.maps.Animation.BOUNCE}
-                icon={{
-                  url:
-                    "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
-                  scaledSize: new window.google.maps.Size(60, 60),
-                }}
-              />
-            ) : null
-          )}
+          friendList.map((friend) => (
+            <Marker
+              key={friend.friend_id}
+              position={friend.geolocation}
+              animation={window.google.maps.Animation.BOUNCE}
+              icon={{
+                url:
+                  "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
+                scaledSize: new window.google.maps.Size(60, 60),
+              }}
+            />
+          ))}
         {selected ? (
           <SelectedPlace
             setSelected={setSelected}
