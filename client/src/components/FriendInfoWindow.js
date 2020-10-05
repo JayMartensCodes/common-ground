@@ -11,8 +11,10 @@ import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
 import DirectionsRailwayIcon from "@material-ui/icons/DirectionsRailway";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import { red, green } from "@material-ui/core/colors";
-
 import { getMidPoint } from "../helper/mapHelpers";
+import { Avatar } from "@material-ui/core";
+
+import "./FriendInfoWindow.css";
 
 function FriendInfoWindow({
   setFriendSelected,
@@ -55,15 +57,23 @@ function FriendInfoWindow({
         options={{ disableAutoPan: true }}
       >
         <div>
-          <Typography component="h1">{friendSelected.name}</Typography>
-          <Typography component="p">Active</Typography>
-          <FiberManualRecordIcon
-            style={
-              friendSelected.active
-                ? { color: green[500] }
-                : { color: red[500] }
-            }
-          />
+          <header className="avatar-header">
+            <Typography component="h1">{friendSelected.name}</Typography>
+            <Avatar
+              alt={`${friendSelected.friend_id}`}
+              src={friendSelected.avatar}
+            />
+          </header>
+          <div className="active">
+            <Typography component="p">Active</Typography>
+            <FiberManualRecordIcon
+              style={
+                friendSelected.active
+                  ? { color: green[500] }
+                  : { color: red[500] }
+              }
+            />
+          </div>
           <div className="travel-div">
             <p>
               <TimerIcon />
