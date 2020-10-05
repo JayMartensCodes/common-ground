@@ -35,6 +35,19 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const common_grounds = (friend_id) => {
+    const query = {
+      text:
+        "SELECT users.name, common_grounds.id FROM common_grounds LEFT JOIN users ON users.id = common_grounds.user_id WHERE friend_id = $1 AND confirmed IS NOT TRUE",
+      values: [friend_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getFriendsList = (user_id) => {
     const query = {
       text:
@@ -85,6 +98,30 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const declineCommonGroundRequest = (request_id) => {
+    const query = {
+      text: "DELETE FROM common_grounds WHERE id = $1",
+      values: [request_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
+  const acceptCommonGroundRequest = (request_id) => {
+    const query = {
+      text: "UPDATE common_grounds SET confirmed = TRUE WHERE id = $1 RETURNING *",
+      values: [request_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows[0])
+      .catch((err) => err);
+  };
+
   const insertUser = (name, email, password, currentLocation) => {
     const query = {
       text:
@@ -121,5 +158,8 @@ module.exports = (db) => {
     declineFriendRequest,
     makeFriendRequestMutual,
     getFriendsList,
+    common_grounds,
+    declineCommonGroundRequest,
+    acceptCommonGroundRequest,
   };
 };
