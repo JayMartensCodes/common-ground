@@ -14,7 +14,6 @@ function Directions({ currentLocation, selected, travelMode }) {
           travelMode: travelMode,
         },
         (result, status) => {
-          console.log(result);
           if (status === window.google.maps.DirectionsStatus.OK) {
             setDirections(result);
           } else {
