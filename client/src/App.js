@@ -65,7 +65,7 @@ function App() {
 
   return (
     <>
-      <Map currentLocation={currentLocation} setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />{" "}
+      <Map currentLocation={currentLocation} setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} friendList={friendList}/>{" "}
     </>
   );
 }

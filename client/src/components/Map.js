@@ -31,6 +31,7 @@ function Map({
   user,
   friendRequests,
   setFriendRequests,
+  friendList,
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -168,6 +169,21 @@ function Map({
             />
           ) : null
         )}
+        {friendList &&
+          friendList.map((friend) =>
+            friend.active ? (
+              <Marker
+                key={friend.id}
+                position={friend.loaction}
+                animation={window.google.maps.Animation.BOUNCE}
+                icon={{
+                  url:
+                    "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
+                  scaledSize: new window.google.maps.Size(60, 60),
+                }}
+              />
+            ) : null
+          )}
         {selected ? (
           <SelectedPlace
             setSelected={setSelected}
