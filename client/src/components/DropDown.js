@@ -7,14 +7,17 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 
-function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
+function DropDown({ setUser, user, friendRequests, setFriendRequests, commonGrounds, setCommonGrounds }) {
   const [addFriendShow, setAddFriendShow] = useState(false);
   const [friendRequestShow, setFriendRequestShow] = useState(false);
+  const [commonGroundsShow, setCommonGroundsShow] = useState(false);
   const [email, setEmail] = useState("");
   const addFriendHandleClose = () => setAddFriendShow(false);
   const addFriendHandleShow = () => setAddFriendShow(true);
   const friendRequestHandleClose = () => setFriendRequestShow(false);
   const friendRequestHandleShow = () => setFriendRequestShow(true);
+  const commonGroundsHandleClose = () => setCommonGroundsShow(false);
+  const commonGroundsHandleShow = () => setCommonGroundsShow(true);
 
   const logout = () => {
     localStorage.removeItem("user");
@@ -66,6 +69,32 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
       .catch((error) => console.log(error));
   };
 
+  const declineCommonGroundsRequest = (id) => {
+    const request = { id };
+    axios
+      .post("/users/declineCommonGroundRequest", request)
+      .then((res) => {
+        const newCommonGrounds = commonGrounds.filter(
+          (commonGround) => commonGround.id !== id
+        );
+        setCommonGrounds(newCommonGrounds);
+      })
+      .catch((error) => console.log(error));
+  }
+
+  const acceptCommonGroundsRequest = (id) => {
+    const request = { id };
+    axios
+      .post("/users/declineFriendRequest", request)
+      .then((res) => {
+        const newCommonGrounds = commonGrounds.filter(
+          (commonGround) => commonGround.id !== id
+        );
+        setCommonGrounds(newCommonGrounds);
+      })
+      .catch((error) => console.log(error));
+  }
+
   return (
     <>
       <Dropdown>
@@ -81,6 +110,12 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
             Friend Requests{" "}
             <span className="badge badge-pill badge-danger friend-number">
               {friendRequests ? friendRequests.length : 0}
+            </span>
+          </Dropdown.Item>
+          <Dropdown.Item onClick={commonGroundsHandleShow}>
+            Common Ground Requests{" "}
+            <span className="badge badge-pill badge-danger friend-number">
+              {commonGrounds ? commonGrounds.length : 0}
             </span>
           </Dropdown.Item>
           <Dropdown.Divider />
@@ -159,6 +194,54 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
           <Button
             variant="outline-secondary"
             onClick={friendRequestHandleClose}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={commonGroundsShow} onHide={commonGroundsHandleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Pending Common Ground Requests</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {commonGrounds &&
+            commonGrounds.map((commonGround) => {
+              return (
+                <div
+                  key={commonGround.id}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    marginBottom: 5,
+                  }}
+                >
+                  <div style={{ fontWeight: 600, fontSize: 25 }}>
+                    {commonGround.name}
+                  </div>
+                  <div>
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => declineCommonGroundsRequest(commonGround.id)}
+                    >
+                      Decline
+                    </Button>
+                    <Button
+                      variant="dark"
+                      style={{ marginLeft: 10 }}
+                      onClick={() => acceptCommonGroundsRequest(commonGround.id)}
+                    >
+                      Accept
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="outline-secondary"
+            onClick={commonGroundsHandleClose}
           >
             Close
           </Button>

@@ -22,6 +22,8 @@ function NavBar({
   setTravelMode,
   friendRequests,
   setFriendRequests,
+  commonGrounds,
+  setCommonGrounds,
 }) {
 
   return (
@@ -51,10 +53,21 @@ function NavBar({
             <>
               <Navbar.Brand>Hello {user.name}             
               <span className="badge badge-pill badge-danger friend-number" style={{marginLeft: 10}}>
-                {friendRequests ? friendRequests.length : 0}
+                {friendRequests && commonGrounds &&
+                  friendRequests.length + commonGrounds.length
+                }
+                {friendRequests && !commonGrounds &&
+                  friendRequests.length
+                }
+                {!friendRequests && commonGrounds &&
+                  commonGrounds.length
+                }
+                {!friendRequests && !commonGrounds &&
+                  0
+                }
               </span>
               </Navbar.Brand>
-              <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />
+              <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} commonGrounds={commonGrounds} setCommonGrounds={setCommonGrounds} />
             </>
           )}
         </Nav>

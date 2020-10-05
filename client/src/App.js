@@ -57,7 +57,6 @@ function App() {
           all[1].data.forEach((friend) => {
             friend.geolocation = JSON.parse(friend.geolocation);
           });
-          console.log(all[1].data);
           setFriendList(all[1].data);
           setCommonGrounds(all[2].data);
         })
@@ -70,8 +69,8 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      axios.get(`users/friend-list/${user.id}`).then((res) => {
-        res.data.forEach((friend) => {
+      axios.get(`users/friend-list/${user.id}`).then((res) => { 
+        res.data && res.data.forEach((friend) => {
           friend.geolocation = JSON.parse(friend.geolocation);
         });
         setFriendList(res.data);
@@ -88,6 +87,8 @@ function App() {
         friendRequests={friendRequests}
         setFriendRequests={setFriendRequests}
         friendList={friendList}
+        commonGrounds={commonGrounds}
+        setCommonGrounds={setCommonGrounds}
       />
     </>
   );
