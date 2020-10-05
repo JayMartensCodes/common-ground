@@ -33,6 +33,7 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
     axios
       .post("/users/friend-request", friendRequest)
       .then((res) => {
+        console.log(res)
         addFriendHandleClose();
         reset();
       })
@@ -123,17 +124,21 @@ function DropDown({ setUser, user, friendRequests, setFriendRequests }) {
         <Modal.Body>
           {friendRequests && friendRequests.map((friendRequest) => {
             return (
-              <div key={friendRequest.id}>
-                {friendRequest.name}
-                <Button
-                  variant="outline-secondary"
-                  onClick={() => declineFriendRequest(friendRequest.id)}
-                >
-                  Decline
-                </Button>
-                <Button variant="dark" onClick={() => acceptFriendRequest(friendRequest.id)}>
-                  Accept
-                </Button>
+              <div key={friendRequest.id} style={{display: "flex", justifyContent: "space-between", marginBottom: 5}}>
+                <div style={{fontWeight: 600, fontSize: 25}}>
+                  {friendRequest.name}
+                </div>
+                <div>
+                  <Button
+                    variant="outline-secondary"
+                    onClick={() => declineFriendRequest(friendRequest.id)}
+                  >
+                    Decline
+                  </Button>
+                  <Button variant="dark" style={{marginLeft: 10}} onClick={() => acceptFriendRequest(friendRequest.id)}>
+                    Accept
+                  </Button>
+                </div>
               </div>
             );
           })}

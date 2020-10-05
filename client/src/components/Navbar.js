@@ -44,12 +44,16 @@ function NavBar({
           {!user && (
             <>
               <LoginModal setUser={setUser} />
-              <SignupModal setUser={setUser} />
+              <SignupModal setUser={setUser} currentLocation={currentLocation} />
             </>
           )}
           {user && (
             <>
-              <Navbar.Brand>Hello {user.name}</Navbar.Brand>
+              <Navbar.Brand>Hello {user.name}             
+              <span className="badge badge-pill badge-danger friend-number" style={{marginLeft: 10}}>
+                {friendRequests ? friendRequests.length : 0}
+              </span>
+              </Navbar.Brand>
               <DropDown setUser={setUser} user={user} friendRequests={friendRequests} setFriendRequests={setFriendRequests} />
             </>
           )}

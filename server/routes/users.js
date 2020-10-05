@@ -34,9 +34,9 @@ module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFrien
   })
 
   router.post('/', (req, res) => {
-    let { name, email, password } = req.body
+    let { name, email, password, currentLocation } = req.body
     password = bcrypt.hashSync(password, salt)
-    insertUser(name, email, password)
+    insertUser(name, email, password, currentLocation)
       .then((user) => res.json(user))
       .catch((err) => res.json({ error: err.message }));
   });
@@ -59,8 +59,14 @@ module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFrien
     getUser(email)
       .then((user) => {
         insertFriendRequest(user_id, user.id)
+          .then((friendRequest) => {
+            getFriendRequests(friendRequest.friend_id)
+              .then((friendsReqests) => {
+                io.to(friendRequest.friend_id).emit('friend-request', friendsReqests)
+                res.json(friendRequest)
+              })
+        })
       })
-      .then((friendRequest) => res.json(friendRequest))
       .catch((err) => res.json({ error: err.message }));
   })
 
@@ -71,8 +77,8 @@ module.exports = ({ getUsers, insertUser, getUser, insertFriendRequest, getFrien
         const user_id = friendRequest.friend_id
         const friend_id = friendRequest.user_id
         makeFriendRequestMutual(user_id, friend_id)
+          .then((friendRequest) => res.json(friendRequest))
       })
-      .then((friendRequest) => res.json(friendRequest))
       .catch((err) => res.json({ error: err.message }));
   })
 

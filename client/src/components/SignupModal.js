@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import axios from 'axios';
 
 
-function SignupModal({setUser}) {
+function SignupModal({setUser, currentLocation}) {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,7 +20,7 @@ function SignupModal({setUser}) {
   }
 
   const signUp = () => {
-    const user = { name, email, password }
+    const user = { name, email, password, currentLocation }
     axios.post('/users', user)
     .then((res) => {
       localStorage.setItem('user', JSON.stringify(res.data))

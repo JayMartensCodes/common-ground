@@ -174,7 +174,7 @@ function Map({
             friend.active ? (
               <Marker
                 key={friend.id}
-                position={friend.loaction}
+                position={friend.geolocation}
                 animation={window.google.maps.Animation.BOUNCE}
                 icon={{
                   url:

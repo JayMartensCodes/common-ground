@@ -38,7 +38,7 @@ module.exports = (db) => {
   const getFriendsList = (user_id) => {
     const query = {
       text:
-        "SELECT * FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
+        "SELECT geolocation, friend_id, name FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
       values: [user_id],
     };
 
@@ -84,11 +84,11 @@ module.exports = (db) => {
       .catch((err) => err);
   }
 
-  const insertUser = (name, email, password) => {
+  const insertUser = (name, email, password, currentLocation) => {
     const query = {
       text:
-        "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING email, name, id",
-      values: [name, email, password],
+        "INSERT INTO users (name, email, password, geolocation) VALUES ($1, $2, $3, $4) RETURNING email, name, id",
+      values: [name, email, password, currentLocation],
     };
 
     return db
@@ -100,7 +100,7 @@ module.exports = (db) => {
   const insertFriendRequest = (user_id, friend_id) => {
     const query = {
       text:
-        "INSERT INTO friends (user_id, friend_id) VALUES ($1, $2) RETURNING id",
+        "INSERT INTO friends (user_id, friend_id) VALUES ($1, $2) RETURNING friend_id",
       values: [user_id, friend_id],
     };
 

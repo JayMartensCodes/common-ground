@@ -10,7 +10,6 @@ const center = {
 };
 
 function App() {
-  const [response, setResponse] = useState("");
   const [currentLocation, setCurrentLocation] = useState(center);
   const [user, setUser] = useState(null);
   const [friendRequests, setFriendRequests] = useState(null)
@@ -57,10 +56,9 @@ function App() {
         })
         .catch((error) => console.log(error))
     }
-    socket.on("FromAPI", (data) => {
-      console.log(data);
-      setResponse(data);
-    });
+    socket.on("friend-request", (data) => {
+      setFriendRequests(data)
+    })
   }, [user]);
 
   return (
