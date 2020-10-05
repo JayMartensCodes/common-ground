@@ -1,7 +1,0 @@
-DROP TABLE IF EXISTS meet_ups CASCADE;
-CREATE TABLE meet_ups (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id),
-  place_id INTEGER REFERENCES places(id),
-  time TIMESTAMP NOT NULL
-);
