@@ -13,6 +13,8 @@ import SelectedPlace from "./SelectedPlace";
 import Directions from "./Directions";
 import axios from "axios";
 import mapStyles from "../mapStyles";
+import FriendInfoWindow from "./FriendInfoWindow";
+import FriendDirections from "./FriendDirections";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -43,6 +45,7 @@ function Map({
   const [radius, setRadius] = useState(500);
   const [travelMode, setTravelMode] = useState("WALKING");
   const [midPoint, setMidpoint] = useState();
+  const [friendSelected, setFriendSelected] = useState();
   const [selected, setSelected] = useState(null);
 
   const mapRef = useRef();
@@ -165,7 +168,10 @@ function Map({
                   "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
                 scaledSize: new window.google.maps.Size(80, 80),
               }}
-              onClick={() => setSelected(marker)}
+              onClick={() => {
+                setSelected(marker);
+                setFriendSelected(null);
+              }}
             />
           ) : null
         )}
@@ -180,21 +186,66 @@ function Map({
                   "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
                 scaledSize: new window.google.maps.Size(60, 60),
               }}
+              onClick={() => {
+                setFriendSelected(friend);
+                setSelected(null);
+              }}
             />
           ))}
-        {selected ? (
-          <SelectedPlace
-            setSelected={setSelected}
-            selected={selected}
-            currentLocation={currentLocation}
-            travelMode={travelMode}
-          />
-        ) : null}
-        <Directions
-          currentLocation={currentLocation}
-          selected={selected}
-          travelMode={travelMode}
-        />
+        {selected && (
+          <>
+            <SelectedPlace
+              setSelected={setSelected}
+              selected={selected}
+              currentLocation={currentLocation}
+              travelMode={travelMode}
+            />
+            <Directions
+              currentLocation={currentLocation}
+              selected={selected}
+              travelMode={travelMode}
+            />
+            <Circle
+              options={{
+                strokeColor: "#DD636E",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#DD636E",
+                fillOpacity: 0.25,
+              }}
+              center={midPoint}
+              radius={radius}
+            />
+          </>
+        )}
+        {friendSelected && (
+          <>
+            <FriendInfoWindow
+              setFriendSelected={setFriendSelected}
+              friendSelected={friendSelected}
+              setSelected={setSelected}
+              currentLocation={currentLocation}
+              travelMode={travelMode}
+              setMidpoint={setMidpoint}
+            />
+            <FriendDirections
+              currentLocation={currentLocation}
+              friendSelected={friendSelected}
+              travelMode={travelMode}
+            />
+            <Circle
+              options={{
+                strokeColor: "#DD636E",
+                strokeOpacity: 0.8,
+                strokeWeight: 2,
+                fillColor: "#DD636E",
+                fillOpacity: 0.25,
+              }}
+              center={midPoint}
+              radius={radius}
+            />
+          </>
+        )}
       </GoogleMap>
     </div>
   );

@@ -5,5 +5,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   geolocation VARCHAR(255),
+  avatar VARCHAR(255),
+  active BOOLEAN,
   UNIQUE(email)
 );

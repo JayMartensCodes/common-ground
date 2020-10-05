@@ -14,7 +14,6 @@ import "./SelectedPlace.css";
 function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
   const [travelTime, setTravelTime] = useState();
   const [distance, setDistance] = useState();
-
   const openHours = (place) => {
     if (!place.opening_hours) {
       return <h2 style={{ color: "red" }}>No Hours Available</h2>;
