@@ -14,6 +14,7 @@ module.exports = (
     declineFriendRequest,
     makeFriendRequestMutual,
     getFriendsList,
+    common_grounds,
   },
   io
 ) => {
@@ -42,6 +43,13 @@ module.exports = (
   router.get("/friend-requests/:friend_id", (req, res) => {
     const friend_id = req.params.friend_id;
     getFriendRequests(friend_id)
+      .then((friendRequests) => res.json(friendRequests))
+      .catch((err) => res.json({ error: err.message }));
+  });
+
+  router.get("/common-grounds/:friend_id", (req, res) => {
+    const friend_id = req.params.friend_id;
+    common_grounds(friend_id)
       .then((friendRequests) => res.json(friendRequests))
       .catch((err) => res.json({ error: err.message }));
   });

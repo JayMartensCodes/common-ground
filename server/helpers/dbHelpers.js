@@ -35,10 +35,23 @@ module.exports = (db) => {
       .catch((err) => err);
   };
 
+  const common_grounds = (friend_id) => {
+    const query = {
+      text:
+        "SELECT users.name, common_grounds.id FROM common_grounds LEFT JOIN users ON users.id = common_grounds.user_id WHERE friend_id = $1 AND confirmed IS NOT TRUE",
+      values: [friend_id],
+    };
+
+    return db
+      .query(query)
+      .then((result) => result.rows)
+      .catch((err) => err);
+  };
+
   const getFriendsList = (user_id) => {
     const query = {
       text:
-        "SELECT geolocation, friend_id, name FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
+        "SELECT geolocation, friend_id, name, FROM friends LEFT JOIN users ON  users.id = friends.friend_id WHERE friends.user_id = $1 AND confirmed IS TRUE",
       values: [user_id],
     };
 
@@ -121,5 +134,6 @@ module.exports = (db) => {
     declineFriendRequest,
     makeFriendRequestMutual,
     getFriendsList,
+    common_grounds,
   };
 };
