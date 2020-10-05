@@ -9,6 +9,8 @@ import DirectionsWalkIcon from "@material-ui/icons/DirectionsWalk";
 import DirectionsCarIcon from "@material-ui/icons/DirectionsCar";
 import DirectionsBikeIcon from "@material-ui/icons/DirectionsBike";
 import DirectionsRailwayIcon from "@material-ui/icons/DirectionsRailway";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import { red, green } from "@material-ui/core/colors";
 
 import { getMidPoint } from "../helper/mapHelpers";
 
@@ -41,7 +43,6 @@ function FriendInfoWindow({
     try {
       const middle = getMidPoint(currentLocation, friendSelected.geolocation);
       setMidpoint(middle);
-      // setFriendSelected(null);
     } catch (error) {
       console.log("Error: ", error);
     }
@@ -55,6 +56,14 @@ function FriendInfoWindow({
       >
         <div>
           <Typography component="h1">{friendSelected.name}</Typography>
+          <Typography component="p">Active</Typography>
+          <FiberManualRecordIcon
+            style={
+              friendSelected.active
+                ? { color: green[500] }
+                : { color: red[500] }
+            }
+          />
           <div className="travel-div">
             <p>
               <TimerIcon />
