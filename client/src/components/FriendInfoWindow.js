@@ -56,6 +56,7 @@ function FriendInfoWindow({
       >
         <div>
           <Typography component="h1">{friendSelected.name}</Typography>
+          <Typography component="p">Active</Typography>
           <FiberManualRecordIcon
             style={
               friendSelected.active

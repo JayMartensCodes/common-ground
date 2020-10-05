@@ -182,8 +182,7 @@ function Map({
               position={friend.geolocation}
               animation={window.google.maps.Animation.BOUNCE}
               icon={{
-                url:
-                  "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
+                url: friend.avatar,
                 scaledSize: new window.google.maps.Size(60, 60),
               }}
               onClick={() => {
