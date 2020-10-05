@@ -94,6 +94,7 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           travelMode: travelMode,
         }}
         callback={(res) => {
+          console.log(res);
           setTravelTime(res.rows[0].elements[0].duration.text);
           setDistance(res.rows[0].elements[0].distance.text);
         }}

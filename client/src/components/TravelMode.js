@@ -13,8 +13,6 @@ import bikeIcon from "../images/bycicle.png";
 import trainIcon from "../images/train.png";
 import walkIcon from "../images/walk.png";
 
-console.log(bikeIcon);
-
 function TravelMode({ setTravelMode }) {
   const [value, setValue] = useState(walkIcon);
 
