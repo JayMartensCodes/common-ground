@@ -101,8 +101,12 @@ function SelectedPlace({ selected, setSelected, currentLocation, travelMode }) {
           travelMode: travelMode,
         }}
         callback={(res) => {
-          setTravelTime(res.rows[0].elements[0].duration.text);
-          setDistance(res.rows[0].elements[0].distance.text);
+          try {
+            setTravelTime(res.rows[0].elements[0].duration.text);
+            setDistance(res.rows[0].elements[0].distance.text);
+          } catch (error) {
+            console.log({ error: error });
+          }
         }}
       />
     </>
