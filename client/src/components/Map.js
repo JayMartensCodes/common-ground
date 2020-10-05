@@ -160,21 +160,21 @@ function Map({
         {searchResults.map((marker, index) =>
           marker.business_status === "OPERATIONAL" ? (
             <Marker
-              key={index}
-              position={marker.geometry.location}
-              animation={window.google.maps.Animation.DROP}
-              icon={{
-                url:
-                  "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
-                scaledSize: new window.google.maps.Size(80, 80),
-              }}
-              onClick={() => {
-                setSelected(marker);
-                setFriendSelected(null);
-              }}
-            />
-          ) : null
-        )}
+            key={index}
+            position={marker.geometry.location}
+            animation={window.google.maps.Animation.DROP}
+            icon={{
+              url:
+                "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg",
+              scaledSize: new window.google.maps.Size(80, 80),
+            }}
+            onClick={() => {
+              setSelected(marker);
+              setFriendSelected(null);
+            }}
+          />
+        ) : null
+      )}
         {friendList &&
           friendList.map((friend) => (
             <Marker
