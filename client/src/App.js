@@ -95,6 +95,7 @@ function App() {
         friendRequests={friendRequests}
         setFriendRequests={setFriendRequests}
         friendList={friendList}
+        setFriendList={setFriendList}
         commonGrounds={commonGrounds}
         setCommonGrounds={setCommonGrounds}
         selected={selected}

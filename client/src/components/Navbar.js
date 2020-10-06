@@ -25,6 +25,7 @@ function NavBar({
   commonGrounds,
   setCommonGrounds,
   setSelected,
+  setFriendList,
 }) {
   return (
     <Navbar collapseOnSelect>
@@ -82,6 +83,7 @@ function NavBar({
                 commonGrounds={commonGrounds}
                 setCommonGrounds={setCommonGrounds}
                 setSelected={setSelected}
+                setFriendList={setFriendList}
               />
             </>
           )}

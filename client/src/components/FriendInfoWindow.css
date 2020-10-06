@@ -2,3 +2,19 @@
   display: flex;
   justify-content: space-between;
 }
+
+.share-friend-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.share-btn:hover {
+  background-color: #04a4e7;
+  color: white;
+  border-radius: 20px;
+  border: 1px solid #006692;
+  box-shadow: 1px 2px 5px rgba(128, 125, 125, 0.8);
+}
+.share-btn {
+  padding: 10px 15px 10px 10px;
+}

@@ -78,7 +78,7 @@
   z-index: 1;
 }
 .navbar:hover {
-  box-shadow: 2px 20px 25px 0 rgba(97, 97, 97, 0.329);
+  box-shadow: 1px 10px 15px 0 rgba(235, 226, 105, 0.329);
 }
 
 [data-reach-combobox-popover] {

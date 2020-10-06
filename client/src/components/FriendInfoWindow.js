@@ -85,10 +85,12 @@ function FriendInfoWindow({
             </p>
             <p>{getTravelMode(travelMode)}Travel-Mode</p>
           </div>
-          <button className="share-btn" onClick={handleClick}>
-            <SearchIcon />
-            Find Common Ground
-          </button>
+          <div className="share-friend-div">
+            <button className="share-btn" onClick={handleClick}>
+              <SearchIcon />
+              Find Common Ground
+            </button>
+          </div>
         </div>
       </InfoWindow>
       <DistanceMatrixService

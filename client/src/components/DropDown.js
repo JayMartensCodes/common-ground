@@ -16,6 +16,7 @@ function DropDown({
   commonGrounds,
   setCommonGrounds,
   setSelected,
+  setFriendList,
 }) {
   const [addFriendShow, setAddFriendShow] = useState(false);
   const [friendRequestShow, setFriendRequestShow] = useState(false);
@@ -31,6 +32,7 @@ function DropDown({
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
+    setFriendList(null);
   };
 
   const reset = () => {
