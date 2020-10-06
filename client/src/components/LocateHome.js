@@ -3,7 +3,7 @@ import "./Nav.css";
 import { lightBlue } from "@material-ui/core/colors";
 import HomeIcon from "./HomeIcon";
 
-function LocateHome({ panTo }) {
+function LocateHome({ panTo, setSearchResults, setDestination }) {
   return (
     <button
       className="locate"
@@ -17,6 +17,8 @@ function LocateHome({ panTo }) {
           },
           () => null
         );
+        setSearchResults([]);
+        setDestination();
       }}
     >
       <HomeIcon style={{ color: lightBlue[500] }} />

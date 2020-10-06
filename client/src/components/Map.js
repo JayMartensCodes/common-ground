@@ -114,6 +114,7 @@ function Map({
         setCommonGrounds={setCommonGrounds}
         setSelected={setSelected}
         setFriendList={setFriendList}
+        setSearchResults={setSearchResults}
       />
       <GoogleMap
         id="map"
