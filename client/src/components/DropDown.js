@@ -17,6 +17,7 @@ function DropDown({
   setCommonGrounds,
   setSelected,
   setFriendList,
+  setSearchResults,
 }) {
   const [addFriendShow, setAddFriendShow] = useState(false);
   const [friendRequestShow, setFriendRequestShow] = useState(false);
@@ -33,6 +34,8 @@ function DropDown({
     localStorage.removeItem("user");
     setUser(null);
     setFriendList(null);
+    setSelected(null);
+    setSearchResults([]);
   };
 
   const reset = () => {

@@ -89,6 +89,7 @@ function NavBar({
                 setCommonGrounds={setCommonGrounds}
                 setSelected={setSelected}
                 setFriendList={setFriendList}
+                setSearchResults={setSearchResults}
               />
             </>
           )}
