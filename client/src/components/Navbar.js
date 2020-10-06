@@ -92,6 +92,7 @@ function NavBar({
                 setSelected={setSelected}
                 setFriendList={setFriendList}
                 setSearchResults={setSearchResults}
+                setDestination={setDestination}
               />
             </>
           )}

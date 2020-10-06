@@ -18,6 +18,7 @@ function DropDown({
   setSelected,
   setFriendList,
   setSearchResults,
+  setDestination,
 }) {
   const [addFriendShow, setAddFriendShow] = useState(false);
   const [friendRequestShow, setFriendRequestShow] = useState(false);
@@ -36,6 +37,7 @@ function DropDown({
     setFriendList(null);
     setSelected(null);
     setSearchResults([]);
+    setDestination();
   };
 
   const reset = () => {
