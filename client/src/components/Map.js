@@ -6,7 +6,6 @@ import {
   Marker,
 } from "@react-google-maps/api";
 import person from "../images/rat.png";
-import friendIcon from "../images/pumpkin.png";
 import searchIcon from "../images/magnifying-glass.png";
 import NavBar from "../components/Navbar";
 import SelectedPlace from "./SelectedPlace";
@@ -15,6 +14,7 @@ import axios from "axios";
 import mapStyles from "../mapStyles";
 import FriendInfoWindow from "./FriendInfoWindow";
 import FriendDirections from "./FriendDirections";
+import { getFilterOptions } from "../helper/mapHelpers";
 
 const libraries = ["places", "directions"];
 const mapContainerStyle = {
@@ -38,6 +38,7 @@ function Map({
   setCommonGrounds,
   selected,
   setSelected,
+  setFriendList,
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -58,28 +59,8 @@ function Map({
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(15);
+    mapRef.current.setZoom(16);
   }, []);
-
-  const getFilterOptions = (marker) => {
-    switch (marker) {
-      case "cafe":
-        return "https://www.flaticon.com/svg/static/icons/svg/2935/2935307.svg";
-      case "restaurant":
-        return "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg";
-      case "bar":
-        return "https://www.flaticon.com/svg/static/icons/svg/1087/1087950.svg";
-      case "park":
-        return "https://www.flaticon.com/svg/static/icons/svg/2983/2983530.svg";
-      case "hotel":
-        return "https://www.flaticon.com/svg/static/icons/svg/3168/3168626.svg";
-      case "darkmode":
-        return "https://www.flaticon.com/svg/static/icons/svg/3565/3565230.svg";
-      default:
-        return "https://www.flaticon.com/svg/static/icons/svg/616/616655.svg";
-        break;
-    }
-  };
 
   //Get search results based on midpoint
   useEffect(() => {
@@ -132,6 +113,7 @@ function Map({
         commonGrounds={commonGrounds}
         setCommonGrounds={setCommonGrounds}
         setSelected={setSelected}
+        setFriendList={setFriendList}
       />
       <GoogleMap
         id="map"
@@ -157,7 +139,8 @@ function Map({
               position={destination}
               animation={window.google.maps.Animation.BOUNCE}
               icon={{
-                url: "https://www.flaticon.com/svg/static/icons/svg/1180/1180062.svg",
+                url:
+                  "https://www.flaticon.com/svg/static/icons/svg/1180/1180062.svg",
                 scaledSize: new window.google.maps.Size(70, 70),
               }}
             />
@@ -191,7 +174,7 @@ function Map({
               animation={window.google.maps.Animation.DROP}
               icon={{
                 url: getFilterOptions(marker.types[0]),
-                scaledSize: new window.google.maps.Size(80, 80),
+                scaledSize: new window.google.maps.Size(45, 45),
               }}
               onClick={() => {
                 setSelected(marker);

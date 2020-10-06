@@ -14,6 +14,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import { getFilterOptions } from "../helper/mapHelpers";
 
 function SelectedPlace({
   selected,
@@ -90,7 +91,7 @@ function SelectedPlace({
             <Typography component="h3">
               {selected.types[0].toUpperCase()}
             </Typography>
-            <img src={selected.icon} alt="icon" />
+            <img src={getFilterOptions(selected.types[0])} alt="icon" />
           </div>
           <Typography component="p">{selected.vicinity}</Typography>
           <div className="travel-div">
@@ -104,7 +105,7 @@ function SelectedPlace({
             </p>
             <p>{getTravelMode(travelMode)}Travel-Mode</p>
           </div>
-          {selected.rating ? (
+          {selected.rating && (
             <div className="stars">
               <Typography component="legend">Rating</Typography>
               <Rating
@@ -118,15 +119,17 @@ function SelectedPlace({
                 Users ({selected.user_ratings_total})
               </Typography>
 
-              <button className="share-btn" onClick={addCommonGroundShow}>
+              {/* <button className="share-btn" onClick={addCommonGroundShow}>
                 <ShareRoundedIcon />
-              </button>
+              </button> */}
             </div>
-          ) : (
-            <button className="share-btn">
-              <ShareRoundedIcon />
-            </button>
           )}
+          <div className="share-div">
+            <button className="share-btn" onClick={addCommonGroundShow}>
+              <ShareRoundedIcon className="share-icon" />
+              Share Common Ground
+            </button>
+          </div>
         </div>
       </InfoWindow>
       <DistanceMatrixService

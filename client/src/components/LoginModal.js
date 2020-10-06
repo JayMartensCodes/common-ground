@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import "./ModalBtn.css";
 
 function LoginModal({ setUser }) {
   const [show, setShow] = useState(false);

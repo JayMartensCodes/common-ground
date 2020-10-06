@@ -38,3 +38,22 @@ export function getMidPoint(location1, location2) {
   //-- Return result
   return { lat: lat3.toDeg(), lng: lng3.toDeg() };
 }
+
+export function getFilterOptions(marker) {
+  switch (marker) {
+    case "cafe":
+      return "https://www.flaticon.com/svg/static/icons/svg/2935/2935307.svg";
+    case "restaurant":
+      return "https://www.flaticon.com/svg/static/icons/svg/1717/1717466.svg";
+    case "bar":
+      return "https://www.flaticon.com/svg/static/icons/svg/1087/1087950.svg";
+    case "park":
+      return "https://www.flaticon.com/svg/static/icons/svg/2983/2983530.svg";
+    case "hotel":
+      return "https://www.flaticon.com/svg/static/icons/svg/3168/3168626.svg";
+    case "darkmode":
+      return "https://www.flaticon.com/svg/static/icons/svg/3565/3565230.svg";
+    default:
+      return "https://www.flaticon.com/svg/static/icons/svg/616/616655.svg";
+  }
+}
