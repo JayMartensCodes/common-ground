@@ -39,6 +39,7 @@ function Map({
   selected,
   setSelected,
   setFriendList,
+  setCurrentLocation
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -115,6 +116,7 @@ function Map({
         setSelected={setSelected}
         setFriendList={setFriendList}
         setSearchResults={setSearchResults}
+        setCurrentLocation={setCurrentLocation}
       />
       <GoogleMap
         id="map"

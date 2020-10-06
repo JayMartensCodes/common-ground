@@ -29,10 +29,12 @@ function App() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
-          setCurrentLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
+          if (currentLocation === center) {
+            setCurrentLocation({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+          }
         },
         () => null,
         {
@@ -42,11 +44,12 @@ function App() {
     } else {
       alert("Geolocation is not supported by this browser");
     }
-  }, []);
+  }, [currentLocation]);
 
   //establishing socket connection and fetch friend requests
   useEffect(() => {
     if (user) {
+      setCurrentLocation(user.geolocation);
       socket.emit("setSocketId", user.id);
       Promise.all([
         axios.get(`users/friend-requests/${user.id}`),
@@ -100,6 +103,7 @@ function App() {
         setCommonGrounds={setCommonGrounds}
         selected={selected}
         setSelected={setSelected}
+        setCurrentLocation={setCurrentLocation}
       />
     </>
   );

@@ -27,6 +27,7 @@ function NavBar({
   setSelected,
   setFriendList,
   setSearchResults,
+  setCurrentLocation,
 }) {
   return (
     <Navbar collapseOnSelect>
@@ -37,6 +38,7 @@ function NavBar({
           panTo={panTo}
           setSearchResults={setSearchResults}
           setDestination={setDestination}
+          setCurrentLocation={setCurrentLocation}
         />
         <Nav>
           <Search

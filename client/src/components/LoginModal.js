@@ -27,12 +27,13 @@ function LoginModal({ setUser }) {
     axios
       .post("/users/signIn", user)
       .then((res) => {
-        if (!res.data.error) {
+        if (!res.data.error) {          
           const loggedInUser = {
             email: res.data.email,
             name: res.data.name,
             id: res.data.id,
-          };
+            geolocation: JSON.parse(res.data.geolocation),
+          };          
           localStorage.setItem("user", JSON.stringify(loggedInUser));
           handleClose();
           reset();

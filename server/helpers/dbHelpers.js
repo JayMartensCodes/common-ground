@@ -126,7 +126,7 @@ module.exports = (db) => {
   const insertUser = (name, email, password, currentLocation) => {
     const query = {
       text:
-        "INSERT INTO users (name, email, password, geolocation) VALUES ($1, $2, $3, $4) RETURNING email, name, id",
+        "INSERT INTO users (name, email, password, geolocation) VALUES ($1, $2, $3, $4) RETURNING email, name, id, geolocation",
       values: [name, email, password, currentLocation],
     };
 

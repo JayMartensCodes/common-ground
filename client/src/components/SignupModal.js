@@ -29,10 +29,16 @@ function SignupModal({ setUser, currentLocation }) {
       axios
         .post("/users", user)
         .then((res) => {
-          localStorage.setItem("user", JSON.stringify(res.data));
+          const signedUpUser = {
+            email: res.data.email,
+            name: res.data.name,
+            id: res.data.id,
+            geolocation: JSON.parse(res.data.geolocation),
+          };  
+          localStorage.setItem("user", JSON.stringify(signedUpUser));
           handleClose();
           reset();
-          setUser(res.data);
+          setUser(signedUpUser);
         })
         .catch((error) => {
           setError("Email already in use!");
