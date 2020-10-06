@@ -26,13 +26,18 @@ function NavBar({
   setCommonGrounds,
   setSelected,
   setFriendList,
+  setSearchResults,
 }) {
   return (
     <Navbar collapseOnSelect>
       <Navbar.Brand>Common-Ground</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
-        <LocateHome panTo={panTo} />
+        <LocateHome
+          panTo={panTo}
+          setSearchResults={setSearchResults}
+          setDestination={setDestination}
+        />
         <Nav>
           <Search
             currentLocation={currentLocation}
@@ -84,6 +89,7 @@ function NavBar({
                 setCommonGrounds={setCommonGrounds}
                 setSelected={setSelected}
                 setFriendList={setFriendList}
+                setSearchResults={setSearchResults}
               />
             </>
           )}
