@@ -39,6 +39,7 @@ function NavBar({
           setSearchResults={setSearchResults}
           setDestination={setDestination}
           setCurrentLocation={setCurrentLocation}
+          user={user}
         />
         <Nav>
           <Search
