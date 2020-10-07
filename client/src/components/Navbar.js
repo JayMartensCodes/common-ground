@@ -38,8 +38,9 @@ function NavBar({
           panTo={panTo}
           setSearchResults={setSearchResults}
           setDestination={setDestination}
-          setCurrentLocation={setCurrentLocation}
+          currentLocation={currentLocation}
           user={user}
+          setSelected={setSelected}
         />
         <Nav>
           <Search
