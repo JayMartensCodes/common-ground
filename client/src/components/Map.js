@@ -39,7 +39,7 @@ function Map({
   selected,
   setSelected,
   setFriendList,
-  setCurrentLocation
+  setCurrentLocation,
 }) {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -60,7 +60,7 @@ function Map({
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(16);
+    mapRef.current.setZoom(14);
   }, []);
 
   //Get search results based on midpoint
