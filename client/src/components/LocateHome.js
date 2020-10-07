@@ -3,24 +3,12 @@ import "./Nav.css";
 import { lightBlue } from "@material-ui/core/colors";
 import HomeIcon from "./HomeIcon";
 
-function LocateHome({ panTo, setSearchResults, setDestination, setCurrentLocation }) {
+function LocateHome({ panTo, setSearchResults, setDestination, user }) {
   return (
     <button
       className="locate"
       onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-            setCurrentLocation({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
+        panTo(user.geolocation);
         setSearchResults([]);
         setDestination();
       }}
