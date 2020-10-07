@@ -75,6 +75,15 @@ function App() {
     socket.on("accepted-common-ground", (data) => {
       setSelected(JSON.parse(data.geolocation));
     });
+    socket.on("accepted-friend-request", (data) => {
+      console.log(data);
+      data.forEach((friend) => {
+        if (typeof friend.geolocation !== 'object') {
+          friend.geolocation = JSON.parse(friend.geolocation);
+        }
+      });
+      setFriendList(data)
+    })
   }, [user]);
 
   useEffect(() => {

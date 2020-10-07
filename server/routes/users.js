@@ -113,7 +113,11 @@ module.exports = (
         const user_id = friendRequest.friend_id;
         const friend_id = friendRequest.user_id;
         makeFriendRequestMutual(user_id, friend_id).then((friendRequest) =>
-          res.json(friendRequest)
+          getFriendsList(friend_id)
+            .then((friendList) => {
+              io.to(friend_id).emit("accepted-friend-request", friendList)
+              res.json({});
+            })
         );
       })
       .catch((err) => res.json({ error: err.message }));
