@@ -8,7 +8,7 @@ For the backend, we used node and express because they intergrate well with Reac
 
 - Have you ever wanted to meet up with a friend but can’t come up with a particular or fair destination spot for both of you? Well, with our app that is now possible. As you can see here once you access the common ground site we center the map using your browsers/users geolocation.
 
-![landing-page](docs\images\landing-page.png)
+![landing-page](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/landing-page.PNG)
 
 - From here I can set the parameters from within the nav bar at the top that I would like to search for such as a type of place, the search radius and the mode of transport we will use to travel.
 
