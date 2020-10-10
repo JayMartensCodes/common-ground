@@ -14,7 +14,7 @@ For the backend, we used node and express because they intergrate well with Reac
 
 - Next all you have to put in is your friend’s address or destination so we can calculate the mid point between both geolocations and set a search based on those parameters.
 
-![search](docs\images\search-casa.png)
+![search](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/search-casa.PNG)
 
 - Once we enter the address and search we can see the map automatically populate with the destination pin, search radius and icons of different places of interest depending on the icon.
 
@@ -22,35 +22,35 @@ For the backend, we used node and express because they intergrate well with Reac
   Once you pick a place you are happy with you can see the directions route get updated automatically.
   You can send the location of the selected place to your friend’s email OR if you’re logged in with friends you can send it via the app!
 
-![infowindow](docs\images\info-window.png)
+![infowindow](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/info-window.PNG)
 
 - Let’s SIGN UP AND MAKE SOME FRIENDS!
 
-![add-friend](docs\images\add-friend.png)
+![add-friend](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/add-friend.PNG)
 
 - Once logged in you can see all your friends populate the map LIVE!
 
-![signed-in](docs\images\signed-in.png)
+![signed-in](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/signed-in.PNG)
 
 - Now we can check our friend requests and see our new friend!
 
-![friend-req](docs\images\friend-request.png)
+![friend-req](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/friend-request.PNG)
 
 - Now we can select our friends and make a **_Common-Ground_** request based on their geolocation through websockets!
 
-![friend-info](docs\images\friend-on-map.png)
+![friend-info](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/friend-on-map.PNG)
 
 - Let's serach the **_Common-Ground_** between us!
 
-![common-ground-friend](docs\images\common-ground-friend.png)
+![common-ground-friend](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/common-ground-friend.PNG)
 
 - From here we can share the directions to the place selected through websockets which will auto populate the map!
 
-![common-ground-req](docs\images\share-common-ground.png)
+![common-ground-req](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/share-common-ground.PNG)
 
-![common-ground-notif](docs\images\common-ground-notif.png)
+![common-ground-notif](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/common-ground-notif.PNG)
 
-![accepted-CG](docs\images\accepted-common-ground-req.png)
+![accepted-CG](https://github.com/JayMartensCodes/common-ground/blob/master/docs/images/accepted-common-ground-req.PNG)
 
 And there you have it folks! That was **_Common-Ground_**! Now we’re going to mention the challenges and where we envision the app to go from here!
 
