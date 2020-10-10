@@ -8,13 +8,13 @@ For the backend, we used node and express because they intergrate well with Reac
 
 - Have you ever wanted to meet up with a friend but can’t come up with a particular or fair destination spot for both of you? Well, with our app that is now possible. As you can see here once you access the common ground site we center the map using your browsers/users geolocation.
 
-![landing-page](docs\images\landing-page.PNG)
+![landing-page](docs\images\landing-page.png)
 
 - From here I can set the parameters from within the nav bar at the top that I would like to search for such as a type of place, the search radius and the mode of transport we will use to travel.
 
 - Next all you have to put in is your friend’s address or destination so we can calculate the mid point between both geolocations and set a search based on those parameters.
 
-![search](docs\images\search-casa.PNG)
+![search](docs\images\search-casa.png)
 
 - Once we enter the address and search we can see the map automatically populate with the destination pin, search radius and icons of different places of interest depending on the icon.
 
@@ -22,35 +22,35 @@ For the backend, we used node and express because they intergrate well with Reac
   Once you pick a place you are happy with you can see the directions route get updated automatically.
   You can send the location of the selected place to your friend’s email OR if you’re logged in with friends you can send it via the app!
 
-![infowindow](docs\images\info-window.PNG)
+![infowindow](docs\images\info-window.png)
 
 - Let’s SIGN UP AND MAKE SOME FRIENDS!
 
-![add-friend](docs\images\add-friend.PNG)
+![add-friend](docs\images\add-friend.png)
 
 - Once logged in you can see all your friends populate the map LIVE!
 
-![signed-in](docs\images\signed-in.PNG)
+![signed-in](docs\images\signed-in.png)
 
 - Now we can check our friend requests and see our new friend!
 
-![friend-req](docs\images\friend-request.PNG)
+![friend-req](docs\images\friend-request.png)
 
 - Now we can select our friends and make a **_Common-Ground_** request based on their geolocation through websockets!
 
-![friend-info](docs\images\friend-on-map.PNG)
+![friend-info](docs\images\friend-on-map.png)
 
 - Let's serach the **_Common-Ground_** between us!
 
-![common-ground-friend](docs\images\common-ground-friend.PNG)
+![common-ground-friend](docs\images\common-ground-friend.png)
 
 - From here we can share the directions to the place selected through websockets which will auto populate the map!
 
-![common-ground-req](docs\images\share-common-ground.PNG)
+![common-ground-req](docs\images\share-common-ground.png)
 
-![common-ground-notif](docs\images\common-ground-notif.PNG)
+![common-ground-notif](docs\images\common-ground-notif.png)
 
-![accepted-CG](docs\images\accepted-common-ground-req.PNG)
+![accepted-CG](docs\images\accepted-common-ground-req.png)
 
 And there you have it folks! That was **_Common-Ground_**! Now we’re going to mention the challenges and where we envision the app to go from here!
 
